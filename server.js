@@ -7,7 +7,8 @@ var soap = require('soap');
 var bodyParser = require('body-parser');
 var url = 'http://200.62.34.16/SF.GrupoAuraIntegracionPrueba/?wsdl';
 var port = process.env.PORT || 8080;
-
+var CustomerUser = "SGroup"
+var CustomerPassword = "S1stem@#B0x1t"
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
@@ -22,8 +23,8 @@ var usersRouter = express.Router();
 usersRouter.route('/getplataformas')
         .post(function (req, res) {
             var args = {};
-            args["CustomerUser"] = req.body.CustomerUser;
-            args["CustomerPassword"] = req.body.CustomerPassword;
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
 
             soap.createClient(url, function (err, client) {
                 client.GetPlataformas(args, function (err, result) {
@@ -39,8 +40,8 @@ usersRouter.route('/getplataformas')
 usersRouter.route('/insertuserboxit')
         .post(function (req, res) {
             var args = {};
-            args["CustomerUser"] = req.body.CustomerUser;
-            args["CustomerPassword"] = req.body.CustomerPassword;
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
             args["UserName"] = req.body.UserName;
             args["UserLastName"] = req.body.UserLastName;
             args["UserEmail"] = req.body.UserEmail;
@@ -61,8 +62,8 @@ usersRouter.route('/insertuserboxit')
 usersRouter.route('/loginuserboxit')
         .post(function (req, res) {
             var args = {};
-            args["CustomerUser"] = req.body.CustomerUser;
-            args["CustomerPassword"] = req.body.CustomerPassword;
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
             args["UserEmail"] = req.body.UserEmail;
             args["UserPassword"] = req.body.UserPassword;
             soap.createClient(url, function (err, client) {
@@ -79,8 +80,8 @@ usersRouter.route('/loginuserboxit')
 usersRouter.route('/activeuserboxit').post(
         function (req, res) {
             var args = {};
-            args["CustomerUser"] = req.body.CustomerUser;
-            args["CustomerPassword"] = req.body.CustomerPassword;
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
             args["IdCliente"] = req.body.IdCliente;
 
             soap.createClient(url, function (err, client) {
@@ -95,8 +96,8 @@ usersRouter.route('/activeuserboxit').post(
 usersRouter.route('/getinfouserboxit').post(
         function (req, res) {
             var args = {};
-            args["CustomerUser"] = req.body.CustomerUser;
-            args["CustomerPassword"] = req.body.CustomerPassword;
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
             args["IdCliente"] = req.body.IdCliente;
 
             soap.createClient(url, function (err, client) {
@@ -111,8 +112,8 @@ usersRouter.route('/getinfouserboxit').post(
 usersRouter.route('/updateinfouserboxit').post(
         function (req, res) {
             var args = {};
-            args["CustomerUser"] = req.body.CustomerUser;
-            args["CustomerPassword"] = req.body.CustomerPassword;
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
             args["IdCliente"] = req.body.IdCliente;
             args["UserName"] = req.body.UserName;
             args["UserLastName"] = req.body.UserLastName;
@@ -134,8 +135,8 @@ usersRouter.route('/updateinfouserboxit').post(
 usersRouter.route('/updatepassworduserboxit').post(
         function (req, res) {
             var args = {};
-            args["CustomerUser"] = req.body.CustomerUser;
-            args["CustomerPassword"] = req.body.CustomerPassword;
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
             args["IdCliente"] = req.body.IdCliente;
             args["UserPasswordOld"] = req.body.UserPasswordOld;
             args["UserPasswordNew"] = req.body.UserPasswordNew;
@@ -151,8 +152,8 @@ usersRouter.route('/updatepassworduserboxit').post(
 usersRouter.route('/getcategorias')
         .post(function (req, res) {
             var args = {};
-            args["CustomerUser"] = req.body.CustomerUser;
-            args["CustomerPassword"] = req.body.CustomerPassword;
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
 
             soap.createClient(url, function (err, client) {
                 client.GetPlataformas(args, function (err, result) {
@@ -169,8 +170,8 @@ usersRouter.route('/getcategorias')
 usersRouter.route('/gettracking').post(
         function (req, res) {
             var args = {};
-            args["CustomerUser"] = req.body.CustomerUser;
-            args["CustomerPassword"] = req.body.CustomerPassword;
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
             args["IdCliente"] = req.body.IdCliente;
 
             soap.createClient(url, function (err, client) {
@@ -186,8 +187,8 @@ usersRouter.route('/gettracking').post(
 usersRouter.route('/insertclientalert').post(
         function (req, res) {
             var args = {};
-            args["CustomerUser"] = req.body.CustomerUser;
-            args["CustomerPassword"] = req.body.CustomerPassword;
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
             args["IdCliente"] = req.body.IdCliente;
             args["TrackingNumber"] = req.body.TrackingNumber;
             args["Shop"] = req.body.Shop;
@@ -207,8 +208,8 @@ usersRouter.route('/insertclientalert').post(
 usersRouter.route('/gettrackingbyid').post(
         function (req, res) {
             var args = {};
-            args["CustomerUser"] = req.body.CustomerUser;
-            args["CustomerPassword"] = req.body.CustomerPassword;
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
             args["IdCliente"] = req.body.IdCliente;
             args["TrackingNumber"] = req.body.TrackingNumber;
 
@@ -223,8 +224,8 @@ usersRouter.route('/gettrackingbyid').post(
 usersRouter.route('/getpackageshistorical').post(
         function (req, res) {
             var args = {};
-            args["CustomerUser"] = req.body.CustomerUser;
-            args["CustomerPassword"] = req.body.CustomerPassword;
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
             args["IdCliente"] = req.body.IdCliente;
             args["Cod_Paquete"] = req.body.Cod_Paquete;
 
@@ -240,8 +241,8 @@ usersRouter.route('/getpackageshistorical').post(
 usersRouter.route('/getpurchaseorder').post(
         function (req, res) {
             var args = {};
-            args["CustomerUser"] = req.body.CustomerUser;
-            args["CustomerPassword"] = req.body.CustomerPassword;
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
             args["IdCliente"] = req.body.IdCliente;
 
 
@@ -256,8 +257,8 @@ usersRouter.route('/getpurchaseorder').post(
 usersRouter.route('/insertpurchaseorder').post(
         function (req, res) {
             var args = {};
-            args["CustomerUser"] = req.body.CustomerUser;
-            args["CustomerPassword"] = req.body.CustomerPassword;
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
             args["IdCliente"] = req.body.IdCliente;
             args["Package"] = req.body.Package;
             args["Link"] = req.body.Link;
@@ -277,8 +278,8 @@ usersRouter.route('/insertpurchaseorder').post(
 usersRouter.route('/sendforgetpassword').post(
         function (req, res) {
             var args = {};
-            args["CustomerUser"] = req.body.CustomerUser;
-            args["CustomerPassword"] = req.body.CustomerPassword;
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
             args["email"] = req.body.email;
 
 
@@ -293,8 +294,8 @@ usersRouter.route('/sendforgetpassword').post(
 usersRouter.route('/updateforgetpassword').post(
         function (req, res) {
             var args = {};
-            args["CustomerUser"] = req.body.CustomerUser;
-            args["CustomerPassword"] = req.body.CustomerPassword;
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
             args["IdCliente"] = req.body.IdCliente;
             args["UserPasswordNew"] = req.body.UserPasswordNew;
 
@@ -309,8 +310,8 @@ usersRouter.route('/updateforgetpassword').post(
 usersRouter.route('/getaddressmiamiuser').post(
         function (req, res) {
             var args = {};
-            args["CustomerUser"] = req.body.CustomerUser;
-            args["CustomerPassword"] = req.body.CustomerPassword;
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
             args["IdCliente"] = req.body.IdCliente;
           
 
