@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="boxit">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,8 +10,11 @@
 		<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
 		<script src="js/Rotators.js"></script>
 		<script src="js/js.js"></script>
+		<script src="js/dependencias/angular.js"></script>
+		<script src="js/app/app.js"></script>
+		<script src="js/controllers/loginController.js"></script>
 	</head>
-	<body>
+	<body ng-controller="loginController">
 		<header class="MaxWidth">
 			<div class="Language">
 				<div class="SelectLanguage">
@@ -151,18 +154,17 @@
 		</div>
 		<div class="ContentContainer MaxWidthData">
 			<div class="Formulary">
-				<form action="">
 					<div class="FieldContent">
 						<span>Usuario</span>
-						<input type="text" class="NormalWidth">
+						<input type="text" class="NormalWidth" ng-model="username">
 					</div>
 					<div class="FieldContent">
 						<span>Contraseña</span>
-						<input type="text" class="NormalWidth">
+						<input type="password" class="NormalWidth" ng-model="password">
 						<input type="checkbox"><span>Recordarme</span>
 					</div>
 					<div class="Submit">
-						<input type="submit" class="Button WithBackground" value="Iniciar sesión">
+						<button ng-click="Login()" class="Button WithBackground">Iniciar sesión</button>
 					</div>
 					<div class="Links">
 						<div class="Link">
@@ -176,7 +178,6 @@
 							</a>
 						</div>
 					</div>
-				</form>
 			</div>
 		</div>
 		<footer class="Content">
