@@ -14,7 +14,7 @@ angular
                         'Content-Type': 'application/json'
                     }
                 }).then(function success(result) {
-                  alert(result.data.Rows)
+                  alert(JSON.Stringify (result.data.Rows))
                 },function error(result) {
                   console.log(result.data);
                 });
