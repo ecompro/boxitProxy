@@ -1,6 +1,6 @@
 angular
     .module('boxit')
-    .controller('loginController', ['$scope', '$http',
+    .controller('loginController', ['$scope', '$http','userData',
         function ($scope, $http,userData) {
             $scope.Login = function () {
                 $http({
@@ -18,10 +18,11 @@ angular
                   alert(JSON.stringify(result.data.Rows.attributes.Message));
               }
               else {
-                  alert(JSON.stringify(result.data));
-                  var user = userData.getData();
-                  user.id = result.data.Rows.attributes.IdCliente;
-                  userData.setData(user);
+                  //alert(JSON.stringify(result.data));
+                  //var test = userData.getData();
+                  var id = result.data.Rows.attributes.IdCliente;
+                  userData.setData(id);
+                 
               }
             
             },function error(result) {

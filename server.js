@@ -129,7 +129,7 @@ usersRouter.route('/updateinfouserboxit').post(
 
             soap.createClient(url, function (err, client) {
                 client.UpdateInfoUserBoxIt(args, function (err, result) {
-                    res.json(result.UpdateInfoUserBoxItResult);
+                    res.json(result.UpdateInfoUserBoxItResult.data);
 
                 });
             });
