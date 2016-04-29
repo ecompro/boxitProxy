@@ -1,7 +1,7 @@
 angular
     .module('boxit')
-    .controller('loginController', ['$scope', '$http','userData',
-        function ($scope, $http,userData) {
+    .controller('loginController', ['$scope', '$http','userData','ngToast',
+        function ($scope, $http,userData,ngToast) {
             $scope.Login = function () {
                 $http({
                     method: "POST",
@@ -15,7 +15,8 @@ angular
                     }
                 }).then(function success(result) {
             if(result.data.Rows.attributes.IdCliente === undefined) {        
-                  alert(JSON.stringify(result.data.Rows.attributes.Message));
+                //alert(JSON.stringify(result.data.Rows.attributes.Message));
+                ngToast.create(JSON.stringify(result.data.Rows.attributes.Message));
               }
               else {
                   //alert(JSON.stringify(result.data));

@@ -7,13 +7,20 @@
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/Style.css">
         <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/ngToast.min.css">
         <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
         <script src="js/Rotators.js"></script>
         <script src="js/js.js"></script>
         <script src="js/dependencias/angular.js"></script>
+        <script src="js/dependencias/angular-animate.min.js"></script>
+        <script src="js/dependencias/angular-sanitize.min.js"></script>
+        <script src="js/dependencias/ngToast.min.js"></script>
         <script src="js/app/app.js"></script>
+        <script src="js/controllers/siginController.js"></script>
     </head>
     <body ng-controller="siginController">
+    <toast></toast>
         <header class="MaxWidth">
             <div class="Language">
                 <div class="SelectLanguage">
@@ -189,15 +196,59 @@
                                     </td>
                                     <td>
                                         <div class="FieldContent">
-                                            <select class="ForDate" name="" id="">
+                                            <select class="ForDate" name="" id="" ng-model="diaNacimiento">
                                                 <option value="">Día</option>
+                                                <option value="1">1</option>
+                                                <option value="2">3</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                                <option value="25">25</option>
+                                                <option value="26">26</option>
+                                                <option value="27">27</option>
+                                                <option value="28">28</option>
+                                                <option value="29">29</option>
+                                                <option value="30">30</option>
+                                                <option value="31">31</option>
                                             </select>
-                                            <select class="ForDate" name="" id="">
+                                            <select class="ForDate" name="" id="" ng-model="mesNacimiento">
                                                 <option value="">Mes</option>
+                                                <option value="Enero">Enero</option>
+                                                <option value="Febrero">Febrero</option>
+                                                <option value="Marzo">Marzo</option>
+                                                <option value="Abril">Abril</option>
+                                                <option value="Mayo">Mayo</option>
+                                                <option value="Junio">Junio</option>
+                                                <option value="Julio">Julio</option>
+                                                <option value="Agosto">Agosto</option>
+                                                <option value="Septiembre">Septiembre</option>
+                                                <option value="Octubre">Octubre</option>
+                                                <option value="Noviembre">Noviembre</option>
+                                                <option value="Diciembre">Diciembre</option>
                                             </select>
-                                            <select class="ForDate" name="" id="">
-                                                <option value="">Año</option>
-                                            </select>
+                                            <input style="width: 60.641px" class="ForDate" name="" placeholder="Año" ng-model="anhoNacimiento">
+                                                <!--&lt;!&ndash;ng-options="anho for anho in anhosDeNacimiento"&ndash;&gt;-->
+                                                <!--<option value="">Año</option>-->
+                                            </input>
                                         </div>
                                     </td>
                                 </tr>
@@ -207,10 +258,10 @@
                                     </td>
                                     <td>
                                         <div class="FieldContent">
-                                            <select name="" id="">
+                                            <select name="" id="" ng-model="genero">
                                                 <option value=""></option>
-                                                <option value="1">Masculino</option>
-                                                <option value="2">Femenino</option>
+                                                <option value="M">Masculino</option>
+                                                <option value="F">Femenino</option>
                                             </select>
                                         </div>
                                     </td>
@@ -289,7 +340,7 @@
                                     </td>
                                     <td>
                                         <div class="FieldContent">
-                                            <select name="" id="">
+                                            <select ng-options="plataforma.attributes.DescPlataforma for plataforma in plataformas" ng-model = "descPlataforma">
                                                 <option value="">Selecciona tu Boxit más cercano</option>
                                             </select>
                                         </div>
@@ -313,7 +364,7 @@
                                     </td>
                                     <td>
                                         <div class="FieldContent">
-                                            <input type="checkbox" checked disabled>
+                                            <input type="checkbox">
                                         </div>
                                     </td>
                                 </tr>
@@ -392,7 +443,8 @@
                                     </td>
                                     <td>
                                         <div class="Submit">
-                                            <input type="submit" class="Button WithBackground" value="REGISTRARME">
+                                            <!--<input type="submit"  value="REGISTRARME">-->
+                                            <button class="Button WithBackground" ng-click="Sigin()">REGISTRARME</button>
                                         </div>
                                     </td>
                                 </tr>

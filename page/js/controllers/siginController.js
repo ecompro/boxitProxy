@@ -3,35 +3,45 @@
  */
 angular
     .module('boxit')
-    .controller('siginController', ['$scope', '$http',
-        function ($scope, $http) {
+    .controller('siginController', ['$scope', '$http','$window','ngToast',
+        function ($scope, $http,$window,ngToast) {
+            $scope.plataformas = [];
+            $http({
+                method: "POST",
+                url: "http://localhost:8080/users/getplataformas",
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function success(results) {
+                $scope.plataformas = results.data;
+            }, function error(results) {
+                console.log(results.data);
+            });
             $scope.Sigin = function () {
                 var args = {};
                 args["UserName"] = $scope.username;
                 args["UserLastName"] = $scope.lastname;
                 args["UserEmail"] = $scope.useremail;
                 args["UserPassword"] = $scope.password;
-                args["IdPlataforma"] = null;
+                args["IdPlataforma"] = $scope.descPlataforma != null ? 
+                    $scope.descPlataforma.attributes.IdPlataforma : null;
                 $http({
                     method: "POST",
                     url: "http://localhost:8080/users/insertuserboxit",
-                    data: null,
+                    data: args,
                     headers: {
                         'Content-Type': 'application/json'
                     }
                 }).then(function success(result) {
-                    if(result.data.Rows.attributes.IdCliente === undefined) {
-                        alert(JSON.stringify(result.data.Rows.attributes.Message));
+                    if (result.data.attributes.IdCliente === undefined) {
+                        ngToast.create(JSON.stringify(result.data.attributes.Message));
                     }
                     else {
-                        //alert(JSON.stringify(result.data));
-                        //var test = userData.getData();
-                        var id = result.data.Rows.attributes.IdCliente;
-                        userData.setData(id);
-
+                        alert(JSON.stringify(result.data.attributes));
+                        $window.location = "/Iniciarsesion.html";
                     }
 
-                },function error(result) {
+                }, function error(result) {
                     console.log(result.data);
                 });
             }
