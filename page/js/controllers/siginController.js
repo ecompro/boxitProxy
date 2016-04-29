@@ -39,7 +39,7 @@ angular
                     }
                     else {
                      // ngToast.create(JSON.stringify(result.data.attributes.Message));
-                       alert(JSON.stringify(result.data.attributes.Message)); 
+                       //alert(JSON.stringify(result.data.attributes.Message)); 
                         var user = $scope;
                         userData.activateUser(result.data.attributes.IdCliente);
                         userData.updateData(user);
