@@ -3,7 +3,7 @@
  */
 angular
     .module('boxit')
-    .controller('siginController', ['$scope', '$http','$window','userData','ngToast',
+    .controller('siginController', ['$scope', '$http','$window','ngToast','userData',
         function ($scope, $http,$window,ngToast,userData) {
             $scope.plataformas = [];
             $http({
