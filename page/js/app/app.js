@@ -1,1 +1,1 @@
-angular.module('boxit', ['ngToast']);
+angular.module('boxit', ['ngToast','ui.bootstrap']);

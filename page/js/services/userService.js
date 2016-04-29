@@ -15,7 +15,7 @@ var user = {
 };
 
 angular.module('boxit')
-        .factory('userData', function ($http,ngToast) {
+        .factory('userData', function ($http) {
 
             var factory = {};
 
@@ -66,14 +66,11 @@ angular.module('boxit')
                 args["IdCliente"] = newUser.IdCliente;
                 args["UserName"] = newUser.username;
                 args["UserLastName"] = newUser.lastname;
-                args["UserLastName"] = newUser.username;
                 args["UserGender"] = newUser.UserGender;
                 args["UserBirthdate"] = newUser.UserBirthdate;
                 args["IdPlataforma"] = newUser.IdPlataforma;
                 args["UserEmail"] = newUser.useremail;
                 args["UserPhone"] = newUser.useremail;
-               
-
                 $http({
                     method: "POST",
                     url: "http://localhost:8080/users/updateinfouserboxIt",
@@ -83,13 +80,9 @@ angular.module('boxit')
                     }
                 }).then(function success(result) {
                     if (result.data.attributes.IdCliente === undefined) {
-                        ngToast.create(JSON.stringify(result.data.attributes.Message));
+                        return result.data.attributes.Message;
                     } else {
-                       // alert(JSON.stringify(result.data.attributes));
-
-
-                        ngToast.create(JSON.stringify(result.data.attributes.Message));
-                     //   $window.location = "/Iniciarsesion.html";
+                        return result.data.attributes.Message;
                     }
 
                 }, function error(result) {
@@ -109,16 +102,10 @@ angular.module('boxit')
                         'Content-Type': 'application/json'
                     }
                 }).then(function success(result) {
-                 
-                        ngToast.create(JSON.stringify(result.data.attributes.Message));
-                
+                        return result.data.attributes.Message;
                 }, function error(result) {
                     console.log(result.data);
                 });
             };
-                
-            
-            
-
             return factory;
         });
