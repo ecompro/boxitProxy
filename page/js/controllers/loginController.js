@@ -29,5 +29,5 @@ angular
             },function error(result) {
                   console.log(result.data);
                 });
-            }
+            };
         }]);

@@ -15,7 +15,7 @@ var user = {
 };
 
 angular.module('boxit')
-        .factory('userData', function ($http) {
+        .factory('userData', function ($http,ngToast) {
 
             var factory = {};
 
@@ -25,31 +25,31 @@ angular.module('boxit')
                     url: "http://localhost:8080/users/getinfouserboxit",
                     data: {
                         "IdCliente": id
-                       
+
                     },
                     headers: {
                         'Content-Type': 'application/json'
                     }
                 }).then(function success(result) {
-                  
-            if(result.data.Data.Rows.attributes.IdCliente === undefined) {        
-                   
-                    alert(JSON.stringify(result.Data.Rows.attributes.Message));
-              }
-              else {
-                
-                 user.IdCliente =  result.data.Data.Rows.attributes.IdCliente;
-                 user.UserName =  result.data.Data.Rows.attributes.UserName;
-                 user.UserLastName =  result.data.Data.Rows.attributes.UserLastName;
-                 user.UserGender =  result.data.Data.Rows.attributes.UserGender;
-                 user.UserBirthdate =  result.data.Data.Rows.attributes.UserBirthdate;
-                 user.UserEmail =  result.data.Data.Rows.attributes.UserEmail;
-                 user.UserPhone =  result.data.Data.Rows.attributes.UserPhone;
-                alert(JSON.stringify(user));
-              }
-            
-            },function error(result) {
-                  console.log(result.data);
+
+                    if (result.data.Data.Rows.attributes.IdCliente === undefined) {
+
+                        alert(JSON.stringify(result.Data.Rows.attributes.Message));
+                    } else {
+
+                        user.IdCliente = result.data.Data.Rows.attributes.IdCliente;
+                        user.UserName = result.data.Data.Rows.attributes.UserName;
+                        user.UserLastName = result.data.Data.Rows.attributes.UserLastName;
+                        user.UserGender = result.data.Data.Rows.attributes.UserGender;
+                        user.UserBirthdate = result.data.Data.Rows.attributes.UserBirthdate;
+                        user.IdPlataforma = result.data.Data.Rows.attributes.IdPlataforma;
+                        user.UserEmail = result.data.Data.Rows.attributes.UserEmail;
+                        user.UserPhone = result.data.Data.Rows.attributes.UserPhone;
+                        alert(JSON.stringify(user));
+                    }
+
+                }, function error(result) {
+                    console.log(result.data);
                 });
 
             };
@@ -58,6 +58,67 @@ angular.module('boxit')
 
                 return user;
             };
+
+            factory.updateData = function (newUser) {
+
+                alert(JSON.stringify(newUser));
+                var args = {};
+                args["IdCliente"] = newUser.IdCliente;
+                args["UserName"] = newUser.username;
+                args["UserLastName"] = newUser.lastname;
+                args["UserLastName"] = newUser.username;
+                args["UserGender"] = newUser.UserGender;
+                args["UserBirthdate"] = newUser.UserBirthdate;
+                args["IdPlataforma"] = newUser.IdPlataforma;
+                args["UserEmail"] = newUser.useremail;
+                args["UserPhone"] = newUser.useremail;
+
+
+                $http({
+                    method: "POST",
+                    url: "http://localhost:8080/users/updateinfouserboxIt",
+                    data: args,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(function success(result) {
+                    if (result.data.attributes.IdCliente === undefined) {
+                        ngToast.create(JSON.stringify(result.data.attributes.Message));
+                    } else {
+                       // alert(JSON.stringify(result.data.attributes));
+
+
+                        ngToast.create(JSON.stringify(result.data.attributes.Message));
+                     //   $window.location = "/Iniciarsesion.html";
+                    }
+
+                }, function error(result) {
+                    console.log(result.data);
+                });
+            };
+
+            factory.activateUser = function (id) {
+                
+                var args = {};
+                 args["IdCliente"] = id;
+                   $http({
+                    method: "POST",
+                    url: "http://localhost:8080/users/activeuserboxit",
+                    data: args,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(function success(result) {
+                 
+                        ngToast.create(JSON.stringify(result.data.attributes.Message));
+                
+                }, function error(result) {
+                    console.log(result.data);
+                });
+            };
+                
+            
+            
 
             return factory;
         });

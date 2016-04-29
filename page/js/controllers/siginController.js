@@ -3,8 +3,8 @@
  */
 angular
     .module('boxit')
-    .controller('siginController', ['$scope', '$http','$window','ngToast',
-        function ($scope, $http,$window,ngToast) {
+    .controller('siginController', ['$scope', '$http','$window','userData','ngToast',
+        function ($scope, $http,$window,ngToast,userData) {
             $scope.plataformas = [];
             $http({
                 method: "POST",
@@ -18,6 +18,7 @@ angular
                 console.log(results.data);
             });
             $scope.Sigin = function () {
+              
                 var args = {};
                 args["UserName"] = $scope.username;
                 args["UserLastName"] = $scope.lastname;
@@ -37,7 +38,11 @@ angular
                         ngToast.create(JSON.stringify(result.data.attributes.Message));
                     }
                     else {
-                        alert(JSON.stringify(result.data.attributes));
+                     // ngToast.create(JSON.stringify(result.data.attributes.Message));
+                       alert(JSON.stringify(result.data.attributes.Message)); 
+                        var user = $scope;
+                        userData.activateUser(result.data.attributes.IdCliente);
+                        userData.updateData(user);
                         $window.location = "/Iniciarsesion.html";
                     }
 
@@ -45,4 +50,9 @@ angular
                     console.log(result.data);
                 });
             }
+            
+            
+            
+            
+            
         }]);
