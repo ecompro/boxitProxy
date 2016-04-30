@@ -82,9 +82,9 @@ angular.module('boxit')
                     }
                 }).then(function success(result) {
                     if (result.data.attributes.IdCliente === undefined) {
-                        return result.data.attributes.Message;
+                        return result;
                     } else {
-                        return result.data.attributes.Message;
+                        return result;
                     }
 
                 }, function error(result) {

@@ -106,7 +106,7 @@ usersRouter.route('/getinfouserboxit').post(
 
             soap.createClient(url, function (err, client) {
                 client.GetInfoUserBoxIt(args, function (err, result) {
-                    res.json(result.GetInfoUserBoxItResult);
+                    res.json(result.GetInfoUserBoxItResult.Data);
 
                 });
             });
@@ -129,7 +129,7 @@ usersRouter.route('/updateinfouserboxit').post(
 
             soap.createClient(url, function (err, client) {
                 client.UpdateInfoUserBoxIt(args, function (err, result) {
-                    res.json(result.UpdateInfoUserBoxItResult.data);
+                    res.json(result.UpdateInfoUserBoxItResult.Data);
 
                 });
             });
@@ -148,7 +148,7 @@ usersRouter.route('/updatepassworduserboxit').post(
 
             soap.createClient(url, function (err, client) {
                 client.UpdatePasswordUserBoxIt(args, function (err, result) {
-                    res.json(result.UpdatePasswordUserBoxItResult);
+                    res.json(result.UpdatePasswordUserBoxItResult.Data);
 
                 });
             });
@@ -180,7 +180,7 @@ usersRouter.route('/gettracking').post(
 
             soap.createClient(url, function (err, client) {
                 client.GetTracking(args, function (err, result) {
-                    res.json(result.GetTrackingResult);
+                    res.json(result.GetTrackingResult.Data);
 
                 });
             });
@@ -202,7 +202,7 @@ usersRouter.route('/insertclientalert').post(
 
             soap.createClient(url, function (err, client) {
                 client.InsertClientAlert(args, function (err, result) {
-                    res.json(result.InsertClientAlert);
+                    res.json(result.InsertClientAlert.Data);
 
                 });
             });
@@ -219,7 +219,7 @@ usersRouter.route('/gettrackingbyid').post(
 
             soap.createClient(url, function (err, client) {
                 client.GetTrackingById(args, function (err, result) {
-                    res.json(result.GetTrackingByIdResult);
+                    res.json(result.GetTrackingByIdResult.Data);
 
                 });
             });
@@ -235,7 +235,7 @@ usersRouter.route('/getpackageshistorical').post(
 
             soap.createClient(url, function (err, client) {
                 client.GetPackagesHistorical(args, function (err, result) {
-                    res.json(result.GetPackagesHistoricalResult);
+                    res.json(result.GetPackagesHistoricalResult.Data);
 
                 });
             });
@@ -252,7 +252,7 @@ usersRouter.route('/getpurchaseorder').post(
 
             soap.createClient(url, function (err, client) {
                 client.GetPurchaseOrder(args, function (err, result) {
-                    res.json(result.GetPurchaseOrderHistoricalResult);
+                    res.json(result.GetPurchaseOrderHistoricalResult.Data);
 
                 });
             });
@@ -272,7 +272,7 @@ usersRouter.route('/insertpurchaseorder').post(
 
             soap.createClient(url, function (err, client) {
                 client.InsertPurchaseOrder(args, function (err, result) {
-                    res.json(result.InsertPurchaseOrderResult);
+                    res.json(result.InsertPurchaseOrderResult.Data);
 
                 });
             });
@@ -289,7 +289,7 @@ usersRouter.route('/sendforgetpassword').post(
 
             soap.createClient(url, function (err, client) {
                 client.SendForgetPassword(args, function (err, result) {
-                    res.json(result.SendForgetPasswordResult);
+                    res.json(result.SendForgetPasswordResult.Data);
 
                 });
             });
@@ -305,7 +305,7 @@ usersRouter.route('/updateforgetpassword').post(
 
             soap.createClient(url, function (err, client) {
                 client.UpdateForgetPassword(args, function (err, result) {
-                    res.json(result.UpdateForgetPasswordResult);
+                    res.json(result.UpdateForgetPasswordResult.Data);
 
                 });
             });
@@ -321,7 +321,7 @@ usersRouter.route('/getaddressmiamiuser').post(
 
             soap.createClient(url, function (err, client) {
                 client.GetAddressMiamiUser(args, function (err, result) {
-                    res.json(result.GetAddressMiamiUserResult);
+                    res.json(result.GetAddressMiamiUserResult.Data);
 
                 });
             });
