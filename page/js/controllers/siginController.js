@@ -70,11 +70,19 @@ angular
                         user["IdPlataforma"] = $scope.IdPlataforma;
                         user["UserEmail"] = $scope.useremail;
                         user["UserPhone"] = $scope.useremail;
-                        var activateResponse = userData.activateUser(result.data.attributes.IdCliente);
-                        ngToast.create(activateResponse);
-                        var updateResponse = userData.updateData(user);
-                        ngToast.create(updateResponse);
-                        $window.location = "/Iniciarsesion.html";
+                        userData.activateUser(result.data.attributes.IdCliente)
+                            .then(function (data) {
+                                ngToast.create(data);
+                            }).catch(function (err) {
+                                console.log(err);
+                        });
+                        userData.updateData(user)
+                            .then(function (data) {
+                                ngToast.create(data);
+                            }).catch(function (err) {
+                                console.log(err);
+                        });
+                        //$window.location = "/Iniciarsesion.html";
                     }
                 }, function error(result) {
                     console.log(result.data);

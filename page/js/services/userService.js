@@ -15,7 +15,7 @@ var user = {
 };
 
 angular.module('boxit')
-        .factory('userData', function ($http) {
+        .factory('userData', function ($http,$q) {
 
             var factory = {};
 
@@ -33,9 +33,7 @@ angular.module('boxit')
                 }).then(function success(result) {
 
                     if (result.data.Data.Rows.attributes.IdCliente === undefined) {
-
-                      //alert(JSON.stringify(result.Data.Rows.attributes.Message));
-                      return JSON.stringify(result.Data.Rows.attributes.Message);
+                        return result.Data.Rows.attributes.Message;
                     } else {
 
                         user.IdCliente = result.data.Data.Rows.attributes.IdCliente;
@@ -46,8 +44,7 @@ angular.module('boxit')
                         user.IdPlataforma = result.data.Data.Rows.attributes.IdPlataforma;
                         user.UserEmail = result.data.Data.Rows.attributes.UserEmail;
                         user.UserPhone = result.data.Data.Rows.attributes.UserPhone;
-                       
-                    return user;
+                        return user;
                     }
 
                 }, function error(result) {
@@ -57,43 +54,37 @@ angular.module('boxit')
             };
 
             factory.getData = function () {
-
                 return user;
             };
 
             factory.updateData = function (newUser) {
-
-                //alert(JSON.stringify(newUser));
-                var args = {};
-                args["IdCliente"] = newUser.IdCliente;
-                args["UserName"] = newUser.username;
-                args["UserLastName"] = newUser.lastname;
-                args["UserGender"] = newUser.UserGender;
-                args["UserBirthdate"] = newUser.UserBirthdate;
-                args["IdPlataforma"] = newUser.IdPlataforma;
-                args["UserEmail"] = newUser.useremail;
-                args["UserPhone"] = newUser.useremail;
+                var defered = $q.defer();
+                var promise = defered.promise;
+                console.log(JSON.stringify(newUser));
                 $http({
                     method: "POST",
                     url: "http://localhost:8080/users/updateinfouserboxIt",
-                    data: args,
+                    data: newUser,
                     headers: {
                         'Content-Type': 'application/json'
                     }
                 }).then(function success(result) {
-                    if (result.data.attributes.IdCliente === undefined) {
-                        return result;
+                    console.log(result);
+                    if (result.attributes.IdCliente === undefined) {
+                        defered.resolve(result.data.attributes.Message);
                     } else {
-                        return result;
+                        defered.resolve(result.data.attributes.Message);
                     }
 
                 }, function error(result) {
-                    console.log(result.data);
+                    defered.resolve(result.data);
                 });
+                return promise;
             };
 
             factory.activateUser = function (id) {
-                
+                var defered = $q.defer();
+                var promise = defered.promise;
                 var args = {};
                  args["IdCliente"] = id;
                    $http({
@@ -104,10 +95,11 @@ angular.module('boxit')
                         'Content-Type': 'application/json'
                     }
                 }).then(function success(result) {
-                        return result.data.attributes.Message;
+                       defered.resolve(result.data);
                 }, function error(result) {
-                    console.log(result.data);
+                       defered.reject(result.data)
                 });
+                return promise;
             };
             return factory;
         });
