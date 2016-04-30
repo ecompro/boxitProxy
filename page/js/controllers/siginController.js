@@ -70,8 +70,10 @@ angular
                         user["IdPlataforma"] = $scope.IdPlataforma;
                         user["UserEmail"] = $scope.useremail;
                         user["UserPhone"] = $scope.useremail;
-                        userData.activateUser(result.data.attributes.IdCliente);
-                        userData.updateData(user);
+                        var activateResponse = userData.activateUser(result.data.attributes.IdCliente);
+                        ngToast.create(activateResponse);
+                        var updateResponse = userData.updateData(user);
+                        ngToast.create(updateResponse);
                         $window.location = "/Iniciarsesion.html";
                     }
                 }, function error(result) {

@@ -3,6 +3,7 @@ angular
     .controller('loginController', ['$scope', '$http','userData','ngToast',
         function ($scope, $http,userData,ngToast) {
             $scope.Login = function () {
+                console.log("hola");
                 $http({
                     method: "POST",
                     url: "http://localhost:8080/users/loginuserboxit",
@@ -16,6 +17,7 @@ angular
                 }).then(function success(result) {
             if(result.data.Rows.attributes.IdCliente === undefined) {        
                 //alert(JSON.stringify(result.data.Rows.attributes.Message));
+                console.log("hola2");
                 ngToast.create(JSON.stringify(result.data.Rows.attributes.Message));
               }
               else {
