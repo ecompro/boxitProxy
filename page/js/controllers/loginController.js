@@ -1,7 +1,7 @@
 angular
     .module('boxit')
-    .controller('loginController', ['$scope', '$http','userData','ngToast',
-        function ($scope, $http,userData,ngToast) {
+    .controller('loginController', ['$scope', '$http','$window','userData','ngToast',
+        function ($scope, $http, $window,userData,ngToast) {
             $scope.Login = function () {
                 console.log("hola");
                 $http({
@@ -25,6 +25,10 @@ angular
                   //var test = userData.getData();
                   var id = result.data.Rows.attributes.IdCliente;
                   userData.setData(id);
+                  setTimeout( function() { 
+                      console.log("impre toast");
+                      ngToast.create(userData.getData()); }, 2000)  ;
+             //   $window.location = "/userInterface.html";
                  
               }
             

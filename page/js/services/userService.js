@@ -34,7 +34,8 @@ angular.module('boxit')
 
                     if (result.data.Data.Rows.attributes.IdCliente === undefined) {
 
-                       ngToast.create(JSON.stringify(result.Data.Rows.attributes.Message));
+                      //alert(JSON.stringify(result.Data.Rows.attributes.Message));
+                      return JSON.stringify(result.Data.Rows.attributes.Message);
                     } else {
 
                         user.IdCliente = result.data.Data.Rows.attributes.IdCliente;
@@ -45,7 +46,8 @@ angular.module('boxit')
                         user.IdPlataforma = result.data.Data.Rows.attributes.IdPlataforma;
                         user.UserEmail = result.data.Data.Rows.attributes.UserEmail;
                         user.UserPhone = result.data.Data.Rows.attributes.UserPhone;
-                       ngToast.create(JSON.stringify(user));
+                       
+                    return user;
                     }
 
                 }, function error(result) {
