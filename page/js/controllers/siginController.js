@@ -70,14 +70,10 @@ angular
                         user["IdPlataforma"] = $scope.IdPlataforma;
                         user["UserEmail"] = $scope.useremail;
                         user["UserPhone"] = $scope.useremail;
-                        userData.activateUser(result.data.attributes.IdCliente)
-                            .then(function (data) {
-                                ngToast.create(data);
-                            }).catch(function (err) {
-                                console.log(err);
-                        });
+                        userData.activateUser(result.data.attributes.IdCliente);
                         userData.updateData(user)
                             .then(function (data) {
+                                console.log(data);
                                 ngToast.create(data);
                             }).catch(function (err) {
                                 console.log(err);

@@ -69,9 +69,9 @@ angular.module('boxit')
                         'Content-Type': 'application/json'
                     }
                 }).then(function success(result) {
-                    console.log(result);
-                    if (result.attributes.IdCliente === undefined) {
-                        defered.resolve(result.data.attributes.Message);
+                    console.log(result.data);
+                    if (result.data.attributes.IdCliente === undefined) {
+                        defered.resolve(result.data.attributes.Error);
                     } else {
                         defered.resolve(result.data.attributes.Message);
                     }
@@ -95,7 +95,7 @@ angular.module('boxit')
                         'Content-Type': 'application/json'
                     }
                 }).then(function success(result) {
-                       defered.resolve(result.data);
+                       defered.resolve(result.Data.Rows.attributes);
                 }, function error(result) {
                        defered.reject(result.data)
                 });
