@@ -31,19 +31,19 @@ angular.module('boxit')
                         'Content-Type': 'application/json'
                     }
                 }).then(function success(result) {
-
-                    if (result.data.Data.Rows.attributes.IdCliente === undefined) {
+                   
+                    if (result.data.Rows.attributes.IdCliente === undefined) {
                         return result.Data.Rows.attributes.Message;
                     } else {
 
-                        user.IdCliente = result.data.Data.Rows.attributes.IdCliente;
-                        user.UserName = result.data.Data.Rows.attributes.UserName;
-                        user.UserLastName = result.data.Data.Rows.attributes.UserLastName;
-                        user.UserGender = result.data.Data.Rows.attributes.UserGender;
-                        user.UserBirthdate = result.data.Data.Rows.attributes.UserBirthdate;
-                        user.IdPlataforma = result.data.Data.Rows.attributes.IdPlataforma;
-                        user.UserEmail = result.data.Data.Rows.attributes.UserEmail;
-                        user.UserPhone = result.data.Data.Rows.attributes.UserPhone;
+                        user.IdCliente = result.data.Rows.attributes.IdCliente;
+                        user.UserName = result.data.Rows.attributes.UserName;
+                        user.UserLastName = result.data.Rows.attributes.UserLastName;
+                        user.UserGender = result.data.Rows.attributes.UserGender;
+                        user.UserBirthdate = result.data.Rows.attributes.UserBirthdate;
+                        user.IdPlataforma = result.data.Rows.attributes.IdPlataforma;
+                        user.UserEmail = result.data.Rows.attributes.UserEmail;
+                        user.UserPhone = result.data.Rows.attributes.UserPhone;
                         return user;
                     }
 
@@ -95,9 +95,10 @@ angular.module('boxit')
                         'Content-Type': 'application/json'
                     }
                 }).then(function success(result) {
+                    
                        defered.resolve(result.Data.Rows.attributes);
                 }, function error(result) {
-                       defered.reject(result.data)
+                       defered.reject(result.Data)
                 });
                 return promise;
             };

@@ -62,6 +62,7 @@ angular
                     }
                     else {
                         var user = {};
+                        alert(moment($scope.UserBirthdate).format('YYYY/MM/DD'));
                         user["IdCliente"] = result.data.attributes.IdCliente;
                         user["UserName"] = $scope.username;
                         user["UserLastName"] = $scope.lastname;
@@ -78,7 +79,7 @@ angular
                             }).catch(function (err) {
                                 console.log(err);
                         });
-                        //$window.location = "/Iniciarsesion.html";
+                        $window.location = "/Iniciarsesion.html";
                     }
                 }, function error(result) {
                     console.log(result.data);

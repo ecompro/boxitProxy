@@ -25,10 +25,10 @@ angular
                   //var test = userData.getData();
                   var id = result.data.Rows.attributes.IdCliente;
                   userData.setData(id);
-                  setTimeout( function() { 
-                      console.log("impre toast");
-                      ngToast.create(userData.getData()); }, 2000)  ;
-             //   $window.location = "/userInterface.html";
+                 
+                   console.log("impre toast");
+                   ngToast.create(JSON.stringify(userData.getData()));
+//                  $window.location = "/userInterface.html";
                  
               }
             
