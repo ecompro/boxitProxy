@@ -66,7 +66,7 @@ angular
                         user["UserName"] = $scope.username;
                         user["UserLastName"] = $scope.lastname;
                         user["UserGender"] = $scope.UserGender;
-                        user["UserBirthdate"] = moment($scope.UserBirthdate).format('DD-MMMM-YYYY');
+                        user["UserBirthdate"] = moment($scope.UserBirthdate).format('YYYY/MM/DD');
                         user["IdPlataforma"] = $scope.IdPlataforma;
                         user["UserEmail"] = $scope.useremail;
                         user["UserPhone"] = $scope.useremail;
