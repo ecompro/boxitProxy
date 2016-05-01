@@ -95,8 +95,7 @@ angular.module('boxit')
                         'Content-Type': 'application/json'
                     }
                 }).then(function success(result) {
-                    
-                       defered.resolve(result.Data.Rows.attributes);
+                       defered.resolve(result.data.Data.Rows.attributes);
                 }, function error(result) {
                        defered.reject(result.Data)
                 });

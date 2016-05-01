@@ -3,8 +3,8 @@
  */
 angular
     .module('boxit')
-    .controller('siginController', ['$scope', '$http', '$window', 'ngToast', 'userData',
-        function ($scope, $http, $window, ngToast, userData) {
+    .controller('siginController', ['$scope', '$http', '$window', 'ngToast', 'userData','$interval',
+        function ($scope, $http, $window, ngToast, userData,$interval) {
             $scope.today = function () {
                 $scope.popup1 = {
                     opened: false
@@ -62,7 +62,6 @@ angular
                     }
                     else {
                         var user = {};
-                        alert(moment($scope.UserBirthdate).format('YYYY/MM/DD'));
                         user["IdCliente"] = result.data.attributes.IdCliente;
                         user["UserName"] = $scope.username;
                         user["UserLastName"] = $scope.lastname;
@@ -79,7 +78,9 @@ angular
                             }).catch(function (err) {
                                 console.log(err);
                         });
-                        $window.location = "/Iniciarsesion.html";
+                        $interval(function () {
+                            $window.location = "/Iniciarsesion.html"
+                        },10000);
                     }
                 }, function error(result) {
                     console.log(result.data);
