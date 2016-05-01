@@ -1,13 +1,13 @@
 <div class="row">
     <div class="col-lg-2">
         <ul class="nav nav-pills nav-stacked">
-            <li role="presentation" class="active"><a ui-sref="userMenu.inicio">Inicio</a></li>
-            <li role="presentation"><a ui-sref="userMenu.editarPerfil">Editar Perfil</a></li>
-            <li role="presentation"><a>Item #3</a></li>
-            <li role="presentation"><a>Item #4</a></li>
-            <li role="presentation"><a>Item #5</a></li>
-            <li role="presentation"><a>Item #6</a></li>
-            <li role="presentation"><a>Item #7</a></li>
+            <li role="presentation" ng-class="{'active': menu1}" ng-click="active(1)"><a ui-sref="userMenu.inicio">Inicio</a></li>
+            <li role="presentation" ng-class="{'active': menu2}" ng-click="active(2)"><a ui-sref="userMenu.editarPerfil">Editar Perfil</a></li>
+            <li role="presentation" ng-class="{'active': menu3}" ng-click="active(3)"><a ui-sref="userMenu.modificarContrasena">Modificar Contraseña</a></li>
+            <li role="presentation" ng-class="{'active': menu4}" ng-click="active(4)"><a ui-sref="userMenu.seleccionarBoxIt">Seleccionar BoxIt</a></li>
+            <li role="presentation" ng-class="{'active': menu5}" ng-click="active(5)"><a ui-sref="userMenu.anunciarPaquete">Anunciar Paquete</a></li>
+            <li role="presentation" ng-class="{'active': menu6}" ng-click="active(6)"><a ui-sref="userMenu.trakingDePaquetes">Traking de Paquetes</a></li>
+            <li role="presentation" ng-class="{'active': menu7}" ng-click="active(7)"><a ui-sref="userMenu.cerrarSesion">Cerrar Sesion</a></li>
         </ul>
     </div>
     <div class="col-lg-10">
