@@ -26,9 +26,9 @@ angular
                   var id = result.data.Rows.attributes.IdCliente;
                   userData.setData(id);
                  
-                   console.log("impre toast");
+                  
                    ngToast.create(JSON.stringify(userData.getData()));
-//                  $window.location = "/userInterface.html";
+                 // $window.location = "/userInterface.html";
                  
               }
             

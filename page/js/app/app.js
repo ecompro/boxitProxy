@@ -7,7 +7,8 @@ angular.module('boxit', ['ngToast', 'ui.bootstrap', 'ui.router'])
             controller:'userMenuController'
         }).state('userMenu.inicio',{
             url:'/inicio',
-            templateUrl:'views/inicio.html'
+            templateUrl:'views/inicio.html',
+            controller:'inicioController'
         }).state('userMenu.editarPerfil',{
             url:'/editarPerfil',
             templateUrl:'views/editarPerfil.html'
