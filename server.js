@@ -336,8 +336,8 @@ amazonRouter.route('/amazongetkeywords').post(
             args["CustomerUser"] = CustomerUser;
             args["CustomerPassword"] = CustomerPassword;
             args["Keywords"] = req.body.Keywords;//I7
-            args["SearchIndex"] = req.body.SearchIndex;//Precessor
-            args["ItemPage"] = req.body.ItemPage;
+            args["SearchIndex"] = req.body.SearchIndex;//Electronics
+            args["ItemPage"] = req.body.ItemPage;//1
 
 
 
