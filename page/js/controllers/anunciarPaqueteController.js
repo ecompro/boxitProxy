@@ -3,5 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+angular.module('boxit')
+        .controller('anunciarPaqueteController', ['$scope', '$http', 'ngToast', 'userData',
+            function ($scope, $http, ngToast, userData) {
+
+              $scope.anunciar = function(){};
+            }]);
 
 
