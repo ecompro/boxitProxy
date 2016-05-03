@@ -24,11 +24,10 @@ angular
                   //alert(JSON.stringify(result.data));
                   //var test = userData.getData();
                   var id = result.data.Rows.attributes.IdCliente;
-                  userData.setData(id);
-                 
-                  
-                   ngToast.create(JSON.stringify(userData.getData()));
-                   $window.location = "/userInterface.html";
+                  userData.setData(id).then(function () {
+                      ngToast.create(JSON.stringify(userData.getData()));
+                      $window.location = "/userInterface.html";
+                  });
                  
               }
             

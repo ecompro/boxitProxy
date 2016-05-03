@@ -1,7 +1,7 @@
 angular
     .module('boxit')
-    .controller('userMenuController', ['$scope','$state',
-        function ($scope,$state) {
+    .controller('userMenuController', ['$scope','$state','userData',
+        function ($scope,$state,userData) {
             $scope.menu1 = true;
             $scope.menu2 = false;
             $scope.menu3 = false;
@@ -10,7 +10,7 @@ angular
             $scope.menu6 = false;
             $scope.menu7 = false;
             $state.go('userMenu.inicio');
-            
+            console.log(userData.getData());
             $scope.active = function (id) {
                 switch(id){
                 

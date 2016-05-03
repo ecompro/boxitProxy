@@ -26,7 +26,7 @@ var user = {
 };
 
 angular.module('boxit')
-        .factory('userData', function ($http, $q) {
+        .factory('userData', function ($http, $q,$localStorage) {
 
             var factory = {};
             factory.getMiamiAddress = function (id) {
@@ -115,8 +115,8 @@ angular.module('boxit')
                         user.UserEmail = result.data.Rows.attributes.UserEmail;
                         user.UserPhone = result.data.Rows.attributes.UserPhone;
                         user.userMiamiAddress = factory.getMiamiAddress(user.IdCliente);
-
-                        defered.resolve(user);
+                        $localStorage.userBoxIt = user;
+                        defered.resolve($localStorage.userBoxIt);
 
 
                     }
@@ -128,7 +128,7 @@ angular.module('boxit')
             };
 
             factory.getData = function () {
-                return user;
+                return $localStorage.userBoxIt;
             };
 
 
