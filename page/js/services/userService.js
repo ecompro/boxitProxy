@@ -26,9 +26,16 @@ var user = {
 };
 
 angular.module('boxit')
-        .factory('userData', function ($http, $q,$localStorage) {
+        .factory('userData', function ($http, $q, $localStorage) {
 
             var factory = {};
+            
+           
+            factory.logoff = function () {
+               $localStorage.userBoxIt = undefined;
+                
+            };
+            
             factory.getMiamiAddress = function (id) {
                 var defered = $q.defer();
                 var promise = defered.promise;
@@ -44,8 +51,9 @@ angular.module('boxit')
                     }
                 }).then(function success(result) {
 
+
                     if (result.data.Rows.attributes.AddressMiami === undefined) {
-                       defered.resolve( result.data.Rows.attributes.Message);
+                        defered.resolve(result.data.Rows.attributes.Message);
                     } else {
 
 
@@ -64,7 +72,7 @@ angular.module('boxit')
                             tel: ""
 
                         };
-                       
+
                         miamiAddress.nombre = splitAddress[0].toString().replace("NOMBRE:", "");
                         miamiAddress.apellido = splitAddress[1].toString().replace("APELLIDO:", "");
                         miamiAddress.address1 = splitAddress[2].toString().replace("ADDRESS 1:", "");
@@ -76,12 +84,12 @@ angular.module('boxit')
                         miamiAddress.tel = splitAddress[8].toString().replace("TEL:", "");
 
                         user.userMiamiAddress = miamiAddress;
-                       
+
                         defered.resolve(user.userMiamiAddress);
                     }
 
                 }, function error(result) {
-                    defered.reject( result.data);
+                    defered.reject(result.data);
                 });
                 return promise;
             };
@@ -114,9 +122,12 @@ angular.module('boxit')
                         user.IdPlataforma = result.data.Rows.attributes.IdPlataforma;
                         user.UserEmail = result.data.Rows.attributes.UserEmail;
                         user.UserPhone = result.data.Rows.attributes.UserPhone;
-                        user.userMiamiAddress = factory.getMiamiAddress(user.IdCliente);
-                        $localStorage.userBoxIt = user;
-                        defered.resolve($localStorage.userBoxIt);
+                        user.userMiamiAddress = factory.getMiamiAddress(user.IdCliente).then(function () {
+                            $localStorage.userBoxIt = user;
+                            defered.resolve($localStorage.userBoxIt);
+
+                        });
+
 
 
                     }
@@ -128,7 +139,9 @@ angular.module('boxit')
             };
 
             factory.getData = function () {
+
                 return $localStorage.userBoxIt;
+
             };
 
 
@@ -144,7 +157,7 @@ angular.module('boxit')
                         'Content-Type': 'application/json'
                     }
                 }).then(function success(result) {
-                  //  console.log(result.data);
+                    //  console.log(result.data);
                     if (result.data.attributes.IdCliente === undefined) {
                         defered.resolve(result.data.attributes.Error);
                     } else {

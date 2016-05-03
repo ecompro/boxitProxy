@@ -200,7 +200,7 @@ usersRouter.route('/insertclientalert').post(
 
         soap.createClient(url, function (err, client) {
             client.InsertClientAlert(args, function (err, result) {
-                res.json(result.InsertClientAlert.Data);
+                res.json(result.InsertClientAlertResult);
 
             });
         });

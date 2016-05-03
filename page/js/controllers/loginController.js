@@ -2,6 +2,13 @@ angular
     .module('boxit')
     .controller('loginController', ['$scope', '$http','$window','userData','ngToast',
         function ($scope, $http, $window,userData,ngToast) {
+            
+            if(!(userData.getData()===undefined)){
+                  $window.location = "/userInterface.html";
+                
+            }
+            
+            
             $scope.Login = function () {
                 
                 $http({

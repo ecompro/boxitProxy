@@ -27,8 +27,8 @@ angular.module('boxit')
                                 'Content-Type': 'application/json'
                             }
                         }).then(function success(result) {
-                            
-                                ngToast.create(JSON.stringify(result.data.Rows.attributes.Message));
+                            alert (JSON.stringify(result.data.Rows.attributes.Message));
+                            //    ngToast.create(JSON.stringify(result.data.Rows.attributes.Message));
                           
                         }, function error(result) {
                             console.log(result.data);

@@ -5,13 +5,13 @@
  */
 
 angular.module('boxit')
-        .controller('inicioController', ['$scope', '$state', 'userData',
-            function ($scope, $controller, userData) {
+        .controller('inicioController', ['$scope', 'userData',
+            function ($scope, userData) {
 
                 var init = function () {
 
                     var user = userData.getData();
-
+                     
                     console.log(JSON.stringify(user));
                      $scope.nombre = user.userMiamiAddress.nombre;
                      $scope.apellido = user.userMiamiAddress.apellido;

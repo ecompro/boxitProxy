@@ -30,7 +30,8 @@ angular.module('boxit', ['ngToast', 'ui.bootstrap', 'ui.router','ngStorage'])
             templateUrl: 'views/trakingDePaquetes.html'
         }).state('userMenu.cerrarSesion', {
             url: '/cerrarSesion',
-            templateUrl: 'views/cerrarSesion.html'
+            templateUrl: 'views/cerrarSesion.html',
+            controller: 'cerrarSesionController'
         }).state('shoppingCar', {
             url: '/shoppingCar',
             templateUrl: 'views/shoppingCar.html',
