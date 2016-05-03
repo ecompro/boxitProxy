@@ -1,1 +1,39 @@
-<h1>Anunciar Paquete</h1>
+
+<div class="row">
+    <div class ="col-sm-2"></div>
+    <div class="col-sm-6">
+        <h3>Anunciar Paquete</h3>
+        <hr>
+        <h4>Por favor completa los siguientes campos</h4>
+         <div>
+            Numero Tracking:
+            <div class="FieldContent">
+                <input type="text" ng-model="tracking">
+            </div>
+        </div>
+         <div>
+            Tienda*:
+            <div class="FieldContent">
+                <input type="text" ng-model="tienda">
+            </div>
+        </div>
+         <div>
+            Costo:
+            <div class="FieldContent">
+                <input type="text" ng-model="costo">
+            </div>
+        </div>
+         <div>
+            Descripcion:
+            <div class="FieldContent">
+                <input type="text" ng-model="descripcion">
+            </div>
+        </div>
+           <div>
+            <div class="Submit">
+                <!--<input type="submit"  value="REGISTRARME">-->
+                <button class="Button WithBackground" ng-click="agregar()">Agregar Tracking</button>
+            </div>
+        </div>
+    </div>
+</div>

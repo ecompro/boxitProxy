@@ -1,1 +1,33 @@
-<h1>Modificar Contraseña</h1>
+
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-6">
+        <h3>Modificar Contraseña</h3>
+        <h4>Por favor completa los siguientes campos</h4>
+        <div>
+            Contraseña Anterior*:
+            <div class="FieldContent">
+                <input type="password" ng-model="oldpassword">
+            </div>
+        </div>
+        <div>
+            Contraseña Nueva*:
+            <div class="FieldContent">
+                <input type="password" ng-model="newpassword">
+            </div>
+        </div>
+        <div>
+            Confirmar Contraseña Nueva*:
+            <div class="FieldContent">
+                <input type="password" ng-model="confirmpassword">
+            </div>
+        </div>
+        <div class="Submit">
+            
+            <button class="Button WithBackground" ng-click="Update()">Modificar Contraseña</button>
+        </div>
+
+    </div>
+    <br>
+    <br>
+</div>

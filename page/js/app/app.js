@@ -11,7 +11,8 @@ angular.module('boxit', ['ngToast', 'ui.bootstrap', 'ui.router'])
             controller: 'inicioController'
         }).state('userMenu.editarPerfil', {
             url: '/editarPerfil',
-            templateUrl: 'views/editarPerfil.html'
+            templateUrl: 'views/editarPerfil.html',
+            controller: 'editarPerfilController'
         }).state('userMenu.modificarContrasena', {
             url: '/modificarContrasena',
             templateUrl: 'views/modificarContrasena.html'

@@ -30,7 +30,8 @@ angular.module('boxit')
 
             var factory = {};
             factory.getMiamiAddress = function (id) {
-
+                var defered = $q.defer();
+                var promise = defered.promise;
                 $http({
                     method: "POST",
                     url: "http://localhost:8080/users/getaddressmiamiuser",
@@ -44,7 +45,7 @@ angular.module('boxit')
                 }).then(function success(result) {
 
                     if (result.data.Rows.attributes.AddressMiami === undefined) {
-                        return result.data.Rows.attributes.Message;
+                       defered.resolve( result.data.Rows.attributes.Message);
                     } else {
 
 
@@ -76,13 +77,13 @@ angular.module('boxit')
 
                         user.userMiamiAddress = miamiAddress;
                        
-                        return user.userMiamiAddress;
+                        defered.resolve(user.userMiamiAddress);
                     }
 
                 }, function error(result) {
-                    return result.data;
+                    defered.reject( result.data);
                 });
-
+                return promise;
             };
 
             factory.setData = function (id) {

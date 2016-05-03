@@ -28,7 +28,7 @@ angular
                  
                   
                    ngToast.create(JSON.stringify(userData.getData()));
-                 // $window.location = "/userInterface.html";
+                   $window.location = "/userInterface.html";
                  
               }
             
