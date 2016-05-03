@@ -33,6 +33,7 @@ angular.module('boxit', ['ngToast', 'ui.bootstrap', 'ui.router'])
             templateUrl: 'views/cerrarSesion.html'
         }).state('shoppingCar', {
             url: '/shoppingCar',
-            templateUrl: 'views/shoppingCar.html'
+            templateUrl: 'views/shoppingCar.html',
+            controller:'shoppingCarController'
         });
     }]);

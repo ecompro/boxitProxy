@@ -343,8 +343,7 @@ amazonRouter.route('/amazongetkeywords').post(
 
             soap.createClient(url, function (err, client) {
                 client.AmazonGetKeywords(args, function (err, result) {
-                    res.json(result.AmazonGetKeywordsResult);
-
+                    res.json(result.AmazonGetKeywordsResult.Data.Items);
                 });
             });
         });
