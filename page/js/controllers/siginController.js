@@ -43,6 +43,11 @@ angular
 
             $scope.Sigin = function () {
                 var args = {};
+               
+                if(! ($scope.password===$scope.confirmarpassword)) {
+                    ngToast.create("Password no coincide");
+                    return "";
+                }
                 args["UserName"] = $scope.username;
                 args["UserLastName"] = $scope.lastname;
                 args["UserEmail"] = $scope.useremail;

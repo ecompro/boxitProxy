@@ -15,11 +15,18 @@ angular.module('boxit')
                     'Content-Type': 'application/json'
                 }
             }).then(function success(results) {
+                //alert(JSON.stringify(results.data));
                 $scope.plataformas = results.data;
             }, function error(results) {
                 console.log(results.data);
             });
-        
+        $scope.Update = function() {
+          
+            var user = userData.getData();
+            user.IdPlataforma = $scope.IdPlataforma;
+            userData.updateData(user);
+            
+        };
         
     } ]);
 

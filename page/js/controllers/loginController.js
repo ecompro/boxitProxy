@@ -3,7 +3,7 @@ angular
     .controller('loginController', ['$scope', '$http','$window','userData','ngToast',
         function ($scope, $http, $window,userData,ngToast) {
             $scope.Login = function () {
-                console.log("hola");
+                
                 $http({
                     method: "POST",
                     url: "http://localhost:8080/users/loginuserboxit",
