@@ -29,13 +29,13 @@ angular.module('boxit')
         .factory('userData', function ($http, $q, $localStorage) {
 
             var factory = {};
-            
-           
+
+
             factory.logoff = function () {
                delete $localStorage.userBoxIt;
-                
+
             };
-            
+
             factory.getMiamiAddress = function (id) {
                 var defered = $q.defer();
                 var promise = defered.promise;
@@ -159,7 +159,7 @@ angular.module('boxit')
                 }).then(function success(result) {
                     //  console.log(result.data);
                     if (result.data.attributes.IdCliente === undefined) {
-                        defered.resolve(result.data.attributes.Error);
+                        defered.resolve(result.data.attributes.Message);
                     } else {
                         defered.resolve(result.data.attributes.Message);
                     }

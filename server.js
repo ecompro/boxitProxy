@@ -124,11 +124,12 @@ usersRouter.route('/updateinfouserboxit').post(
         args["UserBirthdate"] = req.body.UserBirthdate;
         args["IdPlataforma"] = req.body.IdPlataforma;
         args["UserEmail"] = req.body.UserEmail;
-        args["IdPlataforma"] = req.body.UserPhone;
+        args["UserPhone"] = req.body.UserPhone;
 
         soap.createClient(url, function (err, client) {
             client.UpdateInfoUserBoxIt(args, function (err, result) {
                 res.json(result.UpdateInfoUserBoxItResult.Data.Rows);
+                console.log(JSON.stringify(result.UpdateInfoUserBoxItResult.Data.Rows));
             });
         });
     });
