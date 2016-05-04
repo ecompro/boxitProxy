@@ -10,10 +10,12 @@ angular.module('boxit')
                 $scope.Update = function () {
 
                     var user = userData.getData();
-                    $scope.Login = function () {
-                        if (!($scope.password === $scope.confirmarpassword)) {
-                            ngToast.create("Password no coincide");
-                            return "";
+                    
+                        if (!($scope.newpassword === $scope.confirmpassword)) {
+                            
+                            //ngToast.create("Password no coincide");
+                            alert("Password no coincide");
+                            return ;
                         }
                         $http({
                             method: "POST",
@@ -29,12 +31,14 @@ angular.module('boxit')
                         }).then(function success(result) {
                             alert (JSON.stringify(result.data.Rows.attributes.Message));
                             //    ngToast.create(JSON.stringify(result.data.Rows.attributes.Message));
-                          
+                           $scope.oldpassword = "";
+                           $scope.newpassword = "";
+                           $scope.confirmpassword = "";
                         }, function error(result) {
                             console.log(result.data);
                         });
                     };
-                };
+              
 
             }]);
 

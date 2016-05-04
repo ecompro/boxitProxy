@@ -74,7 +74,7 @@ angular
                         user["UserBirthdate"] = moment($scope.UserBirthdate).format('YYYY/MM/DD');
                         user["IdPlataforma"] = $scope.IdPlataforma;
                         user["UserEmail"] = $scope.useremail;
-                        user["UserPhone"] = $scope.useremail;
+                        user["UserPhone"] = $scope.phone;
                         userData.activateUser(result.data.attributes.IdCliente);
                         userData.updateData(user)
                             .then(function (data) {

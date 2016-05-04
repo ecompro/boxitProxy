@@ -8,7 +8,16 @@
 angular.module('boxit')
         .controller('editarPerfilController', ['$scope', 'userData',
             function ($scope, userData) {
-
+                
+                $scope.init = function() {
+                    var user = userData.getData();
+                    $scope.username = user.UserName;
+                    $scope.lastname = user.UserLastName;
+                    $scope.UserBirthdate = user.UserBirthdate;
+                    $scope.UserGender = user.UserGender;
+                    $scope.UserPhone = user.UserPhone;
+                    
+                }
                 $scope.open = function () {
                     $scope.popup1.opened = true;
                 };
@@ -33,6 +42,7 @@ angular.module('boxit')
                     minDate: new Date(1915, 1, 1),
                     startingDay: 1
                 };
+                
                 $scope.Update = function () {
 
                    var  oldUser =  userData.getData();
@@ -42,9 +52,9 @@ angular.module('boxit')
                     user["UserLastName"] = $scope.lastname;
                     user["UserGender"] = $scope.UserGender;
                     user["UserBirthdate"] = moment($scope.UserBirthdate).format('YYYY/MM/DD');
-                    user["IdPlataforma"] = $scope.IdPlataforma;
-                    user["UserEmail"] = $scope.useremail;
-                    user["UserPhone"] = $scope.useremail;
+                    user["IdPlataforma"] = oldUser.IdPlataforma;
+                    user["UserEmail"] = oldUser.UserEmail;
+                    user["UserPhone"] = $scope.UserPhone;
                    
                     userData.updateData(user)
                             .then(function (data) {
@@ -54,7 +64,7 @@ angular.module('boxit')
                         console.log(err);
                     });
 
-                }
-
+                };
+                $scope.init();
 
             }]);

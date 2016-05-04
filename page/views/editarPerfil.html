@@ -1,6 +1,7 @@
 <script src="js/controllers/userMenuController.js"></script>
 <script src="js/services/userService.js" type="text/javascript"></script>
 <script src="../js/controllers/editarPerfilController.js" type="text/javascript"></script>
+
 <div class="row">
     <div class ="col-sm-2"></div>
     <div class="col-sm-6">
@@ -13,14 +14,21 @@
             </div>
         </div>
         <div>
-            Apellidos
+            Apellidos:
 
             <div class="FieldContent">
                 <input type="text" ng-model="lastname">
             </div>
         </div>
         <div>
-            Fecha de nacimiento
+            Telefono:
+
+            <div class="FieldContent">
+                <input type="text" ng-model="UserPhone">
+            </div>
+        </div>
+        <div>
+            Fecha de nacimiento:
             <div class="FieldContent">
                 <input style="border: 2px solid #cdcdcd;float: left" uib-datepicker-popup="{{format}}" ng-model="UserBirthdate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats">
                 <!--&lt;!&ndash;ng-options="anho for anho in anhosDeNacimiento"&ndash;&gt;-->
@@ -32,7 +40,7 @@
         <br>
         <br>
         <div>
-            Genero
+            Genero:
             <div class="FieldContent">
                 <select name="" id="" ng-model="UserGender">
                     <option value="">Seleccione un Genero</option>
