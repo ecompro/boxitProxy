@@ -41,7 +41,7 @@ angular.module('boxit')
                 var promise = defered.promise;
                 $http({
                     method: "POST",
-                    url: "http://localhost:8080/users/getaddressmiamiuser",
+                    url: "/users/getaddressmiamiuser",
                     data: {
                         "IdCliente": id
 
@@ -99,7 +99,7 @@ angular.module('boxit')
                 var promise = defered.promise;
                 $http({
                     method: "POST",
-                    url: "http://localhost:8080/users/getinfouserboxit",
+                    url: "/users/getinfouserboxit",
                     data: {
                         "IdCliente": id
 
