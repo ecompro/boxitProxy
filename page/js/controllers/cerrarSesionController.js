@@ -12,5 +12,5 @@ angular.module('boxit')
             userData.logoff();
             $interval(function () {
                 $window.location = "/Iniciarsesion.html";
-            },5000);
+            },3000);
         }]);

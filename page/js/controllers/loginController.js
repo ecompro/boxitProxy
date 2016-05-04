@@ -32,10 +32,10 @@ angular
                         //var test = userData.getData();
                         var id = result.data.Rows.attributes.IdCliente;
                         userData.setData(id).then(function () {
-                           
+                            //ngToast.create(JSON.stringify(userData.getData()));
                             $interval(function () {
                                 $window.location = "/userInterface.html";
-                            },5000);
+                            },3000);
                         });
 
                     }
