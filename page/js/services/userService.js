@@ -151,7 +151,7 @@ angular.module('boxit')
                 console.log(JSON.stringify(newUser));
                 $http({
                     method: "POST",
-                    url: "http://localhost:8080/users/updateinfouserboxIt",
+                    url: "/users/updateinfouserboxIt",
                     data: newUser,
                     headers: {
                         'Content-Type': 'application/json'
@@ -177,7 +177,7 @@ angular.module('boxit')
                 args["IdCliente"] = id;
                 $http({
                     method: "POST",
-                    url: "http://localhost:8080/users/activeuserboxit",
+                    url: "/users/activeuserboxit",
                     data: args,
                     headers: {
                         'Content-Type': 'application/json'

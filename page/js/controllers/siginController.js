@@ -23,7 +23,7 @@ angular
             $scope.plataformas = [];
             $http({
                 method: "POST",
-                url: "http://localhost:8080/users/getplataformas",
+                url: "/users/getplataformas",
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -56,7 +56,7 @@ angular
                     $scope.descPlataforma.attributes.IdPlataforma : null;
                 $http({
                     method: "POST",
-                    url: "http://localhost:8080/users/insertuserboxit",
+                    url: "/users/insertuserboxit",
                     data: args,
                     headers: {
                         'Content-Type': 'application/json'
