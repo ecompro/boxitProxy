@@ -1239,3 +1239,9 @@ footer .ContentContainer .Copyright {
     color: #FFFFFF;
     padding-top: 30px;
 }
+
+.ItemCar{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
