@@ -17,7 +17,7 @@ angular.module('boxit')
                 }
                 $http({
                     method: "POST",
-                    url: "http://localhost:8080/users/updatepassworduserboxit",
+                    url: "/users/updatepassworduserboxit",
                     data: {
                         "IdCliente": user.IdCliente,
                         "UserPasswordOld": $scope.oldpassword,

@@ -8,7 +8,7 @@ angular
             searchParams["ItemPage"] = "1";
             $http({
                 method: "POST",
-                url: "http://localhost:8080/amazon/amazongetkeywords",
+                url: "/amazon/amazongetkeywords",
                 data: searchParams,
                 headers: {
                     'Content-Type': 'application/json'

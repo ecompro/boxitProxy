@@ -13,7 +13,7 @@ angular
 
                 $http({
                     method: "POST",
-                    url: "http://localhost:8080/users/loginuserboxit",
+                    url: "/users/loginuserboxit",
                     data: {
                         "UserEmail": $scope.username,
                         "UserPassword": $scope.password

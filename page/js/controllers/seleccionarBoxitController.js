@@ -10,7 +10,7 @@ angular.module('boxit')
         $scope.plataformas = [];
             $http({
                 method: "POST",
-                url: "http://localhost:8080/users/getplataformas",
+                url: "/users/getplataformas",
                 headers: {
                     'Content-Type': 'application/json'
                 }

@@ -4,7 +4,7 @@ angular
         function ($scope, $http, userData) {
             $http({
                 method: "POST",
-                url: "http://localhost:8080/users/gettracking",
+                url: "/users/gettracking",
                 data: {
                     "IdCliente": userData.getData().IdCliente
                 },
