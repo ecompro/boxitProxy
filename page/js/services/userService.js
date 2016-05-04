@@ -32,7 +32,7 @@ angular.module('boxit')
             
            
             factory.logoff = function () {
-               $localStorage.userBoxIt = undefined;
+               delete $localStorage.userBoxIt;
                 
             };
             

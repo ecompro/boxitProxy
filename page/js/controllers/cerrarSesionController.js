@@ -10,6 +10,6 @@ angular.module('boxit')
     function($scope,$http,$window,userData) {
         
             userData.logoff();
-            $window.location = "/Registro.html";
+            $window.location = "/Iniciarsesion.html";
             
     } ]);

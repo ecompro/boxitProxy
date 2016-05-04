@@ -24,7 +24,7 @@ angular
                 }).then(function success(result) {
             if(result.data.Rows.attributes.IdCliente === undefined) {        
                 //alert(JSON.stringify(result.data.Rows.attributes.Message));
-                console.log("hola2");
+               
                 ngToast.create(JSON.stringify(result.data.Rows.attributes.Message));
               }
               else {
