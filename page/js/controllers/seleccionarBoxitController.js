@@ -22,9 +22,21 @@ angular.module('boxit')
             });
         $scope.Update = function() {
           
-            var user = userData.getData();
-            user.IdPlataforma = $scope.IdPlataforma;
-          alert(  userData.updateData(user));
+            
+             var oldUser = userData.getData();
+                var user = {};
+                user["IdCliente"] = oldUser.IdCliente;
+                user["UserName"] = oldUser.username;
+                user["UserLastName"] = oldUser.lastname;
+                user["UserGender"] = oldUser.UserGender;
+                user["UserBirthdate"] = oldUser.UserBirthdate;
+                user["IdPlataforma"] = $scope.descPlataforma.attributes.IdPlataforma;
+                user["UserEmail"] = oldUser.UserEmail;
+                user["UserPhone"] = oldUser.UserPhone;
+            //user.IdPlataforma = $scope.descPlataforma.attributes.IdPlataforma;
+            
+            alert(JSON.stringify(user));
+          alert( JSON.stringify(userData.updateData(user)));
             
         };
         

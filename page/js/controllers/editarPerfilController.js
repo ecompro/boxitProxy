@@ -16,8 +16,7 @@ angular.module('boxit')
                 $scope.UserBirthdate = user.UserBirthdate;
                 $scope.UserGender = user.UserGender;
                 $scope.UserPhone = user.UserPhone;
-
-            };
+                $scope.UserEmail = user.UserEmail;            };
             $scope.init();
             $scope.open = function () {
                 $scope.popup1.opened = true;
@@ -54,7 +53,7 @@ angular.module('boxit')
                 user["UserGender"] = $scope.UserGender;
                 user["UserBirthdate"] = moment($scope.UserBirthdate).format('YYYY/MM/DD');
                 user["IdPlataforma"] = oldUser.IdPlataforma;
-                user["UserEmail"] = oldUser.UserEmail;
+                user["UserEmail"] = $scope.UserEmail;
                 user["UserPhone"] = $scope.UserPhone;
 
                 userData.updateData(user)
