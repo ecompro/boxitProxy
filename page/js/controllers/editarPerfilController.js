@@ -18,6 +18,7 @@ angular.module('boxit')
                 $scope.UserPhone = user.UserPhone;
 
             };
+            $scope.init();
             $scope.open = function () {
                 $scope.popup1.opened = true;
             };
@@ -66,6 +67,4 @@ angular.module('boxit')
                 });
 
             };
-            $scope.init();
-
         }]);
