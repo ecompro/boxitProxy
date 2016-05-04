@@ -58,7 +58,7 @@ angular.module('boxit')
                    
                     userData.updateData(user)
                             .then(function (data) {
-                                console.log(data);
+                                alert(data);
                                 //  ngToast.create(data);
                             }).catch(function (err) {
                         console.log(err);

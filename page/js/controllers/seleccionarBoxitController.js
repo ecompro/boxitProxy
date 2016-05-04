@@ -24,7 +24,7 @@ angular.module('boxit')
           
             var user = userData.getData();
             user.IdPlataforma = $scope.IdPlataforma;
-            userData.updateData(user);
+          alert(  userData.updateData(user));
             
         };
         

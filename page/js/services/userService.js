@@ -157,7 +157,7 @@ angular.module('boxit')
                         'Content-Type': 'application/json'
                     }
                 }).then(function success(result) {
-                      console.log(JSON.stringify(result.data));
+                    //  console.log(result.data);
                     if (result.data.attributes.IdCliente === undefined) {
                         defered.resolve(result.data.attributes.Error);
                     } else {
