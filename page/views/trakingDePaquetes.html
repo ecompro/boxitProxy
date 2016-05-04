@@ -1,1 +1,11 @@
 <h1>Tracking de Paquetes</h1>
+<div class="col-lg-4">
+    <div ng-repeat="traking in trakings">
+        <br>
+        <span style="font-weight:bold">Paquete: </span><span>{{traking.attributes.Paquete}}</span>
+        <br>
+        <span style="font-weight:bold">Numero Traking: </span><span>{{traking.attributes.NumeroTracking}}</span>
+        <br>
+        <span style="font-weight:bold">Estado: </span><span>{{traking.attributes.Estatus}}</span>
+    </div>
+</div>
