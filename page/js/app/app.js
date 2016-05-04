@@ -1,4 +1,4 @@
-angular.module('boxit', ['ngToast', 'ui.bootstrap', 'ui.router','ngStorage'])
+angular.module('boxit', ['ngToast', 'ui.bootstrap', 'ui.router', 'ngStorage'])
     .config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider, $stateProvider) {
         $urlRouterProvider.otherwise('/userInterface');
         $stateProvider.state('userMenu', {
@@ -16,7 +16,7 @@ angular.module('boxit', ['ngToast', 'ui.bootstrap', 'ui.router','ngStorage'])
         }).state('userMenu.modificarContrasena', {
             url: '/modificarContrasena',
             templateUrl: 'views/modificarContrasena.html',
-            controller:'modificarContrasenaController'
+            controller: 'modificarContrasenaController'
         }).state('userMenu.seleccionarBoxIt', {
             url: '/seleccionarBoxIt',
             templateUrl: 'views/seleccionarBoxIt.html',
@@ -27,7 +27,8 @@ angular.module('boxit', ['ngToast', 'ui.bootstrap', 'ui.router','ngStorage'])
             controller: 'anunciarPaqueteController'
         }).state('userMenu.trakingDePaquetes', {
             url: '/trakingDePaquetes',
-            templateUrl: 'views/trakingDePaquetes.html'
+            templateUrl: 'views/trakingDePaquetes.html',
+            controller: 'trakingDePaquetesController'
         }).state('userMenu.cerrarSesion', {
             url: '/cerrarSesion',
             templateUrl: 'views/cerrarSesion.html',
@@ -35,6 +36,6 @@ angular.module('boxit', ['ngToast', 'ui.bootstrap', 'ui.router','ngStorage'])
         }).state('shoppingCar', {
             url: '/shoppingCar',
             templateUrl: 'views/shoppingCar.html',
-            controller:'shoppingCarController'
+            controller: 'shoppingCarController'
         });
     }]);
