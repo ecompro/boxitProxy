@@ -13,7 +13,6 @@ angular
                 }
             }).then(function success(result) {
                 $scope.trakings = result.data.Rows;
-                console.log($scope.trakings);
             }, function error(result) {
                 console.log(result);
             });

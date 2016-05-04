@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 angular.module('boxit')
-        .controller('seleccionarBoxitController', ['$scope','$http', 'userData',
-    function($scope,$http,userData) {
+        .controller('seleccionarBoxitController', ['$scope','$http', 'userData','ngToast',
+    function($scope,$http,userData,ngToast) {
         
         $scope.plataformas = [];
             $http({

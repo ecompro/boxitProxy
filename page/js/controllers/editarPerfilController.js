@@ -6,65 +6,66 @@
 
 
 angular.module('boxit')
-        .controller('editarPerfilController', ['$scope', 'userData',
-            function ($scope, userData) {
-                
-                $scope.init = function() {
-                    var user = userData.getData();
-                    $scope.username = user.UserName;
-                    $scope.lastname = user.UserLastName;
-                    $scope.UserBirthdate = user.UserBirthdate;
-                    $scope.UserGender = user.UserGender;
-                    $scope.UserPhone = user.UserPhone;
-                    
-                }
-                $scope.open = function () {
-                    $scope.popup1.opened = true;
-                };
-                function disabled(data) {
-                    var date = data.date,
-                            mode = data.mode;
-                    return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
-                }
+    .controller('editarPerfilController', ['$scope', 'userData','ngToast',
+        function ($scope, userData,ngToast) {
 
-                $scope.today = function () {
-                    $scope.popup1 = {
-                        opened: false
-                    };
-                    $scope.UserBirthdate = new Date();
-                };
-                $scope.today();
-                $scope.format = 'yyyy-MM-dd';
-                $scope.dateOptions = {
-                    dateDisabled: disabled,
-                    formatYear: 'yyyy',
-                    maxDate: new Date(2020, 1, 1),
-                    minDate: new Date(1915, 1, 1),
-                    startingDay: 1
-                };
-                
-                $scope.Update = function () {
+            $scope.init = function () {
+                var user = userData.getData();
+                $scope.username = user.UserName;
+                $scope.lastname = user.UserLastName;
+                $scope.UserBirthdate = user.UserBirthdate;
+                $scope.UserGender = user.UserGender;
+                $scope.UserPhone = user.UserPhone;
 
-                   var  oldUser =  userData.getData();
-                    var user = {};
-                    user["IdCliente"] = oldUser.IdCliente;
-                    user["UserName"] = $scope.username;
-                    user["UserLastName"] = $scope.lastname;
-                    user["UserGender"] = $scope.UserGender;
-                    user["UserBirthdate"] = moment($scope.UserBirthdate).format('YYYY/MM/DD');
-                    user["IdPlataforma"] = oldUser.IdPlataforma;
-                    user["UserEmail"] = oldUser.UserEmail;
-                    user["UserPhone"] = $scope.UserPhone;
-                   
-                    userData.updateData(user)
-                            .then(function (data) {
-                                alert(data);
-                                //  ngToast.create(data);
-                            }).catch(function (err) {
-                        console.log(err);
-                    });
+            };
+            $scope.open = function () {
+                $scope.popup1.opened = true;
+            };
+            function disabled(data) {
+                var date = data.date,
+                    mode = data.mode;
+                return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+            }
 
+            $scope.today = function () {
+                $scope.popup1 = {
+                    opened: false
                 };
-                $scope.init();
+                $scope.UserBirthdate = new Date();
+            };
+            $scope.today();
+            $scope.format = 'yyyy-MM-dd';
+            $scope.dateOptions = {
+                dateDisabled: disabled,
+                formatYear: 'yyyy',
+                maxDate: new Date(2020, 1, 1),
+                minDate: new Date(1915, 1, 1),
+                startingDay: 1
+            };
 
-            }]);
+            $scope.Update = function () {
+
+                var oldUser = userData.getData();
+                var user = {};
+                user["IdCliente"] = oldUser.IdCliente;
+                user["UserName"] = $scope.username;
+                user["UserLastName"] = $scope.lastname;
+                user["UserGender"] = $scope.UserGender;
+                user["UserBirthdate"] = moment($scope.UserBirthdate).format('YYYY/MM/DD');
+                user["IdPlataforma"] = oldUser.IdPlataforma;
+                user["UserEmail"] = oldUser.UserEmail;
+                user["UserPhone"] = $scope.UserPhone;
+
+                userData.updateData(user)
+                    .then(function (data) {
+                        //alert(data);
+                          ngToast.create(data);
+                        console.log(data);
+                    }).catch(function (err) {
+                    console.log(err);
+                });
+
+            };
+            $scope.init();
+
+        }]);
