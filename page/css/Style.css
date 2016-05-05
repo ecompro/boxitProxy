@@ -8,9 +8,10 @@ body {
 }
 
 body > * {
-    width: calc(100% - 20px) !important;
+    width: 100% !important;
     padding-left: 10px !important;
     padding-right: 10px !important;
+    box-sizing: border-box;
 }
 
 .MaxWidth {
@@ -25,6 +26,13 @@ body > * {
 
 .Separator {
     height: 10px;
+}
+
+.NoSeleccionable {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .Content {
@@ -55,6 +63,10 @@ body > * {
     border: none;
 }
 
+.Rotador {
+    overflow: hidden;
+}
+
 .BannerSelecters {
     bottom: 10px;
     overflow: hidden;
@@ -80,9 +92,30 @@ body > * {
     background-color: #a82773;
 }
 
+.BannerSelecters > .Banner.Number.Selected {
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+}
+
 .BannerSelecters > .Banner:hover {
     border: 1px solid #a82773;
     background-color: #a82773;
+}
+
+.BannerSelecters > .Banner.Number {
+    border: none;
+    border-radius: 0;
+    width: auto;
+    height: auto;
+    text-align: center;
+    text-decoration: underline;
+    font-size: 13px;
+    color: #A82773;
+}
+
+.BannerSelecters > .Banner.Number:hover {
+    background-color: transparent;
 }
 
 .FieldContent {
@@ -149,7 +182,6 @@ body > * {
 .FieldContent input[type="text"].NormalWidth {
     width: calc(35% - 4px);
 }
-
 .FieldContent input[type="password"].NormalWidth {
     width: calc(35% - 4px);
 }
@@ -539,6 +571,11 @@ header .UserAccountOptions a:nth-child(2) {
     color: #006f7e;
 }
 
+.MainBanner.Gray {
+    background-color: #fafafa;
+    padding-bottom: 40px;
+}
+
 .MainBanner .MainBannerContainer {
     width: 100%;
     height: 100%;
@@ -632,6 +669,13 @@ header .UserAccountOptions a:nth-child(2) {
     border-radius: 30px;
 }
 
+.MainBanner .MainBannerContainer .Features .Feature.Blue {
+    background-color: #00b4cb;
+    color: #FFFFFF;
+    height: 400px;
+    position: relative;
+}
+
 .MainBanner .MainBannerContainer .Features .Feature .Title {
     color: #1cbcd6;
     text-align: center;
@@ -639,9 +683,18 @@ header .UserAccountOptions a:nth-child(2) {
     font-size: 22px;
 }
 
+.MainBanner .MainBannerContainer .Features .Feature.Blue .Title {
+    color: #FFFFFF;
+}
+
 .MainBanner .MainBannerContainer .Features .Feature .Image {
     text-align: center;
     margin-bottom: 30px;
+}
+
+.MainBanner .MainBannerContainer .Features .Feature.Blue .Image {
+    margin-bottom: 25px;
+    height: 112px;
 }
 
 .MainBanner .MainBannerContainer .Features .Feature .Image img {
@@ -653,6 +706,29 @@ header .UserAccountOptions a:nth-child(2) {
     color: #a0a0a0;
     width: 80%;
     margin: 0 auto;
+}
+
+.MainBanner .MainBannerContainer .Features .Feature.Blue .Description {
+    font-size: 40px;
+    color: #FFFFFF;
+}
+
+.MainBanner .MainBannerContainer .Features .Feature.Blue .Description .SinceByDay {
+    color: #A82773;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.MainBanner .MainBannerContainer .Features .Feature.Blue .Footer {
+    width: 100%;
+    background-color: #007180;
+    height: 50px;
+    border-radius: 0 0 30px 30px;
+    position: absolute;
+    bottom: 0;
+    line-height: 50px;
+    text-align: center;
+    font-size: 13px;
 }
 
 .MainBanner .MainBannerContainer .Logos {
@@ -1003,6 +1079,7 @@ header .UserAccountOptions a:nth-child(2) {
     position: relative;
     padding-bottom: 70px;
     margin-bottom: 70px;
+    overflow: hidden;
 }
 
 .PageDescription .MainDescription .Title {
@@ -1033,6 +1110,125 @@ header .UserAccountOptions a:nth-child(2) {
     bottom: 0;
     right: 0;
     z-index: -1;
+}
+
+.PageDescription .MainDescription .Left, .PageDescription .MainDescription .Right {
+    float: left;
+}
+
+.PageDescription .MainDescription .Left {
+    width: 20%;
+}
+
+.PageDescription .MainDescription .Left .Title {
+    color: #a0a0a0;
+    font-weight: bold;
+}
+
+.PageDescription .MainDescription .Right {
+    width: 80%;
+}
+
+.PageDescription .MainDescription .Right .Groups {
+
+}
+
+.PageDescription .MainDescription .Right .Groups .Group {
+    position: relative;
+    padding-bottom: 50px;
+    border-bottom: 2px solid #eeeeee;
+}
+
+.PageDescription .MainDescription .Right .Groups .Group .Title {
+    font-weight: bold;
+    padding: 0;
+    margin-top: 50px;
+}
+
+.PageDescription .MainDescription .Right .Groups .Group .Image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 125px;
+    height: 100px;
+}
+
+.PageDescription .MainDescription .Right .Groups .Group .Image img {
+    height: 100%;
+}
+
+.PageDescription .MainDescription .Right .Groups .Group .Table {
+    display: block;
+    width: 100%;
+    margin-top: 70px;
+    margin-bottom: 40px;
+}
+
+.PageDescription .MainDescription .Right .Groups .Group .Table table {
+    width: 100%;
+}
+
+.PageDescription .MainDescription .Right .Groups .Group .Table table tr {
+    height: 50px;
+    background-color: #eeeeee;
+    color: #A82773;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.PageDescription .MainDescription .Right .Groups .Group .Table table tr:nth-child(1) {
+    background-color: #A82773;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.PageDescription .MainDescription .Right .Groups .Group .Table table tr td {
+}
+
+.PageDescription .MainDescription .Right .Groups .Group .Table table tr td:nth-child(1) {
+    width: 90%;
+    padding-left: 10px;
+}
+
+.PageDescription .MainDescription .Right .Groups .Group .Table table tr td:nth-child(2) {
+    width: 10%;
+    padding-right: 10px;
+    text-align: right;
+}
+
+.PageDescription .MainDescription .Right .Groups .Group .TableWithoutHeader {
+    display: block;
+    width: 100%;
+    margin-top: 70px;
+}
+
+.PageDescription .MainDescription .Right .Groups .Group .TableWithoutHeader table {
+    width: 100%;
+}
+
+.PageDescription .MainDescription .Right .Groups .Group .TableWithoutHeader table tr {
+}
+
+.PageDescription .MainDescription .Right .Groups .Group .TableWithoutHeader table tr td {
+}
+
+.PageDescription .MainDescription .Right .Groups .Group .TableWithoutHeader table tr td:nth-child(1) {
+    width: 70%;
+}
+
+.PageDescription .MainDescription .Right .Groups .Group .TableWithoutHeader table tr td:nth-child(2) {
+    width: 24%;
+}
+
+.PageDescription .MainDescription .Right .Groups .Group .TableWithoutHeader table tr td:nth-child(2) span {
+    font-size: 40px;
+    color: #A82773;
+    font-weight: bold;
+}
+
+.PageDescription .MainDescription .Right .Groups .Group .TableWithoutHeader table tr td:nth-child(2) div {
+    text-align: right;
 }
 
 .PageDescription .SecundaryDescription {
@@ -1225,6 +1421,342 @@ header .UserAccountOptions a:nth-child(2) {
     display: block;
 }
 
+.HeaderBoxitStore {
+    height: 75px;
+    line-height: 75px;
+    padding: 0 !important;
+    background-color: #A82773;
+    overflow: hidden;
+}
+
+.HeaderBoxitStore .wrapper {
+    width: 95%;
+    margin: 0 auto;
+    font-size: 0;
+    float: none;
+}
+
+.HeaderBoxitStore .wrapper > div {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.HeaderBoxitStore .Welcome {
+    width: 15%;
+    font-size: 0;
+}
+
+.HeaderBoxitStore .Welcome .Avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #fb9b06;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.HeaderBoxitStore .Welcome .Name {
+    width: calc(100% - 50px);
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box;
+    padding: 0 10px;
+    margin: 0;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.HeaderBoxitStore .TextboxContainer {
+    width: 55%;
+    border-radius: 5px;
+    display: inline-block;
+    height: 35px;
+    line-height: 35px;
+    vertical-align: middle;
+    position: relative;
+    overflow: hidden;
+}
+
+.HeaderBoxitStore .TextboxContainer select {
+    background: #f2f2f2;
+    display: inline-block;
+    font-size: 12px;
+    height: 100%;
+    color: #666;
+    padding: 5px;
+    border: none;
+    border-right: 1px solid #666;
+    float: left;
+}
+
+.HeaderBoxitStore .TextboxContainer input[type=text] {
+    border: none;
+    display: inline-block;
+    width: calc(100% - 57px);
+    font-size: 12px;
+    text-indent: 8px;
+}
+
+.HeaderBoxitStore .TextboxContainer .Textbox {
+    position: relative;
+    display: inline-block;
+}
+
+.HeaderBoxitStore .TextboxContainer .Search {
+    width: 45px;
+    background: #ffbd69 url('../img/search.png') center center no-repeat;
+    color: transparent;
+    border: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 99;
+    outline: none;
+}
+
+.HeaderBoxitStore .Tools {
+    width: 30%;
+    padding-left: 2%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.HeaderBoxitStore .Tools .Layer {
+    width: calc(100% / 3);
+    text-align: center;
+    float: left;
+}
+
+.HeaderBoxitStore .Tools .Layer a {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+}
+
+.HeaderBoxitStore .Tools .Layer a.cart {
+    position: relative;
+    background: url('../img/cart.png') center left no-repeat;
+    padding-left: 50px;
+    display: inline-block;
+    vertical-align: middle;
+    height: 40px;
+    line-height: 40px;
+}
+
+.HeaderBoxitStore .Tools .Layer a.cart span {
+    position: absolute;
+    top: 4px;
+    left: 14px;
+    width: 20px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: bold;
+    color: #ffbd69;
+}
+
+.BoxitStoreContainer {
+    width: 100%;
+}
+
+.BoxitStoreContainer .ShoppingTrends {
+    width: 100%;
+    position: relative;
+}
+
+.BoxitStoreContainer .ShoppingTrends .Arrow {
+    position: absolute;
+    width: 40px;
+    height: 100px;
+    top: calc((260px / 2) - (100px / 2));
+    box-shadow: 0px 0px 1px #a0a0a0;
+    line-height: 100px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 0;
+}
+
+.BoxitStoreContainer .ShoppingTrends .Arrow.Next {
+    right: 0;
+    background: #FFFFFF url(../img/arrownext.png) no-repeat center center;
+}
+
+.BoxitStoreContainer .ShoppingTrends .Arrow.Back {
+    left: 0;
+    background: #FFFFFF url(../img/arrowback.png) no-repeat center center;
+}
+
+.BoxitStoreContainer .ShoppingTrends .Trends {
+    width: 100%;
+    height: 260px;
+    white-space: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    overflow-y: hidden;
+}
+
+.BoxitStoreContainer .ShoppingTrends .Trends::-webkit-scrollbar {
+    display: none;
+}
+
+.BoxitStoreContainer .ShoppingTrends .Trends .Product {
+    height: 100%;
+    display: inline-block;
+}
+
+.BoxitStoreContainer .ShoppingTrends .Trends .Product img {
+    height: 100%;
+}
+
+.BoxitStoreContainer .ProductsContainer {
+    overflow: hidden;
+    width: 100%;
+    padding-top: 20px;
+}
+
+.BoxitStoreContainer .ProductsContainer .Left, .BoxitStoreContainer .ProductsContainer .Right {
+    float: left;
+}
+
+.BoxitStoreContainer .ProductsContainer .Left {
+    width: 75%;
+}
+
+.BoxitStoreContainer .ProductsContainer .Left .Products {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 30px;
+}
+
+.BoxitStoreContainer .ProductsContainer .Left .Products > .ProductRotator:nth-child(1) {
+    display: block;
+}
+
+.BoxitStoreContainer .ProductsContainer .Left .Products > .ProductRotator {
+    display: none;
+}
+
+.BoxitStoreContainer .ProductsContainer .Left .Products .Product {
+    float: left;
+    width: calc(100% / 3);
+    height: 180px;
+}
+
+.BoxitStoreContainer .ProductsContainer .Left .Products .Product a {
+    font-size: 13px;
+    color: #A82773;
+}
+
+.BoxitStoreContainer .ProductsContainer .Left .Products .Product .Image {
+
+}
+
+.BoxitStoreContainer .ProductsContainer .Left .Products .Product .Image img {
+    height: 100px;
+}
+
+.BoxitStoreContainer .ProductsContainer .Left .Products .Product .Description {
+    margin-top: 5%;
+}
+
+.BoxitStoreContainer .ProductsContainer .Left .Products .Product .Price {
+    color: #333333;
+    font-weight: bold;
+}
+
+.BoxitStoreContainer .ProductsContainer .Right {
+    width: calc(25%);
+    height: 570px;
+    overflow: auto;
+    font-size: 13px;
+}
+
+.BoxitStoreContainer .ProductsContainer .Right .Header {
+    background-color: #A82773;
+}
+
+.BoxitStoreContainer .ProductsContainer .Right .Header .Text {
+    font-size: 13px;
+    color: #FFFFFF;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.BoxitStoreContainer .ProductsContainer .Right .Categories {
+    width: 100%;
+}
+
+.BoxitStoreContainer .ProductsContainer .Right .Categories .Category {
+    width: 100%;
+|
+}
+
+.BoxitStoreContainer .ProductsContainer .Right .Categories .Category .Name {
+    width: 100%;
+}
+
+.BoxitStoreContainer .ProductsContainer .Right .Categories .Category .Name a {
+    color: #A82773;
+}
+
+.BoxitStoreContainer .ProductsContainer .Right .Categories .Category .SubCategories {
+    width: calc(100% - 10%);
+    padding-left: 10%;
+}
+
+.BoxitStoreContainer .ProductsContainer .Right .Categories .Category .SubCategories .Category {
+
+}
+
+.BoxitStoreContainer .ProductsContainer .Right .Categories .Category .SubCategories .Category .Name {
+
+}
+
+.BoxitStoreContainer .ProductsContainer .Right .Categories .Category .SubCategories .Category .Name a {
+
+}
+
+.BoxitStoreContainer .ProductsContainer .Right .SimilarItems {
+    margin-top: 20px;
+}
+
+.BoxitStoreContainer .ProductsContainer .Right .SimilarItems .Item {
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.BoxitStoreContainer .ProductsContainer .Right .SimilarItems .Item .Image {
+    width: 60px;
+    height: 50px;
+    float: left;
+}
+
+.BoxitStoreContainer .ProductsContainer .Right .SimilarItems .Item .Image img {
+    width: 100%;
+}
+
+.BoxitStoreContainer .ProductsContainer .Right .SimilarItems .Item .Description {
+    width: calc(100% - 60px);
+    float: left;
+    text-align: left;
+}
+
+.BoxitStoreContainer .ProductsContainer .Right .SimilarItems .Item .Description .Name {
+
+}
+
+.BoxitStoreContainer .ProductsContainer .Right .SimilarItems .Item .Description .Name a {
+    color: #A82773;
+}
+
+.BoxitStoreContainer .ProductsContainer .Right .SimilarItems .Item .Description .Price {
+
+}
+
 footer {
     width: 100%;
     height: 90px;
@@ -1241,7 +1773,7 @@ footer .ContentContainer .Copyright {
 }
 
 .ItemCar{
-    overflow: hidden;
-    white-space: nowrap;
+    overflow:hidden;
+    white-space:nowrap;
     text-overflow: ellipsis;
 }

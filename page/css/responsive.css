@@ -1,4 +1,4 @@
-@media screen and (min-width: 240px) and (max-width: 479px) {
+@media screen and (min-width: 240px) and (max-width: 480px) {
 	.BestStores .Stores .Store{
 		width: 100%;
 	}
@@ -7,6 +7,24 @@
 	}
 	body{
 		font-size: 13px;
+	}
+	.BoxitStoreContainer .ProductsContainer .Left .Products .Product .Description{
+		display: none;
+	}
+	.BoxitStoreContainer .ProductsContainer .Left .Products .Product{
+		height: 130px;
+	}
+	.BoxitStoreContainer .ProductsContainer .Left, .BoxitStoreContainer .ProductsContainer .Right{
+		width: 100%;
+	}
+	.BoxitStoreContainer .ProductsContainer .Right{
+		height: auto;
+	}
+	.BoxitStoreContainer .ShoppingTrends .Trends{
+		height: 100px !important;
+	}
+	.BoxitStoreContainer .ShoppingTrends .Arrow{
+		height: 50px;
 	}
 }
 @media screen and (min-width: 480px) and (max-width: 767px) {
@@ -88,6 +106,14 @@
 	.MainBanner .MainBannerContainer .BoxReadMore .Image{
 		display: none;
 	}
+
+	
+	.PageDescription .MainDescription .Right .Groups .Group .Image{
+		display: none;
+	}
+	.PageDescription .MainDescription .Left, .PageDescription .MainDescription .Right{
+		width: 100%;
+	}
 }
 
 
@@ -120,5 +146,17 @@
 	}
 	.PageDescription .MainDescription > img{
 		display: none;
+	}
+	.BoxitStoreContainer .ShoppingTrends .Trends{
+		height: 160px;
+	}
+	.BoxitStoreContainer .ShoppingTrends .Arrow{
+		top: calc((160px / 2) - (100px / 2));
+	}
+	.HeaderBoxitStore .Tools .Layer a.cart{
+		font-size: 0;
+	}
+	.HeaderBoxitStore .Welcome .Name{
+		font-size: 0;
 	}
 }

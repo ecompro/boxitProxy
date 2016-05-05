@@ -14,6 +14,7 @@ angular
                     'Content-Type': 'application/json'
                 }
             }).then(function success(result) {
+                console.log(result.data.Item);
                 $scope.Items = result.data.Item;
             },function error(result) {
                 console.log(result.data);
