@@ -72,7 +72,6 @@ angular.module('boxit')
                             tel: ""
 
                         };
-
                         miamiAddress.nombre = splitAddress[0].toString().replace("NOMBRE:", "");
                         miamiAddress.apellido = splitAddress[1].toString().replace("APELLIDO:", "");
                         miamiAddress.address1 = splitAddress[2].toString().replace("ADDRESS 1:", "");

@@ -376,7 +376,7 @@ amazonRouter.route('/amazongetsearchindex').post(
             args["CustomerPassword"] = CustomerPassword;
             soap.createClient(url, function (err, client) {
                 client.AmazonGetSearchIndex(args, function (err, result) {
-                    res.json(result.AmazonGetSearchIndexResult);
+                    res.json(result.AmazonGetSearchIndexResult.Data.Rows);
 
                 });
             });
