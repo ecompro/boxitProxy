@@ -1777,3 +1777,9 @@ footer .ContentContainer .Copyright {
     white-space:nowrap;
     text-overflow: ellipsis;
 }
+.ButtonCar{
+    border-radius: 30px;
+    border: 2px solid #a82773;
+    color: #FFFFFF;
+    background-color: #a82773;
+}

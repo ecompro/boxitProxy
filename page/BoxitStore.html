@@ -151,14 +151,7 @@
     </div>
     <div class="Overlay"></div>
 </div>
-<div class="Soon Content" style="background-color: #FAFAFA;">
-    <div class="SoonContainer ContentContainer MaxWidth">
-        <div class="Image">
-            <img src="img/amazonbanner.png" alt="">
-        </div>
-    </div>
-</div>
-<div class="HeaderBoxitStore">
+<div class="HeaderBoxitStore" id="top">
     <div class="wrapper">
         <!-- No aparece Welcome cuando no esta loggeado -->
         <div class="Welcome">
@@ -169,7 +162,7 @@
             <select class="input-mini" ng-model="index" ng-options="index.attributes.SearchIndex for index in indexs">
             </select>
             <input style="width: 73.1%" type="text" name="find" ng-model="keyword">
-            <button style="height: 35px" class="Search" ng-click="searchProducts()"></button>
+            <button style="height: 35px" class="Search" ng-click="doSearch()"></button>
         </div>
         <div class="Tools">
             <div class="Layer"><a href="#">Try Prime</a></div>
@@ -180,63 +173,35 @@
 </div>
 <div class="BoxitStoreContainer MaxWidth">
     <div class="row">
-        <div class="col-lg-12">
-            <div class="ShoppingTrends">
-                <div class="Title"></div>
-                <div class="Arrow NoSeleccionable Next">></div>
-                <div class="Arrow NoSeleccionable Back"><</div>
-                <div class="Trends">
-                    <div class="Product">
-                        <a href="#"><img src="img/Products/p2.png" alt=""></a>
-                    </div>
-                    <div class="Product">
-                        <a href="#"><img src="img/Products/p1.png" alt=""></a>
-                    </div>
-                    <div class="Product">
-                        <a href="#"><img src="img/Products/p3.png" alt=""></a>
-                    </div>
-                    <div class="Product">
-                        <a href="#"><img src="img/Products/p4.png" alt=""></a>
-                    </div>
-                    <div class="Product">
-                        <a href="#"><img src="img/Products/p3.png" alt=""></a>
-                    </div>
-                    <div class="Product">
-                        <a href="#"><img src="img/Products/p1.png" alt=""></a>
-                    </div>
-                    <div class="Product">
-                        <a href="#"><img src="img/Products/p4.png" alt=""></a>
-                    </div>
-                    <div class="Product">
-                        <a href="#"><img src="img/Products/p2.png" alt=""></a>
-                    </div>
-                    <div class="Product">
-                        <a href="#"><img src="img/Products/p1.png" alt=""></a>
-                    </div>
-                    <div class="Product">
-                        <a href="#"><img src="img/Products/p2.png" alt=""></a>
-                    </div>
-                    <div class="Product">
-                        <a href="#"><img src="img/Products/p4.png" alt=""></a>
-                    </div>
+        <div class="Soon Content" ng-show="showImage" style="background-color: #FAFAFA;">
+            <div class="SoonContainer ContentContainer MaxWidth">
+                <div class="Image">
+                    <img src="img/amazonbanner.png" alt="">
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-10">
-            <div style="width: 250px;height: 250px;padding-top: 10px" class="col-sm-3" ng-repeat="item in Items">
-                <img style="max-width: 100%;height: 180px" class="img-responsive img-rounded center-block" title="{{item.Attributes.Title}}"
-                     src="{{item.Image.ImageUrl}}"/>
-                <a href="#"><p class="ItemCar">{{item.Attributes.Title}}</p></a>
+        <div class="col-lg-12" ng-show="showCar">
+            <div style="width: 250px;height: 270px;padding-top: 10px" class="col-sm-3" ng-repeat="item in Items">
+                <a href="{{item.PageUrl}}" target="_blank"><img style="max-width: 100%;height: 180px" class="img-responsive img-rounded center-block"
+                                title="{{item.Attributes.Title}}"
+                                src="{{item.Image.ImageUrl}}"/></a>
+                <a href="{{item.PageUrl}}"><p class="ItemCar">{{item.Attributes.Title}}</p></a>
                 <span style="color: #333333;font-weight: bold">{{item.Offers.Offer.OfferListing.Price.FormattedPrice}}</span>
+                <br>
+                <button class="ButtonCar">Add to Car <span class="glyphicon glyphicon-shopping-cart"></span></button>
             </div>
         </div>
-        <div class="col-lg-2">
-            <span>categorias</span>
+        <div class="row">
+            <div class="col-lg-4">
+            </div>
+            <div class="col-lg-5">
+                <uib-pagination ng-show="showPagination" total-items="totalItems" ng-model="currentPage"
+                                ng-change="pageChanged()"></uib-pagination>
+            </div>
+            <div class="col-lg-3">
+            </div>
         </div>
     </div>
-</div>
 </div>
 <div class="BannerSobresaliente Content" style="height: 190px;background-color: #00b4cb;">
     <div class="BannerSobresalienteContainer ContentContainer MaxWidth">
