@@ -13,11 +13,11 @@ angular.module('boxit')
                 var user = userData.getData();
                 $scope.username = user.UserName;
                 $scope.lastname = user.UserLastName;
-                $scope.UserBirthdate = user.UserBirthdate;
+             //   $scope.UserBirthdate = user.UserBirthdate;
                 $scope.UserGender = user.UserGender;
                 $scope.UserPhone = user.UserPhone;
                 $scope.UserEmail = user.UserEmail;            };
-            $scope.init();
+
             $scope.open = function () {
                 $scope.popup1.opened = true;
             };
@@ -32,9 +32,14 @@ angular.module('boxit')
                     opened: false
                 };
                 $scope.UserBirthdate = new Date();
+               // console.log( new Date());
+                $scope.UserBirthdate = user.UserBirthdate;// moment($scope.UserBirthdate).format('YYYY/MM/DD');
+                //console.log();
             };
+            $scope.init();
             $scope.today();
-            $scope.format = 'yyyy-MM-dd';
+
+            $scope.format = 'yyyy/MM/dd';
             $scope.dateOptions = {
                 dateDisabled: disabled,
                 formatYear: 'yyyy',
