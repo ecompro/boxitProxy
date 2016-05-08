@@ -8,11 +8,12 @@ angular.module('boxit')
         .controller('inicioController', ['$scope', '$http', '$q', 'userData',
             function ($scope, $http, $q, userData) {
 
+              
                 var init = function () {
 
                     var user = userData.getData();
 
-                    console.log(JSON.stringify(user));
+
                     $scope.nombre = user.userMiamiAddress.nombre;
                     $scope.apellido = user.userMiamiAddress.apellido;
                     $scope.address1 = user.userMiamiAddress.address1;
@@ -33,30 +34,30 @@ angular.module('boxit')
                         for (var i = 0; i < result.length; i++) {
                             //  console.log(result[i]);
                             //console.log (result[i].attributes.Estatus);
-                            if (result[i].attributes.Estatus.toUpperCase() === 
+                            if (result[i].attributes.Estatus.toUpperCase() ===
                                     "ENTREGADO".toString().toUpperCase())
                             {
-                              $scope.entregado++;  
+                                $scope.entregado++;
                             }
-                            if (result[i].attributes.Estatus.toUpperCase() === 
+                            if (result[i].attributes.Estatus.toUpperCase() ===
                                     "onhand".toString().toUpperCase())
                             {
-                              $scope.miami++;  
+                                $scope.miami++;
                             }
-                            if (result[i].attributes.Estatus.toUpperCase() === 
+                            if (result[i].attributes.Estatus.toUpperCase() ===
                                     "OnBoxIt".toString().toUpperCase())
                             {
-                              $scope.boxit++;  
+                                $scope.boxit++;
                             }
-                            if (result[i].attributes.Estatus.toUpperCase() === 
+                            if (result[i].attributes.Estatus.toUpperCase() ===
                                     "arrived".toString().toUpperCase())
                             {
-                              $scope.panama++;  
+                                $scope.panama++;
                             }
-                            
-                            
-                            
-                                    //                             ENTREGADO
+
+
+
+                            //                             ENTREGADO
 // onhand
 // OnBoxIt
 // ENTREGADO

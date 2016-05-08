@@ -1,144 +1,121 @@
-<link href="../css/inicioStyle.css" rel="stylesheet" type="text/css"/>
+<link href="../css/userStyle.css" rel="stylesheet" type="text/css"/>
 <div class="row">
 
     <div class="col-sm-6">
         <img src="../img/Inicio-Area-de-usuario.png" alt=""/>        
     </div>
-    <div  style="background-color: white"   class="col-sm-6" > 
-        <h3>Resumen de sus paquetes:</h3> 
+    <div    class="col-sm-6 fondo" > 
+        <h3 class="customLabel">Resumen de sus paquetes:</h3> 
         <hr>
-        <span>Paquetes en Miami: {{miami}}</span>
-        <br/>
-        <span>Paquetes en Panama:  {{panama}}</span>
-        <br/>
-        <span>Paquetes en el Boxit: {{boxit}}</span>
-        <br/>
-        <span>Paquetes entregados: {{entregado}}</span>
-        <br/>
-        <span>Total de paquetes : {{total}}</span>
-        <br/>
+        <div class="row">
+            <div class="col-sm-5">
+                <span class="pull-right">Paquetes en Miami: {{miami}} </span> 
+                <br/>
+                <span class="pull-right">Paquetes en Panama: {{panama}}</span>
+                <br/>
+                <span class="pull-right">Paquetes en el Boxit: {{boxit}}</span>
+                <br/>
+                <span class="pull-right">Paquetes entregados: {{entregado}}</span>
+                <br/>
+                <span class="pull-right">Total de paquetes: {{total}}</span>
+                <br/>
+            </div>
+        </div>
         <!--    </div>-->
         <hr>
         <!--    <div class="col-sm-4"> -->
-        <h3>Direccion Miami</h3>
+        <h3 class="customLabel">Direccion Miami</h3>
         <hr>
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-3 customLabel">
                 <span class="pull-right">Nombre : </span>
             </div>
             <div class="col-sm-7 form-group">
-                 <input type="text" class="form-control" ng-model="nombre">
+                <input type="text" class="form-control" ng-model="nombre">
             </div>
         </div>
-        <br>
+
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-3 customLabel">
                 <span class="pull-right">Apellido : </span>
             </div>
             <div class="col-sm-7 form-group">
                 <input type="text" class="form-control" ng-model="apellido">
             </div>
         </div>
-        <br>
+
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-3 customLabel">
                 <span class="pull-right">Address 1 : </span>
             </div>
             <div class="col-sm-7 form-group">
                 <input type="text" class="form-control" ng-model="address1">
             </div>
         </div>
-        <br>
+
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-3 customLabel">
                 <span class="pull-right">Address 2 : </span>
             </div>
-             <div class="col-sm-7 form-group">
+            <div class="col-sm-7 form-group">
                 <input type="text" class="form-control" ng-model="address2">
             </div>
         </div>
-        <br>
+
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-3 customLabel">
                 <span class="pull-right">City : </span>
             </div>
             <div class="col-sm-7 form-group">
                 <input type="text" class="form-control" ng-model="city">
             </div>
         </div>
-        <br>
+
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-3 customLabel">
                 <span class="pull-right">State : </span>
             </div>
-             <div class="col-sm-7 form-group">
+            <div class="col-sm-7 form-group">
                 <input type="text" class="form-control" ng-model="state">
             </div>
         </div>
-        <br>
+
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-3 customLabel">
                 <span class="pull-right">Zip : </span>
             </div>
-             <div class="col-sm-7 form-group">
+            <div class="col-sm-7 form-group">
                 <input type="text" class="form-control" ng-model="zip">
             </div>
         </div>
-        <br>
+
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-3 customLabel">
                 <span class="pull-right">Country : </span>
             </div>
             <div class="col-sm-7 form-group">
                 <input type="text" class="form-control" ng-model="country">
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-sm-3">
-                <span class="pull-right">Tel : </span>
             </div>
-             <div class="col-sm-7 form-group">
-                <input type="text" class="form-control" ng-model="tel">
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-11">
-                <input checked type="checkbox"> 
-                <span>
-                    No delivering on weekends
-                </span>
-            </div>
-        </div>
-        <!--        <span>APELLIDO :</span>
-                 <input type="text" ng-model="apellido">
-                <br>
-                <span>ADDRESS 1:</span>
-                 <input type="text" ng-model="address1">
-                <br>
-                <span>ADDRESS 2:</span>
-                  <input type="text" ng-model="address2"><span>
-                <br>
-                <span>CITY:</span>
-                 <input type="text" ng-model="city">
-                <br>
-                <span>STATE / PROVINCIA / REGION: </span>
-                 <input type="text" ng-model="state">
-                <br>
-                <span>ZIP CODE:</span>
-                 <input type="text" ng-model="zip">
-                <br>
-                <span>COUNTRY:</span>
-                 <input type="text" ng-model="country">
-                <br>
-                <span>TEL</span>
-                 <input type="text" ng-model="tel">
-                <br>
-                <input checked type="checkbox"> 
-                <span>
-                    No delivering on weekends
-                </span>-->
-    </div>
 
-</div>
+            <div class="row">
+                <div class="col-sm-3 customLabel">
+                    <span class="pull-right">Tel : </span>
+                </div>
+                <div class="col-sm-7 form-group">
+                    <input type="text" class="form-control" ng-model="tel">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-11">
+                    <input checked type="checkbox"> 
+                    <span>
+                        No delivering on weekends
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>

@@ -4,40 +4,42 @@
  * and open the template in the editor.
  */
 angular.module('boxit')
-    .controller('modificarContrasenaController', ['$scope', '$http', 'ngToast', 'userData',
-        function ($scope, $http, ngToast, userData) {
+        .controller('modificarContrasenaController', ['$scope', '$http', 'ngToast', 'userData',
+            function ($scope, $http, ngToast, userData) {
+                $scope.oldpassword = "";
+                $scope.newpassword = "";
+                $scope.confirmpassword = "";
+                $scope.Update = function () {
 
-            $scope.Update = function () {
+                    var user = userData.getData();
 
-                var user = userData.getData();
-
-                if (!($scope.newpassword === $scope.confirmpassword)) {
-                    ngToast.create("Password no coincide");
-                    return;
-                }
-                $http({
-                    method: "POST",
-                    url: "/users/updatepassworduserboxit",
-                    data: {
-                        "IdCliente": user.IdCliente,
-                        "UserPasswordOld": $scope.oldpassword,
-                        "UserPasswordNew": $scope.newpassword
-                    },
-                    headers: {
-                        'Content-Type': 'application/json'
+                    if (!($scope.newpassword === $scope.confirmpassword)) {
+                        ngToast.create("Password no coincide");
+                        return;
                     }
-                }).then(function success(result) {
-                    console.log(result.data.Rows.attributes.Message);
-                    ngToast.create(result.data.Rows.attributes.Message);
-                    $scope.oldpassword = "";
-                    $scope.newpassword = "";
-                    $scope.confirmpassword = "";
-                }, function error(result) {
-                    console.log(result.data);
-                });
-            };
+                    $http({
+                        method: "POST",
+                        url: "/users/updatepassworduserboxit",
+                        data: {
+                            "IdCliente": user.IdCliente,
+                            "UserPasswordOld": $scope.oldpassword,
+                            "UserPasswordNew": $scope.newpassword
+                        },
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(function success(result) {
+                        console.log(result.data.Rows.attributes.Message);
+                        ngToast.create(result.data.Rows.attributes.Message);
+                        $scope.oldpassword = "";
+                        $scope.newpassword = "";
+                        $scope.confirmpassword = "";
+                    }, function error(result) {
+                        console.log(result.data);
+                    });
+                };
 
 
-        }]);
+            }]);
 
 
