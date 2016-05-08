@@ -1,6 +1,10 @@
+<link href="../css/inicioStyle.css" rel="stylesheet" type="text/css"/>
 <div class="row">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-4"> 
+
+    <div class="col-sm-6">
+        <img src="../img/Inicio-Area-de-usuario.png" alt=""/>        
+    </div>
+    <div  style="background-color: white"   class="col-sm-6" > 
         <h3>Resumen de sus paquetes:</h3> 
         <hr>
         <span>Paquetes en Miami: {{miami}}</span>
@@ -13,42 +17,130 @@
         <br/>
         <span>Total de paquetes : {{total}}</span>
         <br/>
-    </div>
-
-    <div class="col-sm-4"> 
+        <!--    </div>-->
+        <hr>
+        <!--    <div class="col-sm-4"> -->
         <h3>Direccion Miami</h3>
         <hr>
-        <span>NOMBRE : </span>
-        <span>{{nombre}}</span>
+        <div class="row">
+            <div class="col-sm-3">
+                <span class="pull-right">Nombre : </span>
+            </div>
+            <div class="col-sm-9">
+                <span>{{nombre}}</span>
+            </div>
+        </div>
         <br>
-        <span>APELLIDO :</span>
-        <span>{{apellido}}</span>
+        <div class="row">
+            <div class="col-sm-3">
+                <span class="pull-right">Apellido : </span>
+            </div>
+            <div class="col-sm-9">
+                <span>{{apellido}}</span>
+               
+            </div>
+        </div>
         <br>
-        <span>ADDRESS 1:</span>
-        <span> {{address1}}</span>
+        <div class="row">
+            <div class="col-sm-3">
+                <span class="pull-right">Address 1 : </span>
+            </div>
+            <div class="col-sm-9">
+                 <span>{{address1}}</span>
+            </div>
+        </div>
         <br>
-        <span>ADDRESS 2:</span>
-        <span> {{address2}}</span>
+        <div class="row">
+            <div class="col-sm-3">
+                <span class="pull-right">Address 2 : </span>
+            </div>
+            <div class="col-sm-9">
+                 <span>{{address2}}</span>
+            </div>
+        </div>
         <br>
-        <span>CITY</span>
-        <span>{{city}}</span>
+        <div class="row">
+            <div class="col-sm-3">
+                <span class="pull-right">City : </span>
+            </div>
+            <div class="col-sm-9">
+                <span>{{city}}</span>
+            </div>
+        </div>
         <br>
-        <span>STATE / PROVINCIA / REGION: </span>
-        <span>{{state}}</span>
+        <div class="row">
+            <div class="col-sm-3">
+                <span class="pull-right">State : </span>
+            </div>
+            <div class="col-sm-9">
+               <span>{{state}}</span>
+            </div>
+        </div>
         <br>
-        <span>ZIP CODE:</span>
-        <span>{{zip}}</span>
+        <div class="row">
+            <div class="col-sm-3">
+                <span class="pull-right">Zip : </span>
+            </div>
+            <div class="col-sm-9">
+                <span>{{zip}}</span>
+            </div>
+        </div>
         <br>
-        <span>COUNTRY:</span>
-        <span>{{country}}</span>
+        <div class="row">
+            <div class="col-sm-3">
+                <span class="pull-right">Country : </span>
+            </div>
+            <div class="col-sm-9">
+                <span>{{country}}</span>
+            </div>
+        </div>
         <br>
-        <span>TEL</span>
-        <span>{{tel}}</span>
+        <div class="row">
+            <div class="col-sm-3">
+                <span class="pull-right">Tel : </span>
+            </div>
+            <div class="col-sm-9">
+               <span >{{tel}}</span>
+            </div>
+        </div>
         <br>
-        <input checked type="checkbox"> 
-        <span>
-            No delivering on weekends
-        </span>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-11">
+                <input checked type="checkbox"> 
+                <span>
+                    No delivering on weekends
+                </span>
+            </div>
+        </div>
+        <!--        <span>APELLIDO :</span>
+                 <input type="text" ng-model="apellido">
+                <br>
+                <span>ADDRESS 1:</span>
+                 <input type="text" ng-model="address1">
+                <br>
+                <span>ADDRESS 2:</span>
+                  <input type="text" ng-model="address2"><span>
+                <br>
+                <span>CITY:</span>
+                 <input type="text" ng-model="city">
+                <br>
+                <span>STATE / PROVINCIA / REGION: </span>
+                 <input type="text" ng-model="state">
+                <br>
+                <span>ZIP CODE:</span>
+                 <input type="text" ng-model="zip">
+                <br>
+                <span>COUNTRY:</span>
+                 <input type="text" ng-model="country">
+                <br>
+                <span>TEL</span>
+                 <input type="text" ng-model="tel">
+                <br>
+                <input checked type="checkbox"> 
+                <span>
+                    No delivering on weekends
+                </span>-->
     </div>
 
 </div>
