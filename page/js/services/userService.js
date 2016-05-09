@@ -26,170 +26,187 @@ var user = {
 };
 
 angular.module('boxit')
-        .factory('userData', function ($http, $q, $localStorage) {
+    .factory('userData', function ($http, $q, $localStorage) {
 
-            var factory = {};
+        var factory = {};
 
+        factory.logoff = function () {
+            delete $localStorage.userBoxIt;
 
-            factory.logoff = function () {
-               delete $localStorage.userBoxIt;
+        };
 
-            };
+        factory.getMiamiAddress = function (id) {
+            var defered = $q.defer();
+            var promise = defered.promise;
+            $http({
+                method: "POST",
+                url: "/users/getaddressmiamiuser",
+                data: {
+                    "IdCliente": id
 
-            factory.getMiamiAddress = function (id) {
-                var defered = $q.defer();
-                var promise = defered.promise;
-                $http({
-                    method: "POST",
-                    url: "/users/getaddressmiamiuser",
-                    data: {
-                        "IdCliente": id
-
-                    },
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }).then(function success(result) {
-
-
-                    if (result.data.Rows.attributes.AddressMiami === undefined) {
-                        defered.resolve(result.data.Rows.attributes.Message);
-                    } else {
+                },
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function success(result) {
 
 
-                        var rawAddress = result.data.Rows.attributes.AddressMiami;
-                        var splitAddress = rawAddress.split("\r\n");
-
-                        var miamiAddress = {
-                            nombre: "",
-                            apellido: "",
-                            address1: "",
-                            address2: "",
-                            city: "",
-                            state: "",
-                            zip: "",
-                            country: "",
-                            tel: ""
-
-                        };
-                        miamiAddress.nombre = splitAddress[0].toString().replace("NOMBRE:", "");
-                        miamiAddress.apellido = splitAddress[1].toString().replace("APELLIDO:", "");
-                        miamiAddress.address1 = splitAddress[2].toString().replace("ADDRESS 1:", "");
-                        miamiAddress.address2 = splitAddress[3].toString().replace("ADDRESS 2:", "");
-                        miamiAddress.city = splitAddress[4].toString().replace("CITY:", "");
-                        miamiAddress.state = splitAddress[5].toString().replace("STATE/PROVINCIA/REGION:", "");
-                        miamiAddress.zip = splitAddress[6].toString().replace("ZIP CODE:", "");
-                        miamiAddress.country = splitAddress[7].toString().replace("CITY:", "");
-                        miamiAddress.tel = splitAddress[8].toString().replace("TEL:", "");
-
-                        user.userMiamiAddress = miamiAddress;
-
-                        defered.resolve(user.userMiamiAddress);
-                    }
-
-                }, function error(result) {
-                    defered.reject(result.data);
-                });
-                return promise;
-            };
-
-            factory.setData = function (id) {
-                var defered = $q.defer();
-                var promise = defered.promise;
-                $http({
-                    method: "POST",
-                    url: "/users/getinfouserboxit",
-                    data: {
-                        "IdCliente": id
-
-                    },
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }).then(function success(result) {
-
-                    if (result.data.Rows.attributes.IdCliente === undefined) {
-                        defered.resolve(result.Data.Rows.attributes.Message);
-                    } else {
+                if (result.data.Rows.attributes.AddressMiami === undefined) {
+                    defered.resolve(result.data.Rows.attributes.Message);
+                } else {
 
 
-                        user.IdCliente = result.data.Rows.attributes.IdCliente;
-                        user.UserName = result.data.Rows.attributes.UserName;
-                        user.UserLastName = result.data.Rows.attributes.UserLastName;
-                        user.UserGender = result.data.Rows.attributes.UserGender;
-                        
-                        user.UserBirthdate = result.data.Rows.attributes.UserBirthdate;
-                        
-                        user.IdPlataforma = result.data.Rows.attributes.IdPlataforma;
-                        user.UserEmail = result.data.Rows.attributes.UserEmail;
-                        user.UserPhone = result.data.Rows.attributes.UserPhone;
-                        user.userMiamiAddress = factory.getMiamiAddress(user.IdCliente).then(function () {
-                            $localStorage.userBoxIt = user;
-                            console.log(user.UserBirthdate);
-                            defered.resolve($localStorage.userBoxIt);
+                    var rawAddress = result.data.Rows.attributes.AddressMiami;
+                    var splitAddress = rawAddress.split("\r\n");
 
-                        });
+                    var miamiAddress = {
+                        nombre: "",
+                        apellido: "",
+                        address1: "",
+                        address2: "",
+                        city: "",
+                        state: "",
+                        zip: "",
+                        country: "",
+                        tel: ""
+
+                    };
+                    miamiAddress.nombre = splitAddress[0].toString().replace("NOMBRE:", "");
+                    miamiAddress.apellido = splitAddress[1].toString().replace("APELLIDO:", "");
+                    miamiAddress.address1 = splitAddress[2].toString().replace("ADDRESS 1:", "");
+                    miamiAddress.address2 = splitAddress[3].toString().replace("ADDRESS 2:", "");
+                    miamiAddress.city = splitAddress[4].toString().replace("CITY:", "");
+                    miamiAddress.state = splitAddress[5].toString().replace("STATE/PROVINCIA/REGION:", "");
+                    miamiAddress.zip = splitAddress[6].toString().replace("ZIP CODE:", "");
+                    miamiAddress.country = splitAddress[7].toString().replace("CITY:", "");
+                    miamiAddress.tel = splitAddress[8].toString().replace("TEL:", "");
+
+                    user.userMiamiAddress = miamiAddress;
+
+                    defered.resolve(user.userMiamiAddress);
+                }
+
+            }, function error(result) {
+                defered.reject(result.data);
+            });
+            return promise;
+        };
+
+        factory.setData = function (id) {
+            var defered = $q.defer();
+            var promise = defered.promise;
+            $http({
+                method: "POST",
+                url: "/users/getinfouserboxit",
+                data: {
+                    "IdCliente": id
+
+                },
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function success(result) {
+
+                if (result.data.Rows.attributes.IdCliente === undefined) {
+                    defered.resolve(result.Data.Rows.attributes.Message);
+                } else {
 
 
+                    user.IdCliente = result.data.Rows.attributes.IdCliente;
+                    user.UserName = result.data.Rows.attributes.UserName;
+                    user.UserLastName = result.data.Rows.attributes.UserLastName;
+                    user.UserGender = result.data.Rows.attributes.UserGender;
 
-                    }
+                    user.UserBirthdate = result.data.Rows.attributes.UserBirthdate;
 
-                }, function error(result) {
-                    defered.reject(result.data);
-                });
-                return promise;
-            };
+                    user.IdPlataforma = result.data.Rows.attributes.IdPlataforma;
+                    user.UserEmail = result.data.Rows.attributes.UserEmail;
+                    user.UserPhone = result.data.Rows.attributes.UserPhone;
+                    user.userMiamiAddress = factory.getMiamiAddress(user.IdCliente).then(function () {
+                        $localStorage.userBoxIt = user;
+                        console.log(user.UserBirthdate);
+                        defered.resolve($localStorage.userBoxIt);
 
-            factory.getData = function () {
-
-                return $localStorage.userBoxIt;
-
-            };
+                    });
 
 
-            factory.updateData = function (newUser) {
-                var defered = $q.defer();
-                var promise = defered.promise;
-                console.log(JSON.stringify(newUser));
-                $http({
-                    method: "POST",
-                    url: "/users/updateinfouserboxIt",
-                    data: newUser,
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }).then(function success(result) {
-                      //console.log(result);
-                    if (result.data.attributes.IdCliente === undefined) {
-                        defered.resolve(result.data.attributes.Message);
-                    } else {
-                        defered.resolve(result.data.attributes.Message);
-                    }
+                }
 
-                }, function error(result) {
-                    defered.resolve(result.data);
-                });
-                return promise;
-            };
+            }, function error(result) {
+                defered.reject(result.data);
+            });
+            return promise;
+        };
 
-            factory.activateUser = function (id) {
-                var defered = $q.defer();
-                var promise = defered.promise;
-                var args = {};
-                args["IdCliente"] = id;
-                $http({
-                    method: "POST",
-                    url: "/users/activeuserboxit",
-                    data: args,
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }).then(function success(result) {
-                    defered.resolve(result.data.Data.Rows.attributes);
-                }, function error(result) {
-                    defered.reject(result.Data);
-                });
-                return promise;
-            };
-            return factory;
-        });
+        factory.getData = function () {
+
+            return $localStorage.userBoxIt;
+
+        };
+
+        factory.updateData = function (newUser) {
+            var defered = $q.defer();
+            var promise = defered.promise;
+            console.log(JSON.stringify(newUser));
+            $http({
+                method: "POST",
+                url: "/users/updateinfouserboxIt",
+                data: newUser,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function success(result) {
+                //console.log(result);
+                if (result.data.attributes.IdCliente === undefined) {
+                    defered.resolve(result.data.attributes.Message);
+                } else {
+                    defered.resolve(result.data.attributes.Message);
+                }
+
+            }, function error(result) {
+                defered.resolve(result.data);
+            });
+            return promise;
+        };
+
+        factory.activateUser = function (id) {
+            var defered = $q.defer();
+            var promise = defered.promise;
+            var args = {};
+            args["IdCliente"] = id;
+            $http({
+                method: "POST",
+                url: "/users/activeuserboxit",
+                data: args,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function success(result) {
+                defered.resolve(result.data.Data.Rows.attributes);
+            }, function error(result) {
+                defered.reject(result.Data);
+            });
+            return promise;
+        };
+
+        factory.setSearchIndex = function () {
+            $http({
+                method: "POST",
+                url: "/amazon/amazongetsearchindex",
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function success(result) {
+                console.log(result.data);
+                $localStorage.searchIndex = result.data;
+            }, function error(result) {
+                console.log(result.data);
+            });
+        };
+
+        factory.getSearchIndex = function () {
+            return $localStorage.searchIndex;
+        };
+
+        return factory;
+    });

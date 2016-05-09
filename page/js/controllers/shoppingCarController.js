@@ -1,24 +1,14 @@
 angular
     .module('boxit')
-    .controller('shoppingCarController', ['$scope', '$http', '$q','$anchorScroll','$location',
-        function ($scope, $http, $q,$anchorScroll,$location) {
+    .controller('shoppingCarController', ['$scope', '$http', '$q','$anchorScroll','$location','userData',
+        function ($scope, $http, $q,$anchorScroll,$location,userData) {
             var products = [];
             $scope.totalItems = 50;
             $scope.currentPage = 1;
             $scope.showPagination = false;
             $scope.showImage = true;
             $scope.showCar = false;
-            $http({
-                method: "POST",
-                url: "/amazon/amazongetsearchindex",
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(function success(result) {
-                $scope.indexs = result.data;
-            }, function error(result) {
-                console.log(result.data);
-            });
+            $scope.indexs = userData.getSearchIndex();
             $scope.doSearch = function () {
                 products = [];
                 searchProducts().then(function success(result) {

@@ -5,10 +5,7 @@ angular
 
             if (!(userData.getData() === undefined)) {
                 $window.location = "/userInterface.html";
-
             }
-
-
             $scope.Login = function () {
 
                 $http({
