@@ -31,7 +31,9 @@
             <label for="birth" class="customLabel">
                 Fecha de nacimiento:</label>
             <div class="FieldContent">
-                <input style="border: 2px solid #cdcdcd;float: left" uib-datepicker-popup="{{format}}" ng-model="UserBirthdate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats">
+                <input style="border: 2px solid #cdcdcd;float: left" uib-datepicker-popup="{{format}}" 
+                       class ="form-control"
+                       ng-model="UserBirthdate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats">
                 <!--&lt;!&ndash;ng-options="anho for anho in anhosDeNacimiento"&ndash;&gt;-->
                 <!--<option value="">Año</option>-->
 

@@ -31,15 +31,18 @@ angular.module('boxit')
                 $scope.popup1 = {
                     opened: false
                 };
-                $scope.UserBirthdate = new Date();
+                $scope.UserBirthdate = new Date
+                var oldUser = userData.getData();
+                var unformattedDate = moment(oldUser.UserBirthdate, "DD/MM/YY" ); 
                // console.log( new Date());
-                $scope.UserBirthdate = user.UserBirthdate;// moment($scope.UserBirthdate).format('YYYY/MM/DD');
+                $scope.UserBirthdate =  new Date(); //moment(unformattedDate).format('YYYY/MM/DD');
                 //console.log();
+                //$scope.UserBirthdate = moment(unformattedDate).format('yyyy-MM-dd');
             };
             $scope.init();
             $scope.today();
 
-            $scope.format = 'yyyy/MM/dd';
+            $scope.format = 'yyyy-MM-dd';
             $scope.dateOptions = {
                 dateDisabled: disabled,
                 formatYear: 'yyyy',
@@ -56,6 +59,7 @@ angular.module('boxit')
                 user["UserName"] = $scope.username;
                 user["UserLastName"] = $scope.lastname;
                 user["UserGender"] = $scope.UserGender;
+                
                 user["UserBirthdate"] = moment($scope.UserBirthdate).format('YYYY/MM/DD');
                 user["IdPlataforma"] = oldUser.IdPlataforma;
                 user["UserEmail"] = $scope.UserEmail;
