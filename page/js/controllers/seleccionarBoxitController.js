@@ -23,21 +23,33 @@ angular.module('boxit')
         $scope.Update = function() {
           
             
-             var oldUser = userData.getData();
+                var oldUser = userData.getData();
                 var user = {};
                 user["IdCliente"] = oldUser.IdCliente;
-                user["UserName"] = oldUser.username;
-                user["UserLastName"] = oldUser.lastname;
+                user["UserName"] = oldUser.UserName;
+                user["UserLastName"] = oldUser.UserLastName;
                 user["UserGender"] = oldUser.UserGender;
-                user["UserBirthdate"] = oldUser.UserBirthdate;
+                
+                var unformattedDate = moment(oldUser.UserBirthdate, "DD/MM/YY" ); 
+                
+                user["UserBirthdate"] = moment(unformattedDate).format('YYYY/MM/DD');
                 user["IdPlataforma"] = $scope.descPlataforma.attributes.IdPlataforma;
                 user["UserEmail"] = oldUser.UserEmail;
                 user["UserPhone"] = oldUser.UserPhone;
             //user.IdPlataforma = $scope.descPlataforma.attributes.IdPlataforma;
             
-            alert(JSON.stringify(user));
-          alert( JSON.stringify(userData.updateData(user)));
-            
+          //  alert(JSON.stringify(user));
+          // alert( JSON.stringify(userData.updateData(user)));
+          // console.log(oldUser);
+            console.log(user);
+             userData.updateData(user)
+                    .then(function (data) {
+                        //alert(data);
+                          //ngToast.create(data);
+                        console.log(data);
+                    }).catch(function (err) {
+                    console.log(err);
+                });
         };
         
     } ]);

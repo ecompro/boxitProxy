@@ -117,12 +117,15 @@ angular.module('boxit')
                         user.UserName = result.data.Rows.attributes.UserName;
                         user.UserLastName = result.data.Rows.attributes.UserLastName;
                         user.UserGender = result.data.Rows.attributes.UserGender;
+                        
                         user.UserBirthdate = result.data.Rows.attributes.UserBirthdate;
+                        
                         user.IdPlataforma = result.data.Rows.attributes.IdPlataforma;
                         user.UserEmail = result.data.Rows.attributes.UserEmail;
                         user.UserPhone = result.data.Rows.attributes.UserPhone;
                         user.userMiamiAddress = factory.getMiamiAddress(user.IdCliente).then(function () {
                             $localStorage.userBoxIt = user;
+                            console.log(user.UserBirthdate);
                             defered.resolve($localStorage.userBoxIt);
 
                         });
@@ -156,7 +159,7 @@ angular.module('boxit')
                         'Content-Type': 'application/json'
                     }
                 }).then(function success(result) {
-                    //  console.log(result.data);
+                      //console.log(result);
                     if (result.data.attributes.IdCliente === undefined) {
                         defered.resolve(result.data.attributes.Message);
                     } else {
