@@ -33,7 +33,7 @@ angular.module('boxit')
                         //ngToast.create(result.data.Rows.attributes.Message);
                         $uibModal.open({
                             animation: true,
-                            templateUrl: 'modalCambioClave.html',
+                            templateUrl: 'views/modalCambioClave.html',
                             controller: 'modalCambioClaveController',
                             size: 'sm'
                         });
