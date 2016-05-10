@@ -1,6 +1,8 @@
 angular
-    .module('boxit$scope')
-    .controller('modalCambioClaveController', ['',
-        function () {
-
+    .module('boxit')
+    .controller('modalCambioClaveController', ['$scope', '$uibModalInstance',
+        function ($scope, $uibModalInstance) {
+            $scope.ok = function () {
+                $uibModalInstance.close();
+            }
         }]);

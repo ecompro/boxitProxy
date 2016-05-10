@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 angular.module('boxit')
-        .controller('modificarContrasenaController', ['$scope', '$http', 'ngToast', 'userData',
-            function ($scope, $http, ngToast, userData) {
+        .controller('modificarContrasenaController', ['$scope', '$http', 'ngToast', 'userData','$uibModal',
+            function ($scope, $http, ngToast, userData,$uibModal) {
                 $scope.oldpassword = "";
                 $scope.newpassword = "";
                 $scope.confirmpassword = "";
@@ -29,8 +29,14 @@ angular.module('boxit')
                             'Content-Type': 'application/json'
                         }
                     }).then(function success(result) {
-                        console.log(result.data.Rows.attributes.Message);
-                        ngToast.create(result.data.Rows.attributes.Message);
+                        //console.log(result.data.Rows.attributes.Message);
+                        //ngToast.create(result.data.Rows.attributes.Message);
+                        $uibModal.open({
+                            animation: true,
+                            templateUrl: 'modalCambioClave.html',
+                            controller: 'modalCambioClaveController',
+                            size: 'sm'
+                        });
                         $scope.oldpassword = "";
                         $scope.newpassword = "";
                         $scope.confirmpassword = "";
