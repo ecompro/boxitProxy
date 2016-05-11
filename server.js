@@ -362,7 +362,7 @@ amazonRouter.route('/amazongetitemid').post(
 
             soap.createClient(url, function (err, client) {
                 client.AmazonGetItemId(args, function (err, result) {
-                    res.json(result.AmazonGetItemIdResult);
+                    res.json(result.AmazonGetItemIdResult.Data);
 
                 });
             });
