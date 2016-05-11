@@ -69,6 +69,7 @@ angular.module('boxit')
                     .then(function (data) {
                         //alert(data);
                      //     ngToast.create(data);
+                     var estilo = "alerta";
                      
                         $uibModal.open({
                             animation: true,
@@ -77,9 +78,10 @@ angular.module('boxit')
                             size: 'sm',
                             resolve: {
                                 mensaje: function () {
-                                    var mensaje = {}
+                                    var mensaje = {};
                                     mensaje.titulo = "Editar Perfil";
                                     mensaje.texto = data;
+                                    mensaje.estilo = estilo;
                                     return mensaje;
                                 }
                             }

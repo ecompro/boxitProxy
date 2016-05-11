@@ -29,7 +29,7 @@ angular.module('boxit')
                         //  alert(JSON.stringify(JSON.stringify(results.data.Data.Rows.attributes.Message)));
                         // ngToast.create(JSON.stringify(results.data.Data.Rows.attributes.Message));
                              var respuesta = results.data.Data.Rows.attributes.Message;
-                             
+                             var estilo = "alerta";
                              if("IdCliente is required" === respuesta) {
                                  respuesta = "Id de cliente requerido";
                              }else if("IdCliente could not be found" === respuesta) {
@@ -56,6 +56,7 @@ angular.module('boxit')
                                  respuesta = "La longitud de la descripcion es invalida";
                              }else if("Success" === respuesta) {
                                  respuesta = "Alerta de Tracking generada con exito";
+                                 estilo = "exito";
                              }  
  
                                 
@@ -70,6 +71,7 @@ angular.module('boxit')
                                     var mensaje = {};
                                     mensaje.titulo = "Anunciar paquete";
                                     mensaje.texto = respuesta;
+                                    mensaje.estilo = estilo;
                                     return mensaje;
                                 }
                             }

@@ -23,6 +23,8 @@ angular
                 //alert(JSON.stringify(result.data.Rows.attributes.Message));
 
                 // ngToast.create(JSON.stringify(result.data.Rows.attributes.Message));
+                
+                
                         var respuesta = result.data.Rows.attributes.Message;
                         if("Invalid BoxIt User") {
                             respuesta = "Usuario invalido o clave invalida";
@@ -49,6 +51,7 @@ angular
                                     var mensaje = {};
                                     mensaje.titulo = "Inicio de sesion";
                                     mensaje.texto = respuesta;
+                                    mensaje.estilo = "alerta";
                                     return mensaje;
                                 }
                             }
