@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 angular.module('boxit')
-        .controller('seleccionarBoxitController', ['$scope','$http', 'userData','ngToast',
-    function($scope,$http,userData,ngToast) {
+        .controller('seleccionarBoxitController', ['$scope','$http', 'userData', '$uibModal',
+    function($scope,$http,userData,$uibModal) {
         
         $scope.plataformas = [];
             $http({
@@ -45,7 +45,28 @@ angular.module('boxit')
              userData.updateData(user)
                     .then(function (data) {
                         //alert(data);
-                          ngToast.create(data);
+                       //   ngToast.create(data);
+                          
+                             $uibModal.open({
+                            animation: true,
+                            templateUrl: 'views/modalCambioClave.html',
+                            controller: 'modalCambioClaveController',
+                            size: 'sm',
+                            resolve: {
+                                mensaje: function () {
+                                    var mensaje = {}
+                                    mensaje.titulo = "Modificar Boxit";
+                                    mensaje.texto = data;
+                                    return mensaje;
+                                }
+                            }
+
+                        });
+                          
+                          
+                          
+                          
+                          
                         //console.log(data);
                     }).catch(function (err) {
                     console.log(err);

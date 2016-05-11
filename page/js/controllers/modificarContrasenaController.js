@@ -14,7 +14,23 @@ angular.module('boxit')
                     var user = userData.getData();
 
                     if (!($scope.newpassword === $scope.confirmpassword)) {
-                        ngToast.create("Password no coincide");
+                       // ngToast.create("Password no coincide");
+                       $uibModal.open({
+                            animation: true,
+                            templateUrl: 'views/modalCambioClave.html',
+                            controller: 'modalCambioClaveController',
+                            size: 'sm',
+                            resolve: {
+                                mensaje: function () {
+                                    var mensaje = {}
+                                    mensaje.titulo = "Cambio de clave";
+                                    mensaje.texto = "Nueva contraseña no coincide";
+                                    return mensaje;
+                                }
+                            }
+
+                        });
+                       
                         return;
                     }
                     $http({
@@ -31,7 +47,14 @@ angular.module('boxit')
                     }).then(function success(result) {
                         //console.log(result.data.Rows.attributes.Message);
                         //ngToast.create(result.data.Rows.attributes.Message);
-
+                        var respuesta = "Contraseña cambiada con exito";
+                        if("Old password is not correct" === result.data.Rows.attributes.Message) {
+                          respuesta = "La contraseña anterior no es correcta"  
+                        }else if("The password has been changed" === result.data.Rows.attributes.Message){
+                            respuesta = "Contraseña cambiada con exito";
+                        }
+                        
+                        
                         $uibModal.open({
                             animation: true,
                             templateUrl: 'views/modalCambioClave.html',
@@ -39,7 +62,10 @@ angular.module('boxit')
                             size: 'sm',
                             resolve: {
                                 mensaje: function () {
-                                    return "$scope.items";
+                                    var mensaje = {}
+                                    mensaje.titulo = "Cambio de clave";
+                                    mensaje.texto = respuesta;
+                                    return mensaje;
                                 }
                             }
 
@@ -48,6 +74,24 @@ angular.module('boxit')
                         $scope.newpassword = "";
                         $scope.confirmpassword = "";
                     }, function error(result) {
+                        
+                         $uibModal.open({
+                            animation: true,
+                            templateUrl: 'views/modalCambioClave.html',
+                            controller: 'modalCambioClaveController',
+                            size: 'sm',
+                            resolve: {
+                                mensaje: function () {
+                                    var mensaje = {}
+                                    mensaje.titulo = "Cambio de clave";
+                                    mensaje.texto = result.data;
+                                    return mensaje;
+                                }
+                            }
+
+                        });
+                        
+                        
                         console.log(result.data);
                     });
                 };

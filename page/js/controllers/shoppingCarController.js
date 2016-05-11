@@ -60,6 +60,10 @@ angular
                 $scope.Items = products[$scope.currentPage-1];
                 $location.hash('top');
                 $anchorScroll();
-            }
+            };
+            
+            $scope.viewItem = function(item){
+                                console.log(item);
+            };
         }])
 ;

@@ -6,8 +6,8 @@
 
 
 angular.module('boxit')
-    .controller('editarPerfilController', ['$scope', 'userData','ngToast',
-        function ($scope, userData,ngToast) {
+    .controller('editarPerfilController', ['$scope', 'userData', '$uibModal',
+        function ($scope, userData,$uibModal) {
 
             $scope.init = function () {
                 var user = userData.getData();
@@ -68,7 +68,27 @@ angular.module('boxit')
                 userData.updateData(user)
                     .then(function (data) {
                         //alert(data);
-                          ngToast.create(data);
+                     //     ngToast.create(data);
+                     
+                        $uibModal.open({
+                            animation: true,
+                            templateUrl: 'views/modalCambioClave.html',
+                            controller: 'modalCambioClaveController',
+                            size: 'sm',
+                            resolve: {
+                                mensaje: function () {
+                                    var mensaje = {}
+                                    mensaje.titulo = "Editar Perfil";
+                                    mensaje.texto = data;
+                                    return mensaje;
+                                }
+                            }
+
+                        });
+                     
+                     
+                     
+                     
                         console.log(data);
                     }).catch(function (err) {
                     console.log(err);
