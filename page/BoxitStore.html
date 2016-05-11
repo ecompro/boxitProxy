@@ -21,6 +21,7 @@
     <script src="js/app/app.js"></script>
     <script src="js/services/userService.js" type="text/javascript"></script>
     <script src="js/controllers/shoppingCarController.js"></script>
+    <script src="js/controllers/modalDetallesArticuloController.js"></script>
 </head>
 <body ng-controller="shoppingCarController">
 <header class="MaxWidth">
@@ -159,7 +160,7 @@
             <p class="Name">Hi, Jonathan</p>
         </div>
         <div style="margin-top: 1.5%" class="TextboxContainer">
-            <select class="input-mini" ng-init="indexs" ng-model="index" ng-options="index.attributes.SearchIndex for index in indexs">
+            <select class="input-mini" ng-init="initIndex()" ng-model="index" ng-options="index.attributes.SearchIndex for index in indexs">
             </select>
             <input style="width: 73.1%" type="text" name="find" ng-model="keyword">
             <button style="height: 35px" class="Search" ng-click="doSearch()"></button>

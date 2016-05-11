@@ -1,7 +1,7 @@
 angular
     .module('boxit')
-    .controller('shoppingCarController', ['$scope', '$http', '$q','$anchorScroll','$location','userData',
-        function ($scope, $http, $q,$anchorScroll,$location,userData) {
+    .controller('shoppingCarController', ['$scope', '$http', '$q', '$anchorScroll', '$location', 'userData','$uibModal',
+        function ($scope, $http, $q, $anchorScroll, $location, userData,$uibModal) {
             var products = [];
             $scope.totalItems = 50;
             $scope.currentPage = 1;
@@ -31,7 +31,7 @@ angular
                     searchParams["ItemPage"] = i;
                     callPages(searchParams).then(function success(result) {
                         products.push(result);
-                        if(i === 6){
+                        if (i === 6) {
                             defered.resolve("success");
                         }
                     });
@@ -56,14 +56,41 @@ angular
                 });
                 return promise;
             }
+
             $scope.pageChanged = function () {
-                $scope.Items = products[$scope.currentPage-1];
+                $scope.Items = products[$scope.currentPage - 1];
                 $location.hash('top');
                 $anchorScroll();
             };
-            
-            $scope.viewItem = function(item){
-                                console.log(item);
+
+            $scope.initIndex = function () {
+               $scope.index = $scope.indexs[30];
+            };
+            $scope.viewItem = function (item) {
+                var itemObj = {"ItemId":item.ItemId};
+                $http({
+                    method: "POST",
+                    url: "/amazon/amazongetitemid",
+                    data: itemObj,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(function success(result) {
+                    $uibModal.open({
+                        animation: true,
+                        templateUrl: 'views/modalDetallesArticulo.html',
+                        controller: 'modalDetallesArticulosController',
+                        size: 'lg',
+                        resolve: {
+                            item: function () {
+                                return result.data.Items;
+                            }
+                        }
+
+                    });
+                }, function error(result) {
+                    console.log(result);
+                });
             };
         }])
 ;
