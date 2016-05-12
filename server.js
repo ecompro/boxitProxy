@@ -283,11 +283,12 @@ usersRouter.route('/sendforgetpassword').post(
         var args = {};
         args["CustomerUser"] = CustomerUser;
         args["CustomerPassword"] = CustomerPassword;
-        args["email"] = req.body.email;
+        args["Email"] = req.body.email;
 
 
         soap.createClient(url, function (err, client) {
             client.SendForgetPassword(args, function (err, result) {
+                console.log(result.SendForgetPasswordResult);
                 res.json(result.SendForgetPasswordResult.Data);
 
             });

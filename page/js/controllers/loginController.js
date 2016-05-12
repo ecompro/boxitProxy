@@ -5,40 +5,50 @@ angular
                 $scope.showLogin = true;
                 $scope.showRecuperar = false;
 
-                $scope.Recuperar = function () {
+                $scope.lostPassword = function () {
                     $scope.showLogin = false;
                     $scope.showRecuperar = true;
-                    
+
 
                 };
 
-                $scope.restorePassword = function(){
-                
-                    $scope.showLogin = true;
-               
-                    $scope.showRecuperar = false;
-                    
-                    
-                    
-                    $uibModal.open({
-                                animation: true,
-                                templateUrl: 'views/modalCambioClave.html',
-                                controller: 'modalCambioClaveController',
-                                size: 'sm',
-                                resolve: {
-                                    mensaje: function () {
-                                        var mensaje = {};
-                                        mensaje.titulo = "Inicio de sesion";
-                                        mensaje.texto = "respuesta";
-                                        mensaje.estilo = "alerta";
-                                        return mensaje;
-                                    }
-                                }
+                $scope.restorePassword = function () {
 
-                            });
-                    
-                    
-                    
+                    $scope.showLogin = true;
+
+                    $scope.showRecuperar = false;
+
+                    var respuesta = userData.resetPassword();
+                    var estilo = "alerta";
+
+                    if ("Email is required or invalid format" === respuesta) {
+                            respuesta = "El correo tiene formato invalido";
+                    } else if ("Mail was sent" === respuesta) {
+                        respuesta = "Se ha generado el correo para la recuperacion de clave";
+                        estilo = "exito";
+                    } else if ("The email does not exist" === respuesta) {
+                         respuesta = "No existe el usuario indicado";
+                    }
+
+                    $uibModal.open({
+                        animation: true,
+                        templateUrl: 'views/modalCambioClave.html',
+                        controller: 'modalCambioClaveController',
+                        size: 'sm',
+                        resolve: {
+                            mensaje: function () {
+                                var mensaje = {};
+                                mensaje.titulo = "Inicio de sesion";
+                                mensaje.texto = respuesta;
+                                mensaje.estilo = estilo;
+                                return mensaje;
+                            }
+                        }
+
+                    });
+
+
+
                 };
 
                 if (!(userData.getData() === undefined)) {

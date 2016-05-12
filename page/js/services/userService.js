@@ -225,5 +225,35 @@ angular.module('boxit')
             factory.getSearchIndex = function () {
                 return $localStorage.searchIndex;
             };
+            
+            
+            factory.resetPassword = function(email) {
+                
+                var defered = $q.defer();
+                var promise = defered.promise;
+                var args = {};
+                args["Email"] = email;
+                $http({
+                    method: "POST",
+                    url: "/users/sendforgetpassword",
+                    data: args,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(function success(result) {
+                    console.log(result);
+                    defered.resolve(result);
+                }, function error(result) {
+                    console.log(result);
+                    defered.reject(result.Data);
+                });
+                return promise;
+                
+                
+            };
+            
+            
+            
+            
             return factory;
         });
