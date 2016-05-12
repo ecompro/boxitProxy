@@ -241,8 +241,8 @@ angular.module('boxit')
                         'Content-Type': 'application/json'
                     }
                 }).then(function success(result) {
-                    console.log(result);
-                    defered.resolve(result);
+                    console.log(result.data);
+                    defered.resolve(result.data.Rows.attributes.Message);
                 }, function error(result) {
                     console.log(result);
                     defered.reject(result.Data);
