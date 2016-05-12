@@ -9,6 +9,12 @@ angular
             $scope.showImage = true;
             $scope.showCar = false;
             $scope.indexs = userData.getSearchIndex();
+            userData.getShoppingCar(userData.getData().IdCliente).then(function success(result) {
+                $scope.carItems = result.data.Data.Cart.CartItems.CartItem;
+            },function error(result) {
+                console.log(result);
+            });
+            //$scope.username = userData.getData();
             $scope.doSearch = function () {
                 products = [];
                 searchProducts().then(function success(result) {
@@ -38,7 +44,6 @@ angular
                 }
                 return promise;
             }
-
             function callPages(params) {
                 var defered = $q.defer();
                 var promise = defered.promise;
@@ -56,13 +61,11 @@ angular
                 });
                 return promise;
             }
-
             $scope.pageChanged = function () {
                 $scope.Items = products[$scope.currentPage - 1];
                 $location.hash('top');
                 $anchorScroll();
             };
-
             $scope.initIndex = function () {
                $scope.index = $scope.indexs[30];
             };
@@ -91,6 +94,11 @@ angular
                 }, function error(result) {
                     console.log(result);
                 });
+            };
+            $scope.onKeyEnterPress = function (event) {
+                if (event.keyCode === 13) {
+                    $scope.doSearch();
+                }
             };
         }])
 ;

@@ -392,7 +392,6 @@ amazonRouter.route('/amazonaddcart').post(
             args["OfferListingId"] = req.body.OfferListingId;
             args["Quantity"] = req.body.Quantity;
 
-
             soap.createClient(url, function (err, client) {
                 client.AmazonAddCart(args, function (err, result) {
                     res.json(result.AmazonAddCartResult);

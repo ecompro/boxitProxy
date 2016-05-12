@@ -1821,3 +1821,6 @@ footer .ContentContainer .Copyright {
     color: #FFFFFF;
     background-color: #a82773;
 }
+.my-group .form-control{
+    width:50%;
+}
