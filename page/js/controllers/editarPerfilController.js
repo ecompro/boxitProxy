@@ -70,6 +70,11 @@ angular.module('boxit')
                         //alert(data);
                      //     ngToast.create(data);
                      var estilo = "alerta";
+                     if("Cambio realizado con exito" === data){
+                         estilo ="exito";
+                     }
+                         
+                     
                      
                         $uibModal.open({
                             animation: true,

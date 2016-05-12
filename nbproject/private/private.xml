@@ -3,17 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/LcBc/Documents/NetBeansProjects/boxitProxy/page/js/controllers/loginController.js</file>
-            <file>file:/C:/Users/LcBc/Documents/NetBeansProjects/boxitProxy/page/js/controllers/modificarContrasenaController.js</file>
-            <file>file:/C:/Users/LcBc/Documents/NetBeansProjects/boxitProxy/page/views/seleccionarBoxIt.html</file>
-            <file>file:/C:/Users/LcBc/Documents/NetBeansProjects/boxitProxy/page/js/controllers/siginController.js</file>
-            <file>file:/C:/Users/LcBc/Documents/NetBeansProjects/boxitProxy/page/js/controllers/editarPerfilController.js</file>
-            <file>file:/C:/Users/LcBc/Documents/NetBeansProjects/boxitProxy/page/Iniciarsesion.html</file>
-            <file>file:/C:/Users/LcBc/Documents/NetBeansProjects/boxitProxy/page/js/controllers/modalCambioClaveController.js</file>
-            <file>file:/C:/Users/LcBc/Documents/NetBeansProjects/boxitProxy/page/js/controllers/seleccionarBoxitController.js</file>
-            <file>file:/C:/Users/LcBc/Documents/NetBeansProjects/boxitProxy/page/views/editarPerfil.html</file>
-            <file>file:/C:/Users/LcBc/Documents/NetBeansProjects/boxitProxy/page/js/controllers/anunciarPaqueteController.js</file>
-            <file>file:/C:/Users/LcBc/Documents/NetBeansProjects/boxitProxy/page/js/services/userService.js</file>
+            <file>file:/C:/Users/LcBc/Documents/NetBeansProjects/boxitProxy/page/views/modalCambioClave.html</file>
         </group>
     </open-files>
 </project-private>

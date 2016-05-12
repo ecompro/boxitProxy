@@ -164,7 +164,7 @@
     </div>
 </div>
 <div class="ContentContainer MaxWidthData">
-    <div class="Formulary">
+    <div class="Formulary" ng-show ="showLogin">
         <div class="FieldContent">
             <span>Usuario</span>
         </div>
@@ -175,26 +175,42 @@
         </div>
         <input type="password" class="form-control" ng-model="password">
         <div class="FieldContent">
-        <input type="checkbox"><span>Recordarme</span>
-        
-        <div class="Submit">
-            <button ng-click="Login()" class="Button WithBackground">Iniciar sesión</button>
-        </div>
-        <div class="Links">
-            <div class="Link">
-                <a href="#">
-                    ¿Olvidaste tu contraseña?
-                </a>
+            <input type="checkbox"><span>Recordarme</span>
+
+            <div class="Submit">
+                <button ng-click="Login()" class="Button WithBackground">Iniciar sesión</button>
             </div>
-            <div class="Link">
-                <a href="#">
-                    ¿No estas registrado?
-                </a>
+            <div class="Links">
+                <div class="Link">
+                    <a href="#" ng-click="Recuperar()">
+                        ¿Olvidaste tu contraseña?
+                    </a>
+                </div>
+                <div class="Link">
+                    <a href="Registro.html">
+                        ¿No estas registrado?
+                    </a>
+                </div>
             </div>
+
         </div>
-            
     </div>
-</div>
+    <div class="Formulary" ng-show ="showRecuperar">
+        <div class="FieldContent">
+            <span>Correo Electronico</span>
+        </div>
+        <input type="text" class="form-control" ng-model="username">
+
+
+        <div class="FieldContent">
+
+            <div class="Submit">
+                <button ng-click="restorePassword()" class="Button WithBackground">Recuperar Contraseña</button>
+            </div>
+
+
+        </div>
+    </div>
 </div>
 <footer class="Content">
     <div class="ContentContainer MaxWidth">

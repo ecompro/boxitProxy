@@ -45,7 +45,28 @@ angular
                     var args = {};
 
                     if (!($scope.password === $scope.confirmarpassword)) {
-                        ngToast.create("Password no coincide");
+                        //  ngToast.create("Password no coincide");
+
+                        $uibModal.open({
+                            animation: true,
+                            templateUrl: 'views/modalCambioClave.html',
+                            controller: 'modalCambioClaveController',
+                            size: 'sm',
+                            resolve: {
+                                mensaje: function () {
+                                    var mensaje = {};
+                                    mensaje.titulo = "Registro Usuario";
+                                    mensaje.texto = "Password no coincide";
+                                    mensaje.estilo = "alerta";
+                                    return mensaje;
+                                }
+                            }
+
+                        });
+
+
+
+
                         return "";
                     }
                     args["UserName"] = $scope.username;
@@ -54,6 +75,7 @@ angular
                     args["UserPassword"] = $scope.password;
                     args["IdPlataforma"] = $scope.descPlataforma != null ?
                             $scope.descPlataforma.attributes.IdPlataforma : null;
+                    var respuesta="";
                     $http({
                         method: "POST",
                         url: "/users/insertuserboxit",
@@ -64,7 +86,7 @@ angular
                     }).then(function success(result) {
                         if (result.data.attributes.IdCliente === undefined) {
 
-                            var respuesta = result.data.attributes.Message;
+                            respuesta = result.data.attributes.Message;
                             var estilo = "alerta";
                             if ("The User Has Been Created" === respuesta) {
                                 respuesta = "Se ha creado el usuario";
@@ -87,6 +109,8 @@ angular
                                 respuesta = "La longitud del correo es invalida";
                             } else if ("UserEmail invalid format" === respuesta) {
                                 respuesta = "El formato del correo es invalido";
+                            } else if (respuesta === "IdPlataforma is required") {
+                                respuesta = "Debe seleccionar plataforma";
                             }
 
 
@@ -128,11 +152,11 @@ angular
                                         console.log(data);
                                         var estilo = "alerta";
                                         if (data === "Cambio realizado con exito") {
-                                            data = respuesta;
+                                            data = "Se ha creado el usuario";
                                             estilo = "exito";
                                         }
 
-                                        alert(data + "  " + respuesta);
+                                       
                                         $uibModal.open({
                                             animation: true,
                                             templateUrl: 'views/modalCambioClave.html',
@@ -157,7 +181,7 @@ angular
                             });
                             $interval(function () {
                                 $window.location = "/Iniciarsesion.html"
-                            }, 10000);
+                            }, 15000);
                         }
                     }, function error(result) {
                         console.log(result.data);
