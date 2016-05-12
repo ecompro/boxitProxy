@@ -5,14 +5,14 @@ angular
             console.log(mensaje);
             $scope.titulo = mensaje.titulo;
             $scope.texto = mensaje.texto;
-            if(mensaje.tipo === "exito") {
-                  $scope.estilo = "bg-success";
-            }else if(mensaje.tipo ===  "advertencia"){
-                $scope.estilo = "bg-warning";
-            }else if(mensaje.tipo ===  "alerta"){
-                $scope.estilo = "bg-danger";
+            if(mensaje.estilo === "exito") {
+                  $scope.estilo = "text-success";
+            }else if(mensaje.estilo ===  "advertencia"){
+                $scope.estilo = "text-warning";
+            }else if(mensaje.estilo === "alerta"){
+                $scope.estilo = "text-danger";
             }
-            
+            console.log()
             $scope.ok = function () {
                 $uibModalInstance.close();
             };
