@@ -1,7 +1,7 @@
 angular
     .module('boxit')
-    .controller('shoppingCarController', ['$scope', '$http', '$q', '$anchorScroll', '$location', 'userData', '$uibModal',
-        function ($scope, $http, $q, $anchorScroll, $location, userData, $uibModal) {
+    .controller('shoppingCarController', ['$scope', '$http', '$q', '$anchorScroll', '$location', 'userData', '$uibModal','$localStorage',
+        function ($scope, $http, $q, $anchorScroll, $location, userData, $uibModal,$localStorage) {
             var products = [];
             $scope.totalItems = 50;
             $scope.currentPage = 1;
@@ -10,7 +10,6 @@ angular
             $scope.showCar = false;
             $scope.UserName = userData.getData().UserName;
             $scope.indexs = userData.getSearchIndex();
-            var modalInstance;
             userData.getShoppingCar(userData.getData().IdCliente).then(function success(result) {
                 console.log(result.data.Data.Cart);
                 $scope.carItems = result.data.Data.Cart.CartItems.CartItem;
@@ -99,19 +98,19 @@ angular
                 }
             };
             $scope.showShoppingCar = function () {
-                modalInstance = $uibModal.open({
+                var modalInstance = $uibModal.open({
                     animation: true,
                     templateUrl: 'views/modalShoppingCar.html',
                     size: 'lg',
                     controller: 'shoppingCarController'
                 });
-                console.log(modalInstance);
+                $localStorage.modalIns = modalInstance;
             };
             $scope.goBack = function () {
                 history.back();
             };
             $scope.closeModal = function () {
-                //modalInstance.close();
+                $localStorage.modalIns.close();
             }
         }])
 ;
