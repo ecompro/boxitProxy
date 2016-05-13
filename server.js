@@ -436,12 +436,15 @@ amazonRouter.route('/amazonmodifycart').post(function (req, res) {
     var args = {};
     args["CustomerUser"] = CustomerUser;
     args["CustomerPassword"] = CustomerPassword;
+    args["IdCliente"] = req.body.IdCliente;
     args["CartItemId"] = req.body.CartItemId;
     args["Quantity"] = req.body.Quantity;
   
     soap.createClient(url, function (err, client) {
-        client.AmazonClearCart(args, function (err, result) {
-            res.json(result.AmazonModifyCart);
+        console.log(client.AmazonModifyCart);
+        client.AmazonModifyCart(args, function (err, result) {
+            console.log(result.AmazonModifyCartResult.Data);
+            res.json(result.AmazonModifyCartResult);
 
         });
     });
