@@ -8,13 +8,16 @@ angular
             $scope.showPagination = false;
             $scope.showImage = true;
             $scope.showCar = false;
+            $scope.UserName = userData.getData().UserName;
             $scope.indexs = userData.getSearchIndex();
             userData.getShoppingCar(userData.getData().IdCliente).then(function success(result) {
                 $scope.carItems = result.data.Data.Cart.CartItems.CartItem;
+                $scope.subTotal = result.data.Data.Cart.CartItems.SubTotal.FormattedPrice;
+                console.log($scope.carItems);
+                $scope.carNumber = $scope.carItems.length;
             },function error(result) {
                 console.log(result);
             });
-            //$scope.username = userData.getData();
             $scope.doSearch = function () {
                 products = [];
                 searchProducts().then(function success(result) {
@@ -100,5 +103,13 @@ angular
                     $scope.doSearch();
                 }
             };
+            $scope.showShoppingCar = function () {
+                $uibModal.open({
+                    animation: true,
+                    templateUrl: 'views/modalShoppingCar.html',
+                    size: 'lg',
+                    controller: 'shoppingCarController'
+                });
+            }
         }])
 ;

@@ -1,10 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="row" ng-repeat="item in carItems">
+    <hr>
+    <div class="col-lg-6">
+        <span>{{item.Title}}</span>
+    </div>
+    <div class="col-lg-2">
+        <span><b>{{item.Price.FormattedPrice}}</b></span>
+    </div>
+    <div class="col-lg-4">
+        <div class="col-lg-1">
+            <button class="btn btn-danger"><span class="glyphicon glyphicon-minus-sign"></span></button>
+        </div>
+        <div style="margin-left: 7%" class="col-lg-2 text-left">
+            <div class="input-group input-group">
+                <span class="input-group-addon">Cantidad</span>
+                <span style="width: 50px" class="form-control"><b>{{item.Quantity}}</b></span>
+            </div>
+        </div>
+        <div style="margin-left: 35%" class="col-lg-1">
+            <button class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign"></span></button>
+        </div>
+    </div>
+</div>

@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="modal-header">
+    <h4 class="text-center modal-title">Shopping Car</h4>
+</div>
+<div class="modal-body">
+ <div ui-view></div>
+</div>
+<div class="modal-footer">
+    <div class="col-lg-7"></div>
+    <div class="col-lg-5">
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon">Total</span>
+            <span class="form-control"><b>{{subTotal}}</b></span>
+                <span class="input-group-btn">
+        <button class="btn btn-primary" type="button">Añadir</button>
+      </span>
+        </div>
+    </div>
+</div>
