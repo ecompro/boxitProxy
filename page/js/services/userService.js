@@ -221,7 +221,6 @@ angular.module('boxit')
         factory.getSearchIndex = function () {
             return $localStorage.searchIndex;
         };
-
         factory.resetPassword = function(email) {
                 
                 var defered = $q.defer();
@@ -262,6 +261,24 @@ angular.module('boxit')
                 defered.resolve(result);
             }, function error(result) {
                 defered.reject(result);
+            });
+            return promise;
+        };
+        factory.getItemDetails = function (id) {
+            var defered = $q.defer();
+            var promise = defered.promise;
+            var itemObj = {"ItemId":id};
+            $http({
+                method: "POST",
+                url: "/amazon/amazongetitemid",
+                data: itemObj,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function success(result) {
+                defered.resolve(result.data.Items);
+            }, function error(result) {
+                defered.reject(result)
             });
             return promise;
         };

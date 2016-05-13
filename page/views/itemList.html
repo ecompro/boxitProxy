@@ -1,10 +1,10 @@
 <div class="row" ng-repeat="item in carItems">
     <hr>
     <div class="col-lg-6">
-        <span>{{item.Title}}</span>
-    </div>
+        <a ui-sref="itemDetails({itemId: item.ItemId })"><span>{{item.Title}}</span></a>
+</div>
     <div class="col-lg-2">
-        <span><b>{{item.Price.FormattedPrice}}</b></span>
+        <span><b>{{item.ItemId}}</b></span>
     </div>
     <div class="col-lg-4">
         <div class="col-lg-1">
@@ -12,7 +12,7 @@
         </div>
         <div style="margin-left: 7%" class="col-lg-2 text-left">
             <div class="input-group input-group">
-                <span class="input-group-addon">Cantidad</span>
+                <span class="input-group-addon"><b>{{item.Price.FormattedPrice}}</b></span>
                 <span style="width: 50px" class="form-control"><b>{{item.Quantity}}</b></span>
             </div>
         </div>
@@ -21,3 +21,4 @@
         </div>
     </div>
 </div>
+

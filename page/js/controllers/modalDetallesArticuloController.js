@@ -22,7 +22,6 @@ angular
                 }
                 return description;
             }
-
             $scope.ok = function () {
                 $uibModalInstance.close();
             };

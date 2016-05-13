@@ -1,7 +1,7 @@
 angular
     .module('boxit')
-    .controller('shoppingCarController', ['$scope', '$http', '$q', '$anchorScroll', '$location', 'userData','$uibModal',
-        function ($scope, $http, $q, $anchorScroll, $location, userData,$uibModal) {
+    .controller('shoppingCarController', ['$scope', '$http', '$q', '$anchorScroll', '$location', 'userData', '$uibModal',
+        function ($scope, $http, $q, $anchorScroll, $location, userData, $uibModal) {
             var products = [];
             $scope.totalItems = 50;
             $scope.currentPage = 1;
@@ -15,7 +15,7 @@ angular
                 $scope.subTotal = result.data.Data.Cart.CartItems.SubTotal.FormattedPrice;
                 console.log($scope.carItems);
                 $scope.carNumber = $scope.carItems.length;
-            },function error(result) {
+            }, function error(result) {
                 console.log(result);
             });
             $scope.doSearch = function () {
@@ -47,6 +47,7 @@ angular
                 }
                 return promise;
             }
+
             function callPages(params) {
                 var defered = $q.defer();
                 var promise = defered.promise;
@@ -64,24 +65,17 @@ angular
                 });
                 return promise;
             }
+
             $scope.pageChanged = function () {
                 $scope.Items = products[$scope.currentPage - 1];
                 $location.hash('top');
                 $anchorScroll();
             };
             $scope.initIndex = function () {
-               $scope.index = $scope.indexs[30];
+                $scope.index = $scope.indexs[30];
             };
             $scope.viewItem = function (item) {
-                var itemObj = {"ItemId":item.ItemId};
-                $http({
-                    method: "POST",
-                    url: "/amazon/amazongetitemid",
-                    data: itemObj,
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }).then(function success(result) {
+                userData.getItemDetails(item.ItemId).then(function success(result) {
                     $uibModal.open({
                         animation: true,
                         templateUrl: 'views/modalDetallesArticulo.html',
@@ -89,10 +83,9 @@ angular
                         size: 'lg',
                         resolve: {
                             item: function () {
-                                return result.data.Items;
+                                return result;
                             }
                         }
-
                     });
                 }, function error(result) {
                     console.log(result);
