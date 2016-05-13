@@ -111,6 +111,22 @@ angular
             };
             $scope.closeModal = function () {
                 $localStorage.modalIns.close();
+            };
+            $scope.purchase = function () {
+                console.log($scope.carItems);
+                for (var i = 0; i < $scope.carItems.length; i++) {
+                    var item = $scope[i];
+                    var args = {};
+                    args["IdCliente"] = userData.getData().IdCliente;
+                    //descripcion del producto
+                    args["Package"] = item.Title;
+                    //link al producto en amazon
+                    args["Link"] = req.body.Link;
+                    //cantidad de unidades
+                    args["Quantity"] = req.body.Quantity;
+                    //precio de la unidad
+                    args["Amount"] = req.body.Amount;
+                }
             }
         }])
 ;
