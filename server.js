@@ -263,9 +263,13 @@ usersRouter.route('/insertpurchaseorder').post(
         args["CustomerUser"] = CustomerUser;
         args["CustomerPassword"] = CustomerPassword;
         args["IdCliente"] = req.body.IdCliente;
+        //descripcion del producto
         args["Package"] = req.body.Package;
+        //link al producto en amazon
         args["Link"] = req.body.Link;
+        //cantidad de unidades
         args["Quantity"] = req.body.Quantity;
+        //precio de la unidad
         args["Amount"] = req.body.Amount;
 
 
@@ -428,7 +432,20 @@ amazonRouter.route('/amazonclearcart').post(function (req, res) {
     });
 });
 
+amazonRouter.route('/amazonmodifycart').post(function (req, res) {
+    var args = {};
+    args["CustomerUser"] = CustomerUser;
+    args["CustomerPassword"] = CustomerPassword;
+    args["CartItemId"] = req.body.CartItemId;
+    args["Quantity"] = req.body.Quantity;
+  
+    soap.createClient(url, function (err, client) {
+        client.AmazonClearCart(args, function (err, result) {
+            res.json(result.AmazonModifyCart);
 
+        });
+    });
+});
 
 app.use('/users', usersRouter);
 app.use('/amazon', amazonRouter);
