@@ -58,7 +58,7 @@ angular
                 };
 
                 if (!(userData.getData() === undefined)) {
-                    $window.location = "/userInterface.html";
+                    $window.location = "/userInterface.html#/userInterface";
                 }
                 $scope.Login = function () {
 
@@ -126,7 +126,7 @@ angular
                             userData.setData(id).then(function () {
                                 //ngToast.create(JSON.stringify(userData.getData()));
                                 $interval(function () {
-                                    $window.location = "/userInterface.html";
+                                    $window.location = "/userInterface.html#/userInterface";
                                 }, 3000);
                             });
                         }

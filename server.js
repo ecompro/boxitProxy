@@ -699,6 +699,7 @@ amazonRouter.route('/amazonmodifycart').post(function (req, res) {
     args["Quantity"] = req.body.Quantity;
 
     soap.createClient(url, function (err, client) {
+<<<<<<< 0c4db29c9045f89126ed64f2862ee66275cdcd48
         if (client === undefined) {
             res.json("Servidor no responde");
             return;
@@ -711,6 +712,10 @@ amazonRouter.route('/amazonmodifycart').post(function (req, res) {
                 }
             
             res.json(result.AmazonModifyCartResult);
+=======
+        client.AmazonClearCart(args, function (err, result) {
+            res.json(result.AmazonClearCartResult.Data);
+>>>>>>> 60dff52f1d78cb8c94b245afc1e524b5c0bde935
 
         });
     });

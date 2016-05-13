@@ -221,30 +221,30 @@ angular.module('boxit')
         factory.getSearchIndex = function () {
             return $localStorage.searchIndex;
         };
-        factory.resetPassword = function(email) {
-                
-                var defered = $q.defer();
-                var promise = defered.promise;
-                var args = {};
-                args["Email"] = email;
-                $http({
-                    method: "POST",
-                    url: "/users/sendforgetpassword",
-                    data: args,
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }).then(function success(result) {
-                    console.log(result.data);
-                    defered.resolve(result.data.Rows.attributes.Message);
-                }, function error(result) {
-                    console.log(result);
-                    defered.reject(result.Data);
-                });
-                return promise;
-                
-                
-            };
+        factory.resetPassword = function (email) {
+
+            var defered = $q.defer();
+            var promise = defered.promise;
+            var args = {};
+            args["Email"] = email;
+            $http({
+                method: "POST",
+                url: "/users/sendforgetpassword",
+                data: args,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function success(result) {
+                console.log(result.data);
+                defered.resolve(result.data.Rows.attributes.Message);
+            }, function error(result) {
+                console.log(result);
+                defered.reject(result.Data);
+            });
+            return promise;
+
+
+        };
         factory.getShoppingCar = function (id) {
             var defered = $q.defer();
             var promise = defered.promise;
@@ -267,7 +267,7 @@ angular.module('boxit')
         factory.getItemDetails = function (id) {
             var defered = $q.defer();
             var promise = defered.promise;
-            var itemObj = {"ItemId":id};
+            var itemObj = {"ItemId": id};
             $http({
                 method: "POST",
                 url: "/amazon/amazongetitemid",
@@ -277,6 +277,23 @@ angular.module('boxit')
                 }
             }).then(function success(result) {
                 defered.resolve(result.data.Items);
+            }, function error(result) {
+                defered.reject(result)
+            });
+            return promise;
+        };
+        factory.addItemToCar = function (args) {
+            var defered = $q.defer();
+            var promise = defered.promise;
+            $http({
+                method: "POST",
+                url: "/amazon/amazonaddcart",
+                data: args,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function success(result) {
+                defered.resolve(result)
             }, function error(result) {
                 defered.reject(result)
             });

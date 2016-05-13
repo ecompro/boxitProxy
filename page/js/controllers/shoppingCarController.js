@@ -10,7 +10,9 @@ angular
             $scope.showCar = false;
             $scope.UserName = userData.getData().UserName;
             $scope.indexs = userData.getSearchIndex();
+            var modalInstance;
             userData.getShoppingCar(userData.getData().IdCliente).then(function success(result) {
+                console.log(result.data.Data.Cart);
                 $scope.carItems = result.data.Data.Cart.CartItems.CartItem;
                 $scope.subTotal = result.data.Data.Cart.CartItems.SubTotal.FormattedPrice;
                 console.log($scope.carItems);
@@ -97,12 +99,19 @@ angular
                 }
             };
             $scope.showShoppingCar = function () {
-                $uibModal.open({
+                modalInstance = $uibModal.open({
                     animation: true,
                     templateUrl: 'views/modalShoppingCar.html',
                     size: 'lg',
                     controller: 'shoppingCarController'
                 });
+                console.log(modalInstance);
+            };
+            $scope.goBack = function () {
+                history.back();
+            };
+            $scope.closeModal = function () {
+                //modalInstance.close();
             }
         }])
 ;

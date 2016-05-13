@@ -3,12 +3,13 @@
  */
 angular
     .module('boxit')
-    .controller('modalDetallesArticulosController', ['$scope', '$uibModalInstance', 'item',
-        function ($scope, $uibModalInstance, item) {
+    .controller('modalDetallesArticulosController', ['$scope', '$uibModalInstance', 'item', 'userData',
+        function ($scope, $uibModalInstance, item, userData) {
             $scope.titulo = item.Item.Attributes.Title;
             $scope.texto = getDescription(item).trim();
             $scope.imgUrl = item.Item.Image.ImageUrl;
             $scope.itemPrice = item.Item.Offers.Offer.OfferListing.Price.FormattedPrice;
+            $scope.total = numeral(0).format('$0,0.00');
             function getDescription(item) {
                 var description = "";
                 if (item.Item.Attributes.Feature.length != null && typeof item.Item.Attributes.Feature === "string") {
@@ -22,7 +23,26 @@ angular
                 }
                 return description;
             }
-            $scope.ok = function () {
-                $uibModalInstance.close();
+            $scope.addToCar = function () {
+                var args = {};
+                args["IdCliente"] = userData.getData().IdCliente;
+                args["ItemId"] = item.Item.ItemId;
+                if ($scope.cantidad == 0 || $scope.cantidad === undefined) {
+                    args["Quantity"] = "0";
+                } else {
+                    args["Quantity"] = $scope.cantidad;
+                }
+                console.log(args);
+                userData.addItemToCar(args).then(function success(result) {
+                    $uibModalInstance.close();
+                }, function error(result) {
+                    console.log(result);
+                });
             };
+            $scope.refreshTotal = function () {
+                $scope.total = numeral((item.Item.Offers.Offer.OfferListing.Price.Amount * $scope.cantidad) / 100).format('$0,0.00');
+            };
+            $scope.closeModal = function () {
+                $uibModalInstance.close();
+            }
         }]);
