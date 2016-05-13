@@ -2,7 +2,7 @@
  * Created by leonardo on 23/04/16.
  */
 var express = require('express'),
-    app = express();
+        app = express();
 var soap = require('soap');
 var bodyParser = require('body-parser');
 var url = 'http://200.62.34.16/SF.GrupoAuraIntegracionPrueba/?wsdl';
@@ -25,310 +25,500 @@ app.get('*', function (req, res) {
 var usersRouter = express.Router();
 
 usersRouter.route('/getplataformas')
-    .post(function (req, res) {
-        var args = {};
-        args["CustomerUser"] = CustomerUser;
-        args["CustomerPassword"] = CustomerPassword;
+        .post(function (req, res) {
+            var args = {};
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
 
-        soap.createClient(url, function (err, client) {
-            client.GetPlataformas(args, function (err, result) {
-                if (result.GetPlataformasResult.Data.Rows.length == undefined) {
-                    res.json(result.GetPlataformasResult.Data.Rows.attributes.Message);
-                } else {
-                    res.json(result.GetPlataformasResult.Data.Rows);
+            soap.createClient(url, function (err, client) {
+                if (client === undefined) {
+                    res.json("Servidor no responde");
+                    return;
+                }
+                client.GetPlataformas(args, function (err, result) {
+                    if (result === undefined) {
+                        res.json("Servidor no responde");
+                        return;
+                    } else if (result.GetPlataformasResult.Data.Rows.length === undefined) {
+                        res.json(result.GetPlataformasResult.Data.Rows.attributes.Message);
+                    } else {
+                        res.json(result.GetPlataformasResult.Data.Rows);
+                    }
+
+                });
+            });
+        });
+usersRouter.route('/insertuserboxit')
+        .post(function (req, res) {
+            var args = {};
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
+            args["UserName"] = req.body.UserName;
+            args["UserLastName"] = req.body.UserLastName;
+            args["UserEmail"] = req.body.UserEmail;
+            args["UserPassword"] = req.body.UserPassword;
+            args["IdPlataforma"] = req.body.IdPlataforma;
+            soap.createClient(url, function (err, client) {
+                if (client === undefined) {
+                    res.json("Servidor no responde");
+                    return;
                 }
 
+
+                client.InsertUserBoxIt(args, function (err, result) {
+                    if (result === undefined) {
+                        res.json("Servidor no responde");
+                        return;
+                    }
+                    res.json(result.InsertUserBoxItResult.Data.Rows);
+                });
             });
         });
-    });
-usersRouter.route('/insertuserboxit')
-    .post(function (req, res) {
-        var args = {};
-        args["CustomerUser"] = CustomerUser;
-        args["CustomerPassword"] = CustomerPassword;
-        args["UserName"] = req.body.UserName;
-        args["UserLastName"] = req.body.UserLastName;
-        args["UserEmail"] = req.body.UserEmail;
-        args["UserPassword"] = req.body.UserPassword;
-        args["IdPlataforma"] = req.body.IdPlataforma;
-        soap.createClient(url, function (err, client) {
-            client.InsertUserBoxIt(args, function (err, result) {
-//                    if (result.InsertUserBoxItResult.Data.Rows.length == undefined) {
-//                        res.json(result.InsertUserBoxItResult.Data.Rows.attributes.Message);
-//                    } else {
-//                      
-//                    }
-                res.json(result.InsertUserBoxItResult.Data.Rows);
-            });
-        });
-    });
 
 usersRouter.route('/loginuserboxit')
-    .post(function (req, res) {
-        var args = {};
-        args["CustomerUser"] = CustomerUser;
-        args["CustomerPassword"] = CustomerPassword;
-        args["UserEmail"] = req.body.UserEmail;
-        args["UserPassword"] = req.body.UserPassword;
-        soap.createClient(url, function (err, client) {
-            client.LoginUserBoxIt(args, function (err, result) {
-                // if (result.LoginUserBoxItResult.Data.Rows.length == undefined) {
-                res.json(result.LoginUserBoxItResult.Data);
-                //} else {
-                //     res.json(result.LoginUserBoxItResult.Data.Rows);
-                // }
+        .post(function (req, res) {
+            var args = {};
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
+            args["UserEmail"] = req.body.UserEmail;
+            args["UserPassword"] = req.body.UserPassword;
+            soap.createClient(url, function (err, client) {
+                if (client === undefined) {
+                    res.json("Servidor no responde");
+                    return;
+                }
+                client.LoginUserBoxIt(args, function (err, result) {
+                    if (result === undefined) {
+                        res.json("Servidor no responde");
+                        return;
+                    }
+
+
+                    // if (result.LoginUserBoxItResult.Data.Rows.length == undefined) {
+                    res.json(result.LoginUserBoxItResult.Data);
+                    //} else {
+                    //     res.json(result.LoginUserBoxItResult.Data.Rows);
+                    // }
 
                 });
             });
         });
 usersRouter.route('/activeuserboxit').post(
-    function (req, res) {
-        var args = {};
-        args["CustomerUser"] = CustomerUser;
-        args["CustomerPassword"] = CustomerPassword;
-        args["IdCliente"] = req.body.IdCliente;
-        soap.createClient(url, function (err, client) {
-            client.ActiveUserBoxIt(args, function (err, result) {
-                res.json(result.ActiveUserBoxItResult);
+        function (req, res) {
+            var args = {};
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
+            args["IdCliente"] = req.body.IdCliente;
+            soap.createClient(url, function (err, client) {
+                if (client === undefined) {
+                    res.json("Servidor no responde");
+                    return;
+                }
 
+                client.ActiveUserBoxIt(args, function (err, result) {
+                    
+                       if(result === undefined){
+                    res.json("Servidor no responde");
+                    return ;
+                }
+                    
+                    res.json(result.ActiveUserBoxItResult);
+
+                });
             });
         });
-    });
 
 //GetInfoUserBoxIt
 usersRouter.route('/getinfouserboxit').post(
-    function (req, res) {
-        var args = {};
-        args["CustomerUser"] = CustomerUser;
-        args["CustomerPassword"] = CustomerPassword;
-        args["IdCliente"] = req.body.IdCliente;
+        function (req, res) {
+            var args = {};
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
+            args["IdCliente"] = req.body.IdCliente;
 
-        soap.createClient(url, function (err, client) {
-            client.GetInfoUserBoxIt(args, function (err, result) {
-                res.json(result.GetInfoUserBoxItResult.Data);
+            soap.createClient(url, function (err, client) {
+                if (client === undefined) {
+                    res.json("Servidor no responde");
+                    return;
+                }
 
+
+                client.GetInfoUserBoxIt(args, function (err, result) {
+                       if(result === undefined){
+                    res.json("Servidor no responde");
+                    return ;
+                }
+                    
+                    
+                    res.json(result.GetInfoUserBoxItResult.Data);
+
+                });
             });
         });
-    });
 
 //UpdateInfoUserBoxIt
 usersRouter.route('/updateinfouserboxit').post(
-    function (req, res) {
-        var args = {};
-        args["CustomerUser"] = CustomerUser;
-        args["CustomerPassword"] = CustomerPassword;
-        args["IdCliente"] = req.body.IdCliente;
-        args["UserName"] = req.body.UserName;
-        args["UserLastName"] = req.body.UserLastName;
-        args["UserGender"] = req.body.UserGender;
-        args["UserBirthdate"] = req.body.UserBirthdate;
-        args["IdPlataforma"] = req.body.IdPlataforma;
-        args["UserEmail"] = req.body.UserEmail;
-        args["UserPhone"] = req.body.UserPhone;
+        function (req, res) {
+            var args = {};
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
+            args["IdCliente"] = req.body.IdCliente;
+            args["UserName"] = req.body.UserName;
+            args["UserLastName"] = req.body.UserLastName;
+            args["UserGender"] = req.body.UserGender;
+            args["UserBirthdate"] = req.body.UserBirthdate;
+            args["IdPlataforma"] = req.body.IdPlataforma;
+            args["UserEmail"] = req.body.UserEmail;
+            args["UserPhone"] = req.body.UserPhone;
 
-        soap.createClient(url, function (err, client) {
-            client.UpdateInfoUserBoxIt(args, function (err, result) {
-                res.json(result.UpdateInfoUserBoxItResult.Data.Rows);
-                console.log(JSON.stringify(result.UpdateInfoUserBoxItResult.Data.Rows));
+            soap.createClient(url, function (err, client) {
+
+                if (client === undefined) {
+                    res.json("Servidor no responde");
+                    return;
+                }
+
+
+
+                client.UpdateInfoUserBoxIt(args, function (err, result) {
+                       if(result === undefined){
+                    res.json("Servidor no responde");
+                    return ;
+                }
+                    
+                    res.json(result.UpdateInfoUserBoxItResult.Data.Rows);
+                    //console.log(JSON.stringify(result.UpdateInfoUserBoxItResult.Data.Rows));
+                });
             });
         });
-    });
 
 //UpdatePasswordUserBoxIt
 usersRouter.route('/updatepassworduserboxit').post(
-    function (req, res) {
-        var args = {};
-        args["CustomerUser"] = CustomerUser;
-        args["CustomerPassword"] = CustomerPassword;
-        args["IdCliente"] = req.body.IdCliente;
-        args["UserPasswordOld"] = req.body.UserPasswordOld;
-        args["UserPasswordNew"] = req.body.UserPasswordNew;
+        function (req, res) {
+            var args = {};
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
+            args["IdCliente"] = req.body.IdCliente;
+            args["UserPasswordOld"] = req.body.UserPasswordOld;
+            args["UserPasswordNew"] = req.body.UserPasswordNew;
 
 
-        soap.createClient(url, function (err, client) {
-            client.UpdatePasswordUserBoxIt(args, function (err, result) {
-                res.json(result.UpdatePasswordUserBoxItResult.Data);
+            soap.createClient(url, function (err, client) {
 
-            });
-        });
-    });
-usersRouter.route('/getcategorias')
-    .post(function (req, res) {
-        var args = {};
-        args["CustomerUser"] = CustomerUser;
-        args["CustomerPassword"] = CustomerPassword;
-
-        soap.createClient(url, function (err, client) {
-            client.GetPlataformas(args, function (err, result) {
-                if (result.GetCategorias.Data.Rows.length == undefined) {
-                    res.json(result.GetCategoriasResult.Data.Rows.attributes.Message);
-                } else {
-                    res.json(result.GetCategoriasResult.Data.Rows);
+                if (client === undefined) {
+                    res.json("Servidor no responde");
+                    return;
                 }
 
+
+
+                client.UpdatePasswordUserBoxIt(args, function (err, result) {
+                       if(result === undefined){
+                    res.json("Servidor no responde");
+                    return ;
+                }
+                    
+                    res.json(result.UpdatePasswordUserBoxItResult.Data);
+
+                });
             });
         });
-    });
+usersRouter.route('/getcategorias')
+        .post(function (req, res) {
+            var args = {};
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
+
+            soap.createClient(url, function (err, client) {
+                if (client === undefined) {
+                    res.json("Servidor no responde");
+                    return;
+                }
+
+
+                client.GetPlataformas(args, function (err, result) {
+                       if(result === undefined){
+                    res.json("Servidor no responde");
+                    return ;
+                }
+                    
+                    
+                    if (result.GetCategorias.Data.Rows.length == undefined) {
+                        res.json(result.GetCategoriasResult.Data.Rows.attributes.Message);
+                    } else {
+                        res.json(result.GetCategoriasResult.Data.Rows);
+                    }
+
+                });
+            });
+        });
 
 usersRouter.route('/gettracking').post(
-    function (req, res) {
-        var args = {};
-        args["CustomerUser"] = CustomerUser;
-        args["CustomerPassword"] = CustomerPassword;
-        args["IdCliente"] = req.body.IdCliente;
+        function (req, res) {
+            var args = {};
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
+            args["IdCliente"] = req.body.IdCliente;
 
-        soap.createClient(url, function (err, client) {
-            client.GetTracking(args, function (err, result) {
-                res.json(result.GetTrackingResult.Data);
+            soap.createClient(url, function (err, client) {
+                if (client === undefined) {
+                    res.json("Servidor no responde");
+                    return;
+                }
 
+
+                client.GetTracking(args, function (err, result) {
+                       if(result === undefined){
+                    res.json("Servidor no responde");
+                    return ;
+                }
+                    
+                    res.json(result.GetTrackingResult.Data);
+
+                });
             });
         });
-    });
 
 //InsertClientAlert
 
 usersRouter.route('/insertclientalert').post(
-    function (req, res) {
-        var args = {};
-        args["CustomerUser"] = CustomerUser;
-        args["CustomerPassword"] = CustomerPassword;
-        args["IdCliente"] = req.body.IdCliente;
-        args["TrackingNumber"] = req.body.TrackingNumber;
-        args["Shop"] = req.body.Shop;
-        args["Value"] = req.body.Value;
-        args["Description"] = req.body.Description;
+        function (req, res) {
+            var args = {};
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
+            args["IdCliente"] = req.body.IdCliente;
+            args["TrackingNumber"] = req.body.TrackingNumber;
+            args["Shop"] = req.body.Shop;
+            args["Value"] = req.body.Value;
+            args["Description"] = req.body.Description;
 
 
-        soap.createClient(url, function (err, client) {
-            client.InsertClientAlert(args, function (err, result) {
-                res.json(result.InsertClientAlertResult);
+            soap.createClient(url, function (err, client) {
+                if (client === undefined) {
+                    res.json("Servidor no responde");
+                    return;
+                }
 
+
+                client.InsertClientAlert(args, function (err, result) {
+                       if(result === undefined){
+                    res.json("Servidor no responde");
+                    return ;
+                }
+                    
+                    
+                    res.json(result.InsertClientAlertResult);
+
+                });
             });
         });
-    });
 
 //GetTrackingById     
 usersRouter.route('/gettrackingbyid').post(
-    function (req, res) {
-        var args = {};
-        args["CustomerUser"] = CustomerUser;
-        args["CustomerPassword"] = CustomerPassword;
-        args["IdCliente"] = req.body.IdCliente;
-        args["TrackingNumber"] = req.body.TrackingNumber;
+        function (req, res) {
+            var args = {};
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
+            args["IdCliente"] = req.body.IdCliente;
+            args["TrackingNumber"] = req.body.TrackingNumber;
 
-        soap.createClient(url, function (err, client) {
-            client.GetTrackingById(args, function (err, result) {
-                res.json(result.GetTrackingByIdResult.Data);
+            soap.createClient(url, function (err, client) {
+                if (client === undefined) {
+                    res.json("Servidor no responde");
+                    return;
+                }
 
+
+
+                client.GetTrackingById(args, function (err, result) {
+                       if(result === undefined){
+                    res.json("Servidor no responde");
+                    return ;
+                }
+                    
+                    res.json(result.GetTrackingByIdResult.Data);
+
+                });
             });
         });
-    });
 //GetPackagesHistorical
 usersRouter.route('/getpackageshistorical').post(
-    function (req, res) {
-        var args = {};
-        args["CustomerUser"] = CustomerUser;
-        args["CustomerPassword"] = CustomerPassword;
-        args["IdCliente"] = req.body.IdCliente;
-        args["Cod_Paquete"] = req.body.Cod_Paquete;
+        function (req, res) {
+            var args = {};
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
+            args["IdCliente"] = req.body.IdCliente;
+            args["Cod_Paquete"] = req.body.Cod_Paquete;
 
-        soap.createClient(url, function (err, client) {
-            client.GetPackagesHistorical(args, function (err, result) {
-                res.json(result.GetPackagesHistoricalResult.Data);
+            soap.createClient(url, function (err, client) {
 
+                if (client === undefined) {
+                    res.json("Servidor no responde");
+                    return;
+                }
+
+
+                client.GetPackagesHistorical(args, function (err, result) {
+                       if(result === undefined){
+                    res.json("Servidor no responde");
+                    return ;
+                }
+                    
+                    
+                    res.json(result.GetPackagesHistoricalResult.Data);
+
+                });
             });
         });
-    });
 
 //GetPurchaseOrder
 usersRouter.route('/getpurchaseorder').post(
-    function (req, res) {
-        var args = {};
-        args["CustomerUser"] = CustomerUser;
-        args["CustomerPassword"] = CustomerPassword;
-        args["IdCliente"] = req.body.IdCliente;
+        function (req, res) {
+            var args = {};
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
+            args["IdCliente"] = req.body.IdCliente;
 
 
-        soap.createClient(url, function (err, client) {
-            client.GetPurchaseOrder(args, function (err, result) {
-                res.json(result.GetPurchaseOrderHistoricalResult.Data);
+            soap.createClient(url, function (err, client) {
+                if (client === undefined) {
+                    res.json("Servidor no responde");
+                    return;
+                }
 
+                client.GetPurchaseOrder(args, function (err, result) {
+                    
+                       if(result === undefined){
+                    res.json("Servidor no responde");
+                    return ;
+                }
+                    
+                    res.json(result.GetPurchaseOrderHistoricalResult.Data);
+
+                });
             });
         });
-    });
 //InsertPurchaseOrder
 usersRouter.route('/insertpurchaseorder').post(
-    function (req, res) {
-        var args = {};
-        args["CustomerUser"] = CustomerUser;
-        args["CustomerPassword"] = CustomerPassword;
-        args["IdCliente"] = req.body.IdCliente;
-        //descripcion del producto
-        args["Package"] = req.body.Package;
-        //link al producto en amazon
-        args["Link"] = req.body.Link;
-        //cantidad de unidades
-        args["Quantity"] = req.body.Quantity;
-        //precio de la unidad
-        args["Amount"] = req.body.Amount;
+        function (req, res) {
+            var args = {};
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
+            args["IdCliente"] = req.body.IdCliente;
+            //descripcion del producto
+            args["Package"] = req.body.Package;
+            //link al producto en amazon
+            args["Link"] = req.body.Link;
+            //cantidad de unidades
+            args["Quantity"] = req.body.Quantity;
+            //precio de la unidad
+            args["Amount"] = req.body.Amount;
 
 
-        soap.createClient(url, function (err, client) {
-            client.InsertPurchaseOrder(args, function (err, result) {
-                res.json(result.InsertPurchaseOrderResult.Data);
+            soap.createClient(url, function (err, client) {
+                if (client === undefined) {
+                    res.json("Servidor no responde");
+                    return;
+                }
 
+
+                client.InsertPurchaseOrder(args, function (err, result) {
+                       if(result === undefined){
+                    res.json("Servidor no responde");
+                    return ;
+                }
+                    
+                    
+                    res.json(result.InsertPurchaseOrderResult.Data);
+
+                });
             });
         });
-    });
 
 //SendForgetPassword
 usersRouter.route('/sendforgetpassword').post(
-    function (req, res) {
-        var args = {};
-        args["CustomerUser"] = CustomerUser;
-        args["CustomerPassword"] = CustomerPassword;
-        args["Email"] = req.body.Email;
+        function (req, res) {
+            var args = {};
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
+            args["Email"] = req.body.Email;
 
 
-        soap.createClient(url, function (err, client) {
-            client.SendForgetPassword(args, function (err, result) {  
-                res.json(result.SendForgetPasswordResult.Data);
+            soap.createClient(url, function (err, client) {
+                if (client === undefined) {
+                    res.json("Servidor no responde");
+                    return;
+                }
 
+
+
+                client.SendForgetPassword(args, function (err, result) {
+                       if(result === undefined){
+                    res.json("Servidor no responde");
+                    return ;
+                }
+                    
+                    
+                    res.json(result.SendForgetPasswordResult.Data);
+
+                });
             });
         });
-    });
 //UpdateForgetPassword
 usersRouter.route('/updateforgetpassword').post(
-    function (req, res) {
-        var args = {};
-        args["CustomerUser"] = CustomerUser;
-        args["CustomerPassword"] = CustomerPassword;
-        args["IdCliente"] = req.body.IdCliente;
-        args["UserPasswordNew"] = req.body.UserPasswordNew;
+        function (req, res) {
+            var args = {};
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
+            args["IdCliente"] = req.body.IdCliente;
+            args["UserPasswordNew"] = req.body.UserPasswordNew;
 
-        soap.createClient(url, function (err, client) {
-            client.UpdateForgetPassword(args, function (err, result) {
-                res.json(result.UpdateForgetPasswordResult.Data);
+            soap.createClient(url, function (err, client) {
+                if (client === undefined) {
+                    res.json("Servidor no responde");
+                    return;
+                }
 
+
+                client.UpdateForgetPassword(args, function (err, result) {
+                       if(result === undefined){
+                    res.json("Servidor no responde");
+                    return ;
+                }
+                    
+                    res.json(result.UpdateForgetPasswordResult.Data);
+
+                });
             });
         });
-    });
 //GetAddressMiamiUser
 usersRouter.route('/getaddressmiamiuser').post(
-    function (req, res) {
-        var args = {};
-        args["CustomerUser"] = CustomerUser;
-        args["CustomerPassword"] = CustomerPassword;
-        args["IdCliente"] = req.body.IdCliente;
+        function (req, res) {
+            var args = {};
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
+            args["IdCliente"] = req.body.IdCliente;
 
 
-        soap.createClient(url, function (err, client) {
-            client.GetAddressMiamiUser(args, function (err, result) {
-                res.json(result.GetAddressMiamiUserResult.Data);
+            soap.createClient(url, function (err, client) {
+                if (client === undefined) {
+                    res.json("Servidor no responde");
+                    return;
+                }
 
+
+
+                client.GetAddressMiamiUser(args, function (err, result) {
+                       if(result === undefined){
+                    res.json("Servidor no responde");
+                    return ;
+                }
+                    
+                    res.json(result.GetAddressMiamiUserResult.Data);
+
+                });
             });
         });
-    });
 
 // aca servicios de amazon
 var amazonRouter = express.Router();
@@ -347,7 +537,17 @@ amazonRouter.route('/amazongetkeywords').post(
 
 
             soap.createClient(url, function (err, client) {
+                if (client === undefined) {
+                    res.json("Servidor no responde");
+                    return;
+                }
+
                 client.AmazonGetKeywords(args, function (err, result) {
+                       if(result === undefined){
+                    res.json("Servidor no responde");
+                    return ;
+                }
+                    
                     res.json(result.AmazonGetKeywordsResult.Data.Items);
                 });
             });
@@ -365,7 +565,18 @@ amazonRouter.route('/amazongetitemid').post(
 
 
             soap.createClient(url, function (err, client) {
+                if (client === undefined) {
+                    res.json("Servidor no responde");
+                    return;
+                }
+
+
                 client.AmazonGetItemId(args, function (err, result) {
+                       if(result === undefined){
+                    res.json("Servidor no responde");
+                    return ;
+                }
+                    
                     res.json(result.AmazonGetItemIdResult.Data);
 
                 });
@@ -379,7 +590,19 @@ amazonRouter.route('/amazongetsearchindex').post(
             args["CustomerUser"] = CustomerUser;
             args["CustomerPassword"] = CustomerPassword;
             soap.createClient(url, function (err, client) {
+
+                if (client === undefined) {
+                    res.json("Servidor no responde");
+                    return;
+                }
+
+
                 client.AmazonGetSearchIndex(args, function (err, result) {
+                       if(result === undefined){
+                    res.json("Servidor no responde");
+                    return ;
+                }
+                    
                     res.json(result.AmazonGetSearchIndexResult.Data.Rows);
 
                 });
@@ -397,7 +620,20 @@ amazonRouter.route('/amazonaddcart').post(
             args["Quantity"] = req.body.Quantity;
 
             soap.createClient(url, function (err, client) {
+
+                if (client === undefined) {
+                    res.json("Servidor no responde");
+                    return;
+                }
+
+
+
                 client.AmazonAddCart(args, function (err, result) {
+                       if(result === undefined){
+                    res.json("Servidor no responde");
+                    return ;
+                }
+                    
                     res.json(result.AmazonAddCartResult);
 
                 });
@@ -411,7 +647,18 @@ amazonRouter.route('/amazongetcart').post(function (req, res) {
     args["IdCliente"] = req.body.IdCliente;
 
     soap.createClient(url, function (err, client) {
+        if (client === undefined) {
+            res.json("Servidor no responde");
+            return;
+        }
+
+
         client.AmazonGetCart(args, function (err, result) {
+               if(result === undefined){
+                    res.json("Servidor no responde");
+                    return ;
+                }
+            
             res.json(result.AmazonGetCartResult);
 
         });
@@ -425,7 +672,18 @@ amazonRouter.route('/amazonclearcart').post(function (req, res) {
     args["IdCliente"] = req.body.IdCliente;
 
     soap.createClient(url, function (err, client) {
+        if (client === undefined) {
+            res.json("Servidor no responde");
+            return;
+        }
+
+
         client.AmazonClearCart(args, function (err, result) {
+               if(result === undefined){
+                    res.json("Servidor no responde");
+                    return ;
+                }
+            
             res.json(result.AmazonClearCartResult);
 
         });
@@ -439,11 +697,19 @@ amazonRouter.route('/amazonmodifycart').post(function (req, res) {
     args["IdCliente"] = req.body.IdCliente;
     args["CartItemId"] = req.body.CartItemId;
     args["Quantity"] = req.body.Quantity;
-  
+
     soap.createClient(url, function (err, client) {
-        console.log(client.AmazonModifyCart);
+        if (client === undefined) {
+            res.json("Servidor no responde");
+            return;
+        }
+
         client.AmazonModifyCart(args, function (err, result) {
-            console.log(result.AmazonModifyCartResult.Data);
+               if(result === undefined){
+                    res.json("Servidor no responde");
+                    return ;
+                }
+            
             res.json(result.AmazonModifyCartResult);
 
         });
