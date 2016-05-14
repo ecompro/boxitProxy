@@ -1,24 +1,29 @@
 <div class="modal-header">
     <div class="row">
         <div class="col-lg-1">
-            <button class="btn btn-default pull-left" ng-click="goBack()"><span class="glyphicon glyphicon-chevron-left"></span></button>
+            <button class="btn btn-default pull-left" ng-click="goBack()" ng-disabled="checkout"><span
+                    class="glyphicon glyphicon-chevron-left"></span></button>
         </div>
-        <div class="col-lg-9">
+        <div class="col-lg-9" ng-show="shopping">
             <h2 class="text-center modal-title">Shopping Car</h2>
         </div>
+        <div class="col-lg-9" ng-show="checkout">
+            <h2 class="text-center modal-title">CheckOut</h2>
+        </div>
         <div class="col-lg-2">
-            <button class="btn btn-default pull-right" ng-click="closeModal()"><span class="glyphicon glyphicon-remove"></span></button>
+            <button class="btn btn-default pull-right" ng-click="closeModal()"><span
+                    class="glyphicon glyphicon-remove"></span></button>
         </div>
     </div>
 </div>
 <div class="modal-body">
- <div ui-view></div>
+    <div ui-view></div>
 </div>
 <div class="modal-footer">
     <div class="col-lg-7">
 
     </div>
-    <div class="col-lg-5">
+    <div class="col-lg-5" ng-show="shopping">
         <div class="input-group input-group-lg">
             <span class="input-group-addon">Total</span>
             <span class="form-control"><b>{{subTotal}}</b></span>
@@ -26,5 +31,8 @@
         <button class="btn btn-success" type="button" ng-click="purchase()">Purchase</button>
       </span>
         </div>
+    </div>
+    <div class="col-lg-5" ng-show="checkout">
+        <button class="btn btn-lg btn-success" ng-click="closeModal()">Close</button>
     </div>
 </div>

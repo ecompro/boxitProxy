@@ -8,6 +8,9 @@ angular.module('boxit', ['ngToast', 'ui.bootstrap', 'ui.router', 'ngStorage'])
             url: '/itemDetails?itemId',
             templateUrl: 'views/detallesDelArticulo.html',
             controller: 'detallesDelArticuloController'
+        }).state('checkoutmessage', {
+            url: '/checkoutmessage',
+            templateUrl: 'views/checkoutmessage.html'
         }).state('userMenu', {
             url: '/userInterface',
             templateUrl: 'views/userMenu.html',

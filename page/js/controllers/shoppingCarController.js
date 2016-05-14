@@ -1,17 +1,19 @@
 angular
         .module('boxit')
-        .controller('shoppingCarController', ['$scope', '$http', '$q', '$anchorScroll', '$location', 'userData', '$uibModal', '$localStorage',
-            function ($scope, $http, $q, $anchorScroll, $location, userData, $uibModal, $localStorage) {
+        .controller('shoppingCarController', ['$scope', '$http', '$q', '$anchorScroll', 'userData', '$uibModal', '$localStorage','$window',
+            function ($scope, $http, $q, $anchorScroll, userData, $uibModal, $localStorage,$window) {
                 var products = [];
                 var links = [];
+                $scope.checkout = false;
+                $scope.shopping = true;
                 $scope.totalItems = 50;
                 $scope.currentPage = 1;
                 $scope.showPagination = false;
                 $scope.showImage = true;
                 $scope.showCar = false;
+                $scope.showCarMessage = false;
                 $scope.UserName = userData.getData().UserName;
                 $scope.indexs = userData.getSearchIndex();
-                
                 userData.getShoppingCar(userData.getData().IdCliente).then(function success(result) {
                     //   console.log(result.data.Data.Cart);
                     if (null !== result.data.Data.Cart.CartItems) {
@@ -39,11 +41,16 @@ angular
                     products = [];
                     searchProducts().then(function success(result) {
                         $scope.showImage = false;
-                        $scope.showCar = true;
-                        $scope.showPagination = true;
                         $scope.Items = products[0];
                         console.log(products);
                         console.log(products.length);
+                        if (products[0] == undefined) {
+                            $scope.showCar = false;
+                            $scope.showCarMessage = true;
+                        }else{
+                            $scope.showCar = true;
+                            $scope.showPagination = true;
+                        }
                     });
                 };
                 function searchProducts() {
@@ -185,6 +192,9 @@ angular
                         }
                     });
                     clearCar(IdCliente);
+                    $scope.checkout = true;
+                    $scope.shopping = false;
+                    $window.location = '/BoxitStore.html#/checkoutmessage';
                     return $q.all(promises);
                 };
 
@@ -215,7 +225,7 @@ angular
 
                     var defered = $q.defer();
                     var promise = defered.promise;
-                    var params = {}
+                    var params = {};
                     params["IdCliente"] = IdCliente;
                     $http({
                         method: "POST",
@@ -232,5 +242,4 @@ angular
                     return promise;
 
                 };
-            }])
-        ;
+            }]);
