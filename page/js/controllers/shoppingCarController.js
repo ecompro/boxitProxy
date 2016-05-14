@@ -1,8 +1,9 @@
 angular
     .module('boxit')
-    .controller('shoppingCarController', ['$scope', '$http', '$q', '$anchorScroll', '$location', 'userData', '$uibModal','$localStorage',
-        function ($scope, $http, $q, $anchorScroll, $location, userData, $uibModal,$localStorage) {
+    .controller('shoppingCarController', ['$scope', '$http', '$q', '$anchorScroll', '$location', 'userData', '$uibModal', '$localStorage',
+        function ($scope, $http, $q, $anchorScroll, $location, userData, $uibModal, $localStorage) {
             var products = [];
+            var links = [];
             $scope.totalItems = 50;
             $scope.currentPage = 1;
             $scope.showPagination = false;
@@ -48,7 +49,6 @@ angular
                 }
                 return promise;
             }
-
             function callPages(params) {
                 var defered = $q.defer();
                 var promise = defered.promise;
@@ -66,7 +66,6 @@ angular
                 });
                 return promise;
             }
-
             $scope.pageChanged = function () {
                 $scope.Items = products[$scope.currentPage - 1];
                 $location.hash('top');
@@ -112,21 +111,52 @@ angular
             $scope.closeModal = function () {
                 $localStorage.modalIns.close();
             };
-            $scope.purchase = function () {
-                console.log($scope.carItems);
-                for (var i = 0; i < $scope.carItems.length; i++) {
-                    var item = $scope[i];
-                    var args = {};
-                    args["IdCliente"] = userData.getData().IdCliente;
-                    //descripcion del producto
-                    args["Package"] = item.Title;
-                    //link al producto en amazon
-                    args["Link"] = req.body.Link;
-                    //cantidad de unidades
-                    args["Quantity"] = req.body.Quantity;
-                    //precio de la unidad
-                    args["Amount"] = req.body.Amount;
+            var getItemLink = function (id) {
+                var defered = $q.defer();
+                var promise = defered.promise;
+                userData.getItemDetails(id).then(function success(result) {
+                    defered.resolve(result.Item.PageUrl);
+                }, function error(result) {
+                    defered.reject(result);
+                });
+                return promise;
+            };
+            var itemLinks = function () {
+                var defered = $q.defer();
+                var promise = defered.promise;
+                var i;
+                for (i = 0; i < $scope.carItems.length; i++) {
+                    var items = $scope.carItems[i];
+                    getItemLink(items.ItemId).then(function success(result) {
+                      links.push(result);
+                        if (i === $scope.carItems.length) {
+                            defered.resolve('success');
+                        }
+                    },function error(result) {
+                        console.log(result);
+                    });
                 }
+                return promise;
+            };
+            $scope.purchase = function () {
+                links = [];
+                itemLinks().then(function success(result) {
+                  console.log(links);
+                    for (var i = 0; i < $scope.carItems.length; i++) {
+                        var item = $scope.carItems[i];
+                        var args = {};
+                        args["IdCliente"] = userData.getData().IdCliente;
+                        //descripcion del producto
+                        args["Package"] = item.Title;
+                        //link al producto en amazon
+                        args["Link"] = links[i];
+                        //cantidad de unidades
+                        args["Quantity"] = item.Quantity;
+                        //precio de la unidad
+                        args["Amount"] = item.Price.Amount;
+                        console.log(args);
+                    }
+                });
             }
         }])
 ;
