@@ -40,6 +40,7 @@ angular
                 $scope.doSearch = function () {
                     products = [];
                     searchProducts().then(function success(result) {
+                        $scope.showCarMessage = false;
                         $scope.showImage = false;
                         $scope.Items = products[0];
                         console.log(products);
@@ -197,7 +198,6 @@ angular
                     $window.location = '/BoxitStore.html#/checkoutmessage';
                     return $q.all(promises);
                 };
-
                 var itemCheckOut = function (params) {
 
                     var defered = $q.defer();
@@ -220,7 +220,6 @@ angular
 
                     return promise;
                 };
-
                 var clearCar = function (IdCliente) {
 
                     var defered = $q.defer();
@@ -241,5 +240,13 @@ angular
                     });
                     return promise;
 
+                };
+                $scope.addToCar = function (id) {
+                    var args = {};
+                    args["IdCliente"] = userData.getData().IdCliente;
+                    args["ItemId"] = id;
+                    args["Quantity"] = "1";
+                    console.log(args);
+                    userData.addItemToCar(args);
                 };
             }]);

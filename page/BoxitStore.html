@@ -162,15 +162,18 @@
             <p class="Name">Hi, {{UserName}}</p>
         </div>
         <div style="margin-top: 1.5%" class="TextboxContainer">
-            <select class="input-mini" ng-init="initIndex()" ng-model="index" ng-options="index.attributes.SearchIndex for index in indexs">
+            <select class="input-mini" ng-init="initIndex()" ng-model="index"
+                    ng-options="index.attributes.SearchIndex for index in indexs">
             </select>
-            <input style="width: 73.1%" type="text" name="find" ng-keypress="onKeyEnterPress($event)" ng-model="keyword">
+            <input style="width: 73.1%" type="text" name="find" ng-keypress="onKeyEnterPress($event)"
+                   ng-model="keyword">
             <button style="height: 35px" class="Search" ng-click="doSearch()"></button>
         </div>
         <div class="Tools">
             <div class="Layer"><a href="#">Try Prime</a></div>
             <div class="Layer"><a href="#">List</a></div>
-            <div class="Layer Cart"><a class="cart" ui-sref="itemList" ng-click="showShoppingCar()"><span>{{carNumber}}</span>Cart</a></div>
+            <div class="Layer Cart"><a class="cart" ui-sref="itemList"
+                                       ng-click="showShoppingCar()"><span>{{carNumber}}</span>Cart</a></div>
         </div>
     </div>
 </div>
@@ -193,7 +196,8 @@
                     <a ng-click="viewItem(item)"><p class="ItemCar">{{item.Attributes.Title}}</p></a>
                     <span style="color: #333333;font-weight: bold">{{item.Offers.Offer.OfferListing.Price.FormattedPrice}}</span>
                     <br>
-                    <button class="ButtonCar">Add to Car <span class="glyphicon glyphicon-shopping-cart"></span>
+                    <button class="ButtonCar" ng-click="addToCar(item.ItemId)">Add to Car <span
+                            class="glyphicon glyphicon-shopping-cart"></span>
                     </button>
                 </div>
             </div>
@@ -203,18 +207,18 @@
                 <h2 class="text-center">No hay Resultados</h2>
             </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
         </div>
-        <div class="row">
-            <div class="col-lg-4">
-            </div>
-            <div class="col-lg-5">
-                <uib-pagination ng-show="showPagination" total-items="totalItems" ng-model="currentPage"
-                                ng-change="pageChanged()"></uib-pagination>
-            </div>
-            <div class="col-lg-3">
-            </div>
+        <div class="col-lg-5">
+            <uib-pagination ng-show="showPagination" total-items="totalItems" ng-model="currentPage"
+                            ng-change="pageChanged()"></uib-pagination>
+        </div>
+        <div class="col-lg-3">
         </div>
     </div>
+</div>
 </div>
 <div class="BannerSobresaliente Content" style="height: 190px;background-color: #00b4cb;">
     <div class="BannerSobresalienteContainer ContentContainer MaxWidth">

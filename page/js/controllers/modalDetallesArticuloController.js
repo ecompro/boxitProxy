@@ -9,7 +9,8 @@ angular
             $scope.texto = getDescription(item).trim();
             $scope.imgUrl = item.Item.Image.ImageUrl;
             $scope.itemPrice = item.Item.Offers.Offer.OfferListing.Price.FormattedPrice;
-            $scope.total = numeral(0).format('$0,0.00');
+            $scope.cantidad = 1;
+            $scope.total = numeral((item.Item.Offers.Offer.OfferListing.Price.Amount * $scope.cantidad) / 100).format('$0,0.00');
             function getDescription(item) {
                 var description = "";
                 if (item.Item.Attributes.Feature.length != null && typeof item.Item.Attributes.Feature === "string") {
