@@ -1,14 +1,11 @@
 <div class="row" ng-repeat="item in carItems">
     <hr>
-    <div class="col-lg-6">
+    <div class="col-lg-8">
         <a ui-sref="itemDetails({itemId: item.ItemId })"><span>{{item.Title}}</span></a>
 </div>
-    <div class="col-lg-2">
-        <span><b>{{item.ItemId}}</b></span>
-    </div>
     <div class="col-lg-4">
         <div class="col-lg-1">
-            <button class="btn btn-danger"><span class="glyphicon glyphicon-minus-sign"></span></button>
+            <button class="btn btn-danger" ng-click="modifyCar(0,item.CartItemId,item.Quantity)"><span class="glyphicon glyphicon-minus-sign"></span></button>
         </div>
         <div style="margin-left: 7%" class="col-lg-2 text-left">
             <div class="input-group input-group">
@@ -17,7 +14,7 @@
             </div>
         </div>
         <div style="margin-left: 35%" class="col-lg-1">
-            <button class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign"></span></button>
+            <button class="btn btn-primary" ng-click="modifyCar(1,item.CartItemId,item.Quantity)"><span class="glyphicon glyphicon-plus-sign"></span></button>
         </div>
     </div>
 </div>
