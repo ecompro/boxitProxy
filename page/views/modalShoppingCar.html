@@ -26,7 +26,7 @@
     <div class="col-lg-5" ng-show="shopping">
         <div class="input-group input-group-lg">
             <span class="input-group-addon">Total</span>
-            <span class="form-control"><b>{{subTotal}}</b></span>
+            <span id="total" class="form-control" ng-bind="subTotal"></span>
                 <span class="input-group-btn">
         <button class="btn btn-success" type="button" ng-click="purchase()">Purchase</button>
       </span>
