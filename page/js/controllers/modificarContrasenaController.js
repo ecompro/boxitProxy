@@ -15,6 +15,7 @@ angular.module('boxit')
 
                     if (!($scope.newpassword === $scope.confirmpassword)) {
                        // ngToast.create("Password no coincide");
+                       var estilo = "alerta";
                        $uibModal.open({
                             animation: true,
                             templateUrl: 'views/modalCambioClave.html',
@@ -22,9 +23,10 @@ angular.module('boxit')
                             size: 'sm',
                             resolve: {
                                 mensaje: function () {
-                                    var mensaje = {}
+                                    var mensaje = {};
                                     mensaje.titulo = "Cambio de clave";
                                     mensaje.texto = "Nueva contraseña no coincide";
+                                    mensaje.estilo = estilo;
                                     return mensaje;
                                 }
                             }
@@ -49,9 +51,11 @@ angular.module('boxit')
                         //ngToast.create(result.data.Rows.attributes.Message);
                         var respuesta = "Contraseña cambiada con exito";
                         if("Old password is not correct" === result.data.Rows.attributes.Message) {
-                          respuesta = "La contraseña anterior no es correcta"  
+                          respuesta = "La contraseña anterior no es correcta";
+                           estilo = "alerta";
                         }else if("The password has been changed" === result.data.Rows.attributes.Message){
                             respuesta = "Contraseña cambiada con exito";
+                            estilo ="exito";
                         }
                         
                         
@@ -85,6 +89,7 @@ angular.module('boxit')
                                     var mensaje = {}
                                     mensaje.titulo = "Cambio de clave";
                                     mensaje.texto = result.data;
+                                    mensaje.estilo = "alerta";
                                     return mensaje;
                                 }
                             }

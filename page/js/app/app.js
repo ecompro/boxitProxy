@@ -1,4 +1,4 @@
-angular.module('boxit', ['ngToast', 'ui.bootstrap', 'ui.router', 'ngStorage'])
+angular.module('boxit', ['ngToast', 'ui.bootstrap', 'ui.router', 'ngStorage','angular-md5'])
     .config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider, $stateProvider) {
         $stateProvider.state('itemList', {
             url: '/itemList',
@@ -43,5 +43,13 @@ angular.module('boxit', ['ngToast', 'ui.bootstrap', 'ui.router', 'ngStorage'])
             url: '/cerrarSesion',
             templateUrl: 'views/cerrarSesion.html',
             controller: 'cerrarSesionController'
+        }).state('recovery',{
+            url:'/recovery/:hash',
+            templateUrl:"views/recuperarPassForm.html",
+            controller: 'passwordController'
+        }).state('activar',{
+            url:'/activar/:hash',
+            templateUrl:"views/activar.html",
+            controller: 'activarController'
         });
     }]);

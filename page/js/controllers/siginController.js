@@ -146,7 +146,7 @@ angular
                             user["IdPlataforma"] = $scope.IdPlataforma;
                             user["UserEmail"] = $scope.useremail;
                             user["UserPhone"] = $scope.phone;
-                            userData.activateUser(result.data.attributes.IdCliente);
+//                            userData.activateUser(result.data.attributes.IdCliente);
                             userData.updateData(user)
                                     .then(function (data) {
                                         console.log(data);
