@@ -32,6 +32,7 @@ angular
                                         var mensaje = {};
                                         mensaje.titulo = "Regenerar Contraseña";
                                         mensaje.texto = "Nueva contraseña no coincide";
+                                        mensaje.estilo = "alerta";
                                         return mensaje;
                                     }
                                 }
@@ -46,13 +47,33 @@ angular
                         args["UserPasswordNew"] = $scope.password;
                         $http({
                             method: "POST",
-                            url: "/amazon/updateforgetpassword",
+                            url: "/users/updateforgetpassword",
                             data: args,
                             headers: {
                                 'Content-Type': 'application/json'
                             }
                         }).then(function success(result) {
                             // defered.resolve(result)
+                            //console.log(result);
+                            var respuesta = result.data.Rows.attributes.Message;
+                            var estilo = "alerta";
+                            if (respuesta === "UserPasswordNew length is invalid") {
+                                respuesta = "Longiutd del nuevo password invalida";
+                            } else if (respuesta === "User Password Has Been Changed") {
+                                respuesta = "Su clave ha sido cambiada con exito";
+                                estilo = "exito";
+                            } else if (respuesta === "IdCliente is required") {
+                                respuesta = "El id Cliente es requerido";
+                            } else if (respuesta === "IdCliente is invalid format") {
+                                respuesta = "El id de cliente esta en un formato invalido";
+                            } else if (respuesta === "UserPasswordNew is required") {
+                                respuesta = "Una nueva clave es requerida";
+                            }
+
+
+
+
+
                             $uibModal.open({
                                 animation: true,
                                 templateUrl: 'views/modalCambioClave.html',
@@ -62,8 +83,8 @@ angular
                                     mensaje: function () {
                                         var mensaje = {};
                                         mensaje.titulo = "Regenerar Contraseña";
-                                        mensaje.texto = result;
-                                        mensaje.estilo = "exito";
+                                        mensaje.texto = respuesta;
+                                        mensaje.estilo = estilo;
                                         return mensaje;
                                     }
                                 }
