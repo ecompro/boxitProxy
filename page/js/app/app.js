@@ -5,8 +5,11 @@ angular.module('boxit', ['ngToast', 'ui.bootstrap', 'ui.router', 'ngStorage','an
             templateUrl: 'views/itemList.html',
             controller: 'shoppingCarController'
         }).state('itemDetails', {
-            url: '/itemDetails?itemId',
+            url: '/itemDetails',
             templateUrl: 'views/detallesDelArticulo.html',
+            params: {
+                itemId: ""
+            },
             controller: 'detallesDelArticuloController'
         }).state('checkoutmessage', {
             url: '/checkoutmessage',

@@ -24,6 +24,7 @@ var user = {
         tel: ""
     }
 };
+var subTotal;
 angular.module('boxit')
     .factory('userData', function ($http, $q, $localStorage) {
 

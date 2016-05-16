@@ -242,20 +242,16 @@ angular
                 });
             };
             var refreshCar = function (result) {
-                console.log(result);
                 //   console.log(result.data.Data.Cart);
                 if (null !== result.data.Data.Cart.CartItems) {
                     if ($.isArray(result.data.Data.Cart.CartItems.CartItem)) {
-                        console.log("es array");
                         $scope.carItems = result.data.Data.Cart.CartItems.CartItem;
                     } else {
-                        console.log("no es array");
                         var Items = [];
                         Items.push(result.data.Data.Cart.CartItems.CartItem);
                         $scope.carItems = Items;
                     }
                     $scope.subTotal = result.data.Data.Cart.CartItems.SubTotal.FormattedPrice;
-                    console.log($scope.carItems);
                     $scope.carNumber = $scope.carItems.length;
                 } else {
                     getCar();
@@ -270,7 +266,6 @@ angular
                 } else {
                     args["Quantity"] = (parseInt(cantidad) + 1).toString();
                 }
-                console.log(args);
                 $http({
                     method: "POST",
                     url: "/amazon/amazonmodifycart",
@@ -279,6 +274,7 @@ angular
                         'Content-Type': 'application/json'
                     }
                 }).then(function success(result) {
+                    $scope.$parent.subTotal = result.data.Data.Cart.CartItems.SubTotal.FormattedPrice;
                     refreshCar(result);
                 }, function error(result) {
                     console.log(result);
