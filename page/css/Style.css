@@ -1603,6 +1603,11 @@ header .UserAccountOptions a:nth-child(2) {
     position: relative;
 }
 
+.linkCarrito{
+     cursor:pointer
+}
+
+
 .BoxitStoreContainer .ShoppingTrends .Arrow {
     position: absolute;
     width: 40px;

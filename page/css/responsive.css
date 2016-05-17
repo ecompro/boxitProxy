@@ -79,7 +79,7 @@
 	}
 
 	.MainBanner .MainBannerContainer .Features .Feature{
-		width: calc((100% - 20px) / 1);
+		width: calc((100% - 20px) / 1) !important;
 		margin: 20px 10px;
 	}
 		.MainBanner .MainBannerContainer .Features .Feature .Description{
