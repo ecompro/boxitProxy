@@ -1,7 +1,7 @@
 angular
     .module('boxit')
-    .controller('shoppingCarController', ['$scope', '$http', '$q', '$anchorScroll', 'userData', '$uibModal', '$localStorage', '$window', '$location',
-        function ($scope, $http, $q, $anchorScroll, userData, $uibModal, $localStorage, $window, $location) {
+    .controller('shoppingCarController', ['$scope', '$http', '$q', '$anchorScroll', 'userData', '$uibModal', '$localStorage', '$window', '$location', '$interval',
+        function ($scope, $http, $q, $anchorScroll, userData, $uibModal, $localStorage, $window, $location, $interval) {
             var products = [];
             var links = [];
             $scope.checkout = false;
@@ -83,7 +83,16 @@ angular
                 $anchorScroll();
             };
             $scope.initIndex = function () {
-                $scope.index = $scope.indexs[30];
+
+                if ($scope.indexs != undefined) {
+                    $scope.index = $scope.indexs[30];
+                } else {
+                    userData.setSearchIndex();
+                    $interval(function () {
+                        $scope.indexs = userData.getSearchIndex();
+                        $scope.index = $scope.indexs[30];
+                    }, 1500);
+                }
             };
             $scope.viewItem = function (item) {
                 userData.getItemDetails(item.ItemId).then(function success(result) {
