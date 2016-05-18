@@ -291,38 +291,35 @@ angular
                 });
             };
             var refreshCar = function (result) {
-<<<<<<< Updated upstream
                 $scope.showCarItems = true;
                 $scope.showLoginMessage = false;
                 console.log(result.data.Data.Cart);
-=======
                 //   console.log(result.data.Data.Cart);
->>>>>>> Stashed changes
                 if (result.data.Data.Cart != undefined) {
-                    if (null !== result.data.Data.Cart.CartItems) {
-                        if ($.isArray(result.data.Data.Cart.CartItems.CartItem)) {
-                            $scope.carItems = result.data.Data.Cart.CartItems.CartItem;
+                    if (result.data.Data.Cart.CartItems != undefined) {
+                        if (null !== result.data.Data.Cart.CartItems) {
+                            if ($.isArray(result.data.Data.Cart.CartItems.CartItem)) {
+                                $scope.carItems = result.data.Data.Cart.CartItems.CartItem;
+                            } else {
+                                var Items = [];
+                                Items.push(result.data.Data.Cart.CartItems.CartItem);
+                                $scope.carItems = Items;
+                            }
+                            $scope.subTotal = result.data.Data.Cart.CartItems.SubTotal.FormattedPrice;
+                            $scope.carNumber = $scope.carItems.length;
                         } else {
-                            var Items = [];
-                            Items.push(result.data.Data.Cart.CartItems.CartItem);
-                            $scope.carItems = Items;
+                            getCar();
                         }
-                        $scope.subTotal = result.data.Data.Cart.CartItems.SubTotal.FormattedPrice;
-                        $scope.carNumber = $scope.carItems.length;
                     } else {
-                        getCar();
+                        $scope.carNumber = 0;
+                        $scope.subTotal = 0;
                     }
-<<<<<<< Updated upstream
-                } else {
+                }
+                else {
                     $scope.subTotal = 0;
                     $scope.carNumber = 0;
                     $scope.showCarItems = false;
                     $scope.showLoginMessage = true;
-=======
-                }else {
-                    $scope.carNumber = 0;
-                    $scope.subTotal = 0;
->>>>>>> Stashed changes
                 }
             };
             $scope.modifyCar = function (op, carItemId, cantidad) {
