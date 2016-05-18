@@ -122,7 +122,7 @@ angular
                 console.log('entro');
                 if ($scope.indexs != undefined) {
                     console.log('Entro en el if');
-                    $scope.index = $scope.indexs[30];
+                    $scope.index = $scope.indexs[0];
                 } else {
                     userData.setSearchIndex();
                     $interval(function () {
