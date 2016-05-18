@@ -1,4 +1,4 @@
-<div class="row" ng-repeat="item in carItems">
+<div class="row" ng-repeat="item in carItems" ng-show="showCarItems">
     <hr>
     <div class="col-lg-8">
         <a ui-sref="itemDetails({itemId: item.ItemId })"><span>{{item.Title}}</span></a>
@@ -17,5 +17,8 @@
             <button class="btn btn-primary" ng-click="modifyCar(1,item.CartItemId,item.Quantity)"><span class="glyphicon glyphicon-plus-sign"></span></button>
         </div>
     </div>
+</div>
+<div class="center-block" ng-show="showLoginMessage">
+    <h3><a href="../Iniciarsesion.html">aqui</a></h3>
 </div>
 
