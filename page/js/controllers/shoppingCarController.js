@@ -134,6 +134,7 @@ angular
             };
             $scope.viewItem = function (item) {
                 userData.getItemDetails(item.ItemId).then(function success(result) {
+                    console.log(result);
                     $uibModal.open({
                         animation: true,
                         templateUrl: 'views/modalDetallesArticulo.html',
@@ -281,6 +282,7 @@ angular
                 args["IdCliente"] = userData.getData().IdCliente;
                 args["ItemId"] = id;
                 args["Quantity"] = "1";
+                console.log(args);
                 userData.addItemToCar(args).then(function success(result) {
                     console.log(result);
                     refreshCar(result);
@@ -289,9 +291,13 @@ angular
                 });
             };
             var refreshCar = function (result) {
+<<<<<<< Updated upstream
                 $scope.showCarItems = true;
                 $scope.showLoginMessage = false;
                 console.log(result.data.Data.Cart);
+=======
+                //   console.log(result.data.Data.Cart);
+>>>>>>> Stashed changes
                 if (result.data.Data.Cart != undefined) {
                     if (null !== result.data.Data.Cart.CartItems) {
                         if ($.isArray(result.data.Data.Cart.CartItems.CartItem)) {
@@ -306,11 +312,17 @@ angular
                     } else {
                         getCar();
                     }
+<<<<<<< Updated upstream
                 } else {
                     $scope.subTotal = 0;
                     $scope.carNumber = 0;
                     $scope.showCarItems = false;
                     $scope.showLoginMessage = true;
+=======
+                }else {
+                    $scope.carNumber = 0;
+                    $scope.subTotal = 0;
+>>>>>>> Stashed changes
                 }
             };
             $scope.modifyCar = function (op, carItemId, cantidad) {
