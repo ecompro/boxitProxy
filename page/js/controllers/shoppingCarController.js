@@ -18,7 +18,7 @@ angular
             if (userObj != undefined) {
                 $scope.UserName = userObj.UserName;
             } else {
-                $scope.UserName = " ";
+                $scope.UserName = "Invitado";
             }
             var id;
             if (userObj != undefined) {
