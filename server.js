@@ -58,6 +58,9 @@ usersRouter.route('/insertuserboxit')
             args["UserEmail"] = req.body.UserEmail;
             args["UserPassword"] = req.body.UserPassword;
             args["IdPlataforma"] = req.body.IdPlataforma;
+            args["UserGender"] = req.body.UserGender;
+            args["UserBirthdate"] = req.body.UserBirthdate;
+           
             soap.createClient(url, function (err, client) {
                 if (client === undefined) {
                     res.json("Servidor no responde");

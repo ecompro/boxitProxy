@@ -73,9 +73,11 @@ angular
                     args["UserLastName"] = $scope.lastname;
                     args["UserEmail"] = $scope.useremail;
                     args["UserPassword"] = $scope.password;
+                    args["UserGender"] = $scope.UserGender;
+                    args["UserBirthdate"] = moment($scope.UserBirthdate).format('YYYY/MM/DD');
                     args["IdPlataforma"] = $scope.descPlataforma != null ?
                             $scope.descPlataforma.attributes.IdPlataforma : null;
-                    var respuesta="";
+                    var respuesta = "";
                     $http({
                         method: "POST",
                         url: "/users/insertuserboxit",
@@ -137,55 +139,41 @@ angular
 
 
                         } else {
-                            var user = {};
-                            user["IdCliente"] = result.data.attributes.IdCliente;
-                            user["UserName"] = $scope.username;
-                            user["UserLastName"] = $scope.lastname;
-                            user["UserGender"] = $scope.UserGender;
-                            user["UserBirthdate"] = moment($scope.UserBirthdate).format('YYYY/MM/DD');
-                            user["IdPlataforma"] = $scope.IdPlataforma;
-                            user["UserEmail"] = $scope.useremail;
-                            user["UserPhone"] = $scope.phone;
-                            userData.activateUser(result.data.attributes.IdCliente);
-                            userData.updateData(user)
-                                    .then(function (data) {
-                                        console.log(data);
-                                        var estilo = "alerta";
-                                        if (data === "Cambio realizado con exito") {
-                                            data = "Se ha creado el usuario";
-                                            estilo = "exito";
+                            
+                            // userData.activateUser(result.data.attributes.IdCliente);
+                            
+                                respuesta = "Se ha creado el usuario";
+
+                                estilo = "exito";
+                                $uibModal.open({
+                                    animation: true,
+                                    templateUrl: 'views/modalCambioClave.html',
+                                    controller: 'modalCambioClaveController',
+                                    size: 'sm',
+                                    resolve: {
+                                        mensaje: function () {
+                                            var mensaje = {};
+                                            mensaje.titulo = "Registro Usuario";
+                                            mensaje.texto = respuesta;
+                                            mensaje.estilo = estilo;
+                                            return mensaje;
                                         }
+                                    }
 
-                                       
-                                        $uibModal.open({
-                                            animation: true,
-                                            templateUrl: 'views/modalCambioClave.html',
-                                            controller: 'modalCambioClaveController',
-                                            size: 'sm',
-                                            resolve: {
-                                                mensaje: function () {
-                                                    var mensaje = {};
-                                                    mensaje.titulo = "Registro Usuario";
-                                                    mensaje.texto = data;
-                                                    mensaje.estilo = estilo;
-                                                    return mensaje;
-                                                }
-                                            }
-
-                                        });
+                                });
 
 
 
-                                    }).catch(function (err) {
-                                console.log(err);
-                            });
+
+
+                            }
                             $interval(function () {
                                 $window.location = "/Iniciarsesion.html"
                             }, 15000);
                         }
-                    }, function error(result) {
+                    , function error(result) {
                         console.log(result.data);
                     }
                     );
-                }
+                };
             }]);
