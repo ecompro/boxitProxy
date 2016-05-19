@@ -2,7 +2,7 @@ angular
     .module('boxit')
     .controller('shoppingCarController', ['$scope', '$http', '$q', '$anchorScroll', 'userData', '$uibModal', '$localStorage', '$window', '$location', '$interval',
         function ($scope, $http, $q, $anchorScroll, userData, $uibModal, $localStorage, $window, $location, $interval) {
-               var products = [];
+            var products = [];
             var links = [];
             $scope.checkout = false;
             $scope.shopping = true;
@@ -15,18 +15,18 @@ angular
             $scope.totalItems = 50;
             $scope.currentPage = 1;
             var userObj = userData.getData();
+            var id;
+            $scope.indexs = userData.getSearchIndex();
             if (userObj != undefined) {
                 $scope.UserName = userObj.UserName;
             } else {
                 $scope.UserName = "Invitado";
             }
-            var id;
             if (userObj != undefined) {
                 id = userObj.IdCliente;
             } else {
                 id = 0;
             }
-            $scope.indexs = userData.getSearchIndex();
             var getCar = function () {
                 userData.getShoppingCar(id).then(function success(result) {
                     refreshCar(result);
@@ -35,7 +35,6 @@ angular
                     console.log(result);
                 });
             };
-            getCar();
             $scope.doSearch = function () {
                 products = [];
                 searchProducts().then(function success(result) {
@@ -105,7 +104,6 @@ angular
                 return $q.all(promises);
 
             }
-
             function callPages(params) {
                 var defered = $q.defer();
                 var promise = defered.promise;
@@ -123,7 +121,6 @@ angular
                 });
                 return promise;
             }
-
             $scope.pageChanged = function () {
                 $scope.Items = products[$scope.currentPage - 1];
                 $location.hash('top');
@@ -359,5 +356,6 @@ angular
                 }, function error(result) {
                     console.log(result);
                 });
-            }
+            };
+            getCar();
         }]);

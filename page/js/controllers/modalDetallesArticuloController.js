@@ -5,6 +5,8 @@ angular
     .module('boxit')
     .controller('modalDetallesArticulosController', ['$scope', '$uibModalInstance', 'item', 'userData',
         function ($scope, $uibModalInstance, item, userData) {
+            var usrObj = userData.getData();
+            $scope.userNotLogged = usrObj == undefined;
             $scope.titulo = item.Item.Attributes.Title;
             $scope.texto = getDescription(item).trim();
             $scope.imgUrl = item.Item.Image.ImageUrl;

@@ -7,7 +7,8 @@
             <h4 class="text-center modal-title">{{titulo}}.</h4>
         </div>
         <div class="col-lg-2">
-            <button class="btn btn-default pull-right" ng-click="closeModal()"><span class="glyphicon glyphicon-remove"></span></button>
+            <button class="btn btn-default pull-right" ng-click="closeModal()"><span
+                    class="glyphicon glyphicon-remove"></span></button>
         </div>
     </div>
 </div>
@@ -46,8 +47,9 @@
             <div class="input-group input-group-lg">
                 <span class="input-group-addon">Total</span>
                 <span class="form-control"><b>{{total}}</b></span>
-                <span class="input-group-btn">
-        <button ng-click="addToCar()" class="btn btn-primary" type="button">Añadir</button>
+                <span class="input-group-btn" uib-tooltip="See? Now click away..."
+                      tooltip-trigger="click" tooltip-placement="top">
+        <button style="border-bottom-left-radius: 0;border-top-left-radius: 0" ng-click="addToCar()" class="btn btn-primary" type="button" ng-disabled="userNotLogged">Añadir</button>
       </span>
             </div>
         </div>
