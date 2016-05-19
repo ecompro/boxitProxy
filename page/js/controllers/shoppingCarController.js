@@ -74,22 +74,33 @@ angular
                 var i;
                 for (i = 0; i < 6; i++) {
                     var defered = $q.defer();
-                    var searchParams = {};
-                    searchParams["Keywords"] = $scope.keyword;
-                    searchParams["SearchIndex"] = $scope.index.attributes.SearchIndex;
-                    searchParams["ItemPage"] = i;
-                    defered.resolve(callPages(searchParams).then(function success(result) {
+                    if ($scope.keyword != undefined) {
+                        var searchParams = {};
+                        searchParams["Keywords"] = $scope.keyword;
+                        searchParams["SearchIndex"] = $scope.index.attributes.SearchIndex;
+                        searchParams["ItemPage"] = i;
+                        defered.resolve(callPages(searchParams).then(function success(result) {
 
-                        if (result !== undefined) {
-                            products.push(result);
-                        }
-                        //defered.resolve('success');
+                            if (result !== undefined) {
+                                products.push(result);
+                            }
+                            //defered.resolve('success');
 
-                    }, function error(result) {
-                        console.log(result);
-                        // defered.resolve('success');
-                    }));
-                    promises.push(defered.promise);
+                        }, function error(result) {
+                            console.log(result);
+                            // defered.resolve('success');
+                        }));
+                        promises.push(defered.promise);
+                    } else {
+                        defered.resolve(userData.getDefaultSearch().then(function success(result) {
+                            if (result !== undefined) {
+                                products.push(result);
+                            }
+                        },function error(result) {
+                            console.log(result);
+                        }));
+                        promises.push(defered.promise);
+                    }
                 }
                 return $q.all(promises);
 
@@ -128,7 +139,7 @@ angular
                     $interval(function () {
                         $scope.indexs = userData.getSearchIndex();
                         console.log('entro en el ese');
-                        $scope.index = $scope.indexs[30];
+                        $scope.index = $scope.indexs[0];
                     }, 1500);
                 }
             };
@@ -278,17 +289,21 @@ angular
             };
             $scope.addToCar = function (id) {
 
-                var args = {};
-                args["IdCliente"] = userData.getData().IdCliente;
-                args["ItemId"] = id;
-                args["Quantity"] = "1";
-                console.log(args);
-                userData.addItemToCar(args).then(function success(result) {
-                    console.log(result);
-                    refreshCar(result);
-                }, function error(error) {
-                    console.log(error);
-                });
+                if (userObj != undefined) {
+                    var args = {};
+                    args["IdCliente"] = userData.getData().IdCliente;
+                    args["ItemId"] = id;
+                    args["Quantity"] = "1";
+                    console.log(args);
+                    userData.addItemToCar(args).then(function success(result) {
+                        console.log(result);
+                        refreshCar(result);
+                    }, function error(error) {
+                        console.log(error);
+                    });
+                } else {
+                    $scope.showShoppingCar();
+                }
             };
             var refreshCar = function (result) {
                 $scope.showCarItems = true;

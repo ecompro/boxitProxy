@@ -24,7 +24,6 @@ var user = {
         tel: ""
     }
 };
-var subTotal;
 angular.module('boxit')
     .factory('userData', function ($http, $q, $localStorage) {
 
@@ -298,6 +297,16 @@ angular.module('boxit')
             }, function error(result) {
                 defered.reject(result)
             });
+            return promise;
+        };
+        factory.getFirstSearch = function () {
+            var defered = $q.defer();
+            var promise = defered.promise;
+            return promise;
+        };
+        factory.getDefaultSearch = function () {
+            var defered = $q.defer();
+            var promise = defered.promise;
             return promise;
         };
         return factory;
