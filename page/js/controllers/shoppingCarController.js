@@ -2,7 +2,7 @@ angular
     .module('boxit')
     .controller('shoppingCarController', ['$scope', '$http', '$q', '$anchorScroll', 'userData', '$uibModal', '$localStorage', '$window', '$location', '$interval',
         function ($scope, $http, $q, $anchorScroll, userData, $uibModal, $localStorage, $window, $location, $interval) {
-            var products = [];
+               var products = [];
             var links = [];
             $scope.checkout = false;
             $scope.shopping = true;
