@@ -304,8 +304,7 @@ angular.module('boxit')
                 var promise = defered.promise;
                 $http({
                     method: "POST",
-                    url: "/amazon/amazongetheywordsrandom",
-                   
+                    url: "/amazon/amazongetkeywordsrandom",
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -316,9 +315,6 @@ angular.module('boxit')
                     console.log(result);
                     defered.reject(result.data);
                 });
-                return promise;
-
-
                 return promise;
             };
             factory.getDefaultSearch = function (args) {

@@ -735,7 +735,6 @@ amazonRouter.route('/amazongetkeywordsinit').post(function (req, res) {
                 res.json("Servidor no responde");
                 return;
             }
-            console.log(JSON.stringify(result.AmazonGetKeywordsInitResult));
             res.json(result.AmazonGetKeywordsInitResult.Data.Items);
             
         });
