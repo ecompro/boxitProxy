@@ -715,6 +715,56 @@ amazonRouter.route('/amazonmodifycart').post(function (req, res) {
         });
     });
 });
+
+//AmazonGetKeywordsInit
+amazonRouter.route('/amazongetkeywordsinit').post(function (req, res) {
+    var args = {};
+    args["CustomerUser"] = CustomerUser;
+    args["CustomerPassword"] = CustomerPassword;
+    args["SearchIndex"] = req.body.SearchIndex;
+    args["ItemPage"] = req.body.ItemPage;
+    args["IdCliente"] = req.body.Quantity;
+
+    soap.createClient(url, function (err, client) {
+        if (client === undefined) {
+            res.json("Servidor no responde");
+            return;
+        }
+        client.AmazonGetKeywordsInit(args, function (err, result) {
+            if (result === undefined) {
+                res.json("Servidor no responde");
+                return;
+            }
+            console.log(JSON.stringify(result.AmazonGetKeywordsInitResult));
+            res.json(result.AmazonGetKeywordsInitResult.Data.Items);
+            
+        });
+    });
+});
+
+amazonRouter.route('/amazongetkeywordsrandom').post(function (req, res) {
+    var args = {};
+    args["CustomerUser"] = CustomerUser;
+    args["CustomerPassword"] = CustomerPassword;
+   
+
+    soap.createClient(url, function (err, client) {
+        if (client === undefined) {
+            res.json("Servidor no responde");
+            return;
+        }
+        client.AmazonGetKeywordsRandom(args, function (err, result) {
+            if (result === undefined) {
+                res.json("Servidor no responde");
+                return;
+            }
+            res.json(result.AmazonGetKeywordsRandomResult.Data.Items);
+        });
+    });
+});
+
+//AmazonGetKeywordsRandom
+
 app.use('/users', usersRouter);
 app.use('/amazon', amazonRouter);
 app.listen(port);
