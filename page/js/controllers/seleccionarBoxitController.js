@@ -6,7 +6,6 @@
 angular.module('boxit')
         .controller('seleccionarBoxitController', ['$scope','$http', 'userData', '$uibModal',
     function($scope,$http,userData,$uibModal) {
-        
         $scope.plataformas = [];
             $http({
                 method: "POST",
@@ -17,6 +16,13 @@ angular.module('boxit')
             }).then(function success(results) {
                 //alert(JSON.stringify(results.data));
                 $scope.plataformas = results.data;
+                for (var i = 0; i < $scope.plataformas.length; i++) {
+                    var plataforma = $scope.plataformas[i];
+                    if (plataforma.attributes.IdPlataforma === userData.getData().IdPlataforma) {
+                        $scope.descPlataforma = plataforma;
+                        break;
+                    }
+                }
             }, function error(results) {
                 console.log(results.data);
             });
@@ -46,7 +52,7 @@ angular.module('boxit')
                     .then(function (data) {
                         //alert(data);
                        //   ngToast.create(data);
-                          
+                          userData.setData(userData.getData().IdCliente);
                              $uibModal.open({
                             animation: true,
                             templateUrl: 'views/modalCambioClave.html',
@@ -66,7 +72,7 @@ angular.module('boxit')
                           
                           
                           
-                          
+
                         //console.log(data);
                     }).catch(function (err) {
                     console.log(err);
