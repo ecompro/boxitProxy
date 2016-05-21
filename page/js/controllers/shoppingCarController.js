@@ -14,6 +14,7 @@ angular
             $scope.showLoginMessage = false;
             $scope.totalItems = 50;
             $scope.currentPage = 1;
+            $scope.amazonLink = "";
             var userObj = userData.getData();
             var id;
             $scope.indexs = userData.getSearchIndex();
@@ -300,6 +301,17 @@ angular
                 return promise;
 
             };
+            
+            
+            $scope.openAmazon = function () {
+                if ( $scope.amazonLink === "") {
+                    return "";
+                }else {
+                     $window.open( $scope.amazonLink, '_blank');
+                }
+                
+                
+            };
             $scope.addToCar = function (id) {
 
                 if (userObj != undefined) {
@@ -335,12 +347,14 @@ angular
                             }
                             $scope.subTotal = result.data.Data.Cart.CartItems.SubTotal.FormattedPrice;
                             $scope.carNumber = $scope.carItems.length;
+                            $scope.amazonLink = result.data.Data.Cart.PurchaseURL;
                         } else {
                             getCar();
                         }
                     } else {
                         $scope.carNumber = 0;
                         $scope.subTotal = 0;
+                         "";
                     }
                 } else {
                     $scope.subTotal = 0;
