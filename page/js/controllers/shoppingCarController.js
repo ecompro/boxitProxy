@@ -30,7 +30,6 @@ angular
             }
             var getCar = function () {
                 userData.getShoppingCar(id).then(function success(result) {
-                    console.log(result);
                     refreshCar(result);
                     return result;
                 }, function error(result) {
@@ -43,8 +42,6 @@ angular
                     $scope.showCarMessage = false;
                     $scope.showImage = false;
                     $scope.Items = products[0];
-                    console.log(products);
-                    console.log(products.length);
                     products.reverse();
                     if (products[0] == undefined) {
                         $scope.showCar = false;
@@ -104,11 +101,9 @@ angular
                             IdCliente = userData.getData().IdCliente;
                         }
                         searchParams["IdCliente"] = IdCliente;
-                        console.log("va a busqueda por defecto");
                         defered.resolve(userData.getDefaultSearch(searchParams).then(function success(result) {
 
                             if (result !== undefined) {
-                                console.log(result);
                                 products.push(result);
                             }
                         }, function error(result) {
@@ -120,6 +115,7 @@ angular
                 return $q.all(promises);
 
             }
+
             function callPages(params) {
                 var defered = $q.defer();
                 var promise = defered.promise;
@@ -137,28 +133,25 @@ angular
                 });
                 return promise;
             }
+
             $scope.pageChanged = function () {
                 $scope.Items = products[$scope.currentPage - 1];
                 $location.hash('top');
                 $anchorScroll();
             };
             $scope.initIndex = function () {
-                console.log('entro');
                 if ($scope.indexs != undefined) {
-                    console.log('Entro en el if');
                     $scope.index = $scope.indexs[0];
                 } else {
                     userData.setSearchIndex();
                     $interval(function () {
                         $scope.indexs = userData.getSearchIndex();
-                        console.log('entro en el ese');
                         $scope.index = $scope.indexs[0];
                     }, 1500);
                 }
             };
             $scope.viewItem = function (item) {
                 userData.getItemDetails(item.ItemId).then(function success(result) {
-                    console.log(result);
                     $uibModal.open({
                         animation: true,
                         templateUrl: 'views/modalDetallesArticulo.html',
@@ -270,7 +263,6 @@ angular
                         'Content-Type': 'application/json'
                     }
                 }).then(function success(result) {
-                    console.log(result);
                     defered.resolve(result.data.Rows.attributes.Message);
                 }, function error(result) {
                     console.log(result.data.Rows.attributes.Message);
@@ -300,16 +292,16 @@ angular
                 return promise;
 
             };
-            
-            
+
+
             $scope.openAmazon = function () {
-                if ( $scope.amazonLink === "") {
+                if ($scope.amazonLink === "") {
                     return "";
-                }else {
-                     $window.open( $scope.amazonLink, '_blank');
+                } else {
+                    $window.open($scope.amazonLink, '_blank');
                 }
-                
-                
+
+
             };
             $scope.addToCar = function (id) {
 
@@ -318,9 +310,7 @@ angular
                     args["IdCliente"] = userData.getData().IdCliente;
                     args["ItemId"] = id;
                     args["Quantity"] = "1";
-                    console.log(args);
                     userData.addItemToCar(args).then(function success(result) {
-                        console.log(result);
                         refreshCar(result);
                     }, function error(error) {
                         console.log(error);
@@ -346,16 +336,19 @@ angular
                             $scope.subTotal = result.data.Data.Cart.CartItems.SubTotal.FormattedPrice;
                             $scope.amazonLink = result.data.Data.Cart.PurchaseURL;
                             $scope.carNumber = calcularTotal($scope.carItems);
+                            angular.element(document.getElementById('cartNumber')).scope().carNumber = $scope.carNumber;
                         } else {
                             getCar();
                         }
                     } else {
                         $scope.carNumber = 0;
+                        angular.element(document.getElementById('cartNumber')).scope().carNumber = $scope.carNumber;
                         $scope.subTotal = 0;
                     }
                 } else {
                     $scope.subTotal = 0;
                     $scope.carNumber = 0;
+                    angular.element(document.getElementById('cartNumber')).scope().carNumber = $scope.carNumber;
                     $scope.showCarItems = false;
                     if (userObj == undefined) {
                         $scope.showLoginMessage = true;
@@ -387,17 +380,19 @@ angular
             };
             $scope.firstSearch = function () {
                 userData.getFirstSearch().then(function success(result) {
-                    console.log(result);
                     $scope.Items = result;
                     $scope.showCar = true;
                     $scope.showImage = false;
                 }, function error(result) {
-                    console.log(result);
                 });
             };
             $scope.clearShoppingCar = function () {
                 clearCar(userObj.IdCliente).then(function success(result) {
-                    getCar();
+                    var obj = {};
+                    obj["data"] = result;
+                    refreshCar(obj);
+                    angular.element(document.getElementById('cartNumber')).scope().carNumber = 0;
+                    $scope.closeModal();
                 });
             };
             getCar();

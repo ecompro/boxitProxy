@@ -20,11 +20,16 @@
     <div ui-view></div>
 </div>
 <div class="modal-footer">
-    <div class="col-lg-2">
+    <div class="col-lg-1">
         <button ng-click="openAmazon()"  class="btn btn-lg btn-warning" type="button" ng-disabled="userNotLogged">Amazon</button>
+    </div>
+    <div class="col-lg-1">
+
+    </div>
+    <div class="col-lg-1">
         <button class="btn btn-lg btn-primary" ng-click="clearShoppingCar()">Limpiar</button>
     </div>
-    <div class="col-lg-5"></div>
+    <div class="col-lg-4"></div>
     <div class="col-lg-5" ng-show="shopping">
         <div class="input-group input-group-lg">
             <span class="input-group-addon">Total</span>
