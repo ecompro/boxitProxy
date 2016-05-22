@@ -139,38 +139,37 @@ angular
 
 
                         } else {
-                            
+
                             // userData.activateUser(result.data.attributes.IdCliente);
-                            
-                                respuesta = "Se ha creado el usuario";
 
-                                estilo = "exito";
-                                $uibModal.open({
-                                    animation: true,
-                                    templateUrl: 'views/modalCambioClave.html',
-                                    controller: 'modalCambioClaveController',
-                                    size: 'sm',
-                                    resolve: {
-                                        mensaje: function () {
-                                            var mensaje = {};
-                                            mensaje.titulo = "Registro Usuario";
-                                            mensaje.texto = respuesta;
-                                            mensaje.estilo = estilo;
-                                            return mensaje;
-                                        }
+                            respuesta = "Usted recibirá un correo de confirmación de cuenta. \n\
+                            Para continuar debe confirmar su registro a través del email recibido";
+
+                            estilo = "exito";
+                            $uibModal.open({
+                                animation: true,
+                                templateUrl: 'views/modalCambioClave.html',
+                                controller: 'modalCambioClaveController',
+                                size: 'sm',
+                                resolve: {
+                                    mensaje: function () {
+                                        var mensaje = {};
+                                        mensaje.titulo = "Registro Usuario";
+                                        mensaje.texto = respuesta;
+                                        mensaje.estilo = estilo;
+                                        return mensaje;
                                     }
+                                }
 
-                                });
-
-
-
+                            });
 
 
-                            }
-                            $interval(function () {
-                                $window.location = "/Iniciarsesion.html"
-                            }, 15000);
+
+
+
                         }
+
+                    }
                     , function error(result) {
                         console.log(result.data);
                     }

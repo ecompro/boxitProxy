@@ -10,17 +10,31 @@ and open the template in the editor.
 
 
 body{
-        font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 
 
 .customLabel{
-     color: #A82773 !important;
+    color: #A82773 !important;
     font-weight: bold;
 }
 
 .fondo {
     background-color: white
-    
+
+}
+
+.initButton {
+    float: left;
+    border: 2px solid #c7c7c7;
+    padding: 10px 15px;
+    border-radius: 30px;
+    color: #a82773;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+    display: block;
+    white-space: nowrap;
+
 }
