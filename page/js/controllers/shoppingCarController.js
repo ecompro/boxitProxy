@@ -30,6 +30,7 @@ angular
             }
             var getCar = function () {
                 userData.getShoppingCar(id).then(function success(result) {
+                    console.log(result);
                     refreshCar(result);
                     return result;
                 }, function error(result) {
@@ -119,7 +120,6 @@ angular
                 return $q.all(promises);
 
             }
-
             function callPages(params) {
                 var defered = $q.defer();
                 var promise = defered.promise;
@@ -137,7 +137,6 @@ angular
                 });
                 return promise;
             }
-
             $scope.pageChanged = function () {
                 $scope.Items = products[$scope.currentPage - 1];
                 $location.hash('top');
@@ -333,10 +332,9 @@ angular
             var refreshCar = function (result) {
                 $scope.showCarItems = true;
                 $scope.showLoginMessage = false;
-                console.log(result.data.Data.Cart);
                 //   console.log(result.data.Data.Cart);
                 if (result.data.Data.Cart != undefined) {
-                    if (result.data.Data.Cart.CartItems != undefined) {
+                    if (result.data.Data.Cart.CartItems != undefined || result.data.Data.Cart.CartItems != null) {
                         if (null !== result.data.Data.Cart.CartItems) {
                             if ($.isArray(result.data.Data.Cart.CartItems.CartItem)) {
                                 $scope.carItems = result.data.Data.Cart.CartItems.CartItem;
@@ -346,21 +344,22 @@ angular
                                 $scope.carItems = Items;
                             }
                             $scope.subTotal = result.data.Data.Cart.CartItems.SubTotal.FormattedPrice;
-                            $scope.carNumber = $scope.carItems.length;
                             $scope.amazonLink = result.data.Data.Cart.PurchaseURL;
+                            $scope.carNumber = calcularTotal($scope.carItems);
                         } else {
                             getCar();
                         }
                     } else {
                         $scope.carNumber = 0;
                         $scope.subTotal = 0;
-                         "";
                     }
                 } else {
                     $scope.subTotal = 0;
                     $scope.carNumber = 0;
                     $scope.showCarItems = false;
-                    $scope.showLoginMessage = true;
+                    if (userObj == undefined) {
+                        $scope.showLoginMessage = true;
+                    }
                 }
             };
             $scope.modifyCar = function (op, carItemId, cantidad) {
@@ -396,5 +395,18 @@ angular
                     console.log(result);
                 });
             };
+            $scope.clearShoppingCar = function () {
+                clearCar(userObj.IdCliente).then(function success(result) {
+                    getCar();
+                });
+            };
             getCar();
+            function calcularTotal(carItems) {
+                var totalAcumulado = 0;
+                for (var i = 0; i < carItems.length; i++) {
+                    var item = carItems[i];
+                    totalAcumulado = totalAcumulado + parseInt(item.Quantity);
+                }
+                return totalAcumulado;
+            }
         }]);
