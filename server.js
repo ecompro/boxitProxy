@@ -766,5 +766,5 @@ amazonRouter.route('/amazongetkeywordsrandom').post(function (req, res) {
 
 app.use('/users', usersRouter);
 app.use('/amazon', amazonRouter);
-app.listen(80);
+app.listen(port);
 console.log('Magic happens on port ' + port);
