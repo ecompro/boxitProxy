@@ -20,22 +20,22 @@
     <div ui-view></div>
 </div>
 <div class="modal-footer">
-    <div class="col-lg-1">
-        <button ng-click="openAmazon()"  class="btn btn-lg btn-warning" type="button" ng-disabled="userNotLogged">Amazon</button>
+    <div class="col-lg-3">
+        <button ng-click="openAmazon()"  class="btn btn-lg btn-warning" type="button" ng-disabled="userNotLogged">Pagar con tarjeta de crédito</button>
     </div>
     <div class="col-lg-1">
 
     </div>
-    <div class="col-lg-1">
-        <button class="btn btn-lg btn-primary" ng-click="clearShoppingCar()">Limpiar</button>
+    <div class="col-lg-3">
+        <button class="btn btn-lg btn-danger" ng-click="clearShoppingCar()">Limpiar carrito</button>
     </div>
-    <div class="col-lg-4"></div>
+    <div class="col-lg-1"></div>
     <div class="col-lg-5" ng-show="shopping">
         <div class="input-group input-group-lg">
             <span class="input-group-addon">Total</span>
             <span id="total" class="form-control" ng-bind="subTotal"></span>
                 <span class="input-group-btn">
-        <button class="btn btn-success" type="button" ng-click="purchase()">Purchase</button>
+        <button class="btn btn-success" type="button" ng-click="purchase()">Pagar en efectivo</button>
       </span>
         </div>
     </div>
