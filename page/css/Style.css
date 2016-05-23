@@ -258,12 +258,14 @@ header > .Language .SelectLanguage:hover .Languages{
 header .Logo{
     float: left;
     width: 10%;
+    margin-right: 50px;
 }
 header .Logo a{
 
 }
 header .Logo a img{
     width: 100px;
+    
 }
 /*header .Menu{
         float: left;
@@ -346,7 +348,7 @@ header .Logo a img{
                                                         }*/
 .Menu{
     float: left;
-    width: 60%;
+    width: 40%;
     text-align: center;
 }
 .Menu ul{

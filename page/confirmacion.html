@@ -28,63 +28,69 @@
         <script src="js/controllers/modalCambioClaveController.js" type="text/javascript"></script>
     </head>
     <body>
-		<header class="MaxWidth desktop">
-			<div class="Language">
-				<div class="SelectLanguage">
-					<div class="Text">Español (ESP)</div>
-					<div class="Arrow"></div>
-					<div class="Languages">
-						<div class="Language Selected" id="ESP" >Español (ESP)</div>
-						<div class="Language" id="ING">Ingles (ING)</div>
-						<div class="Language" id="FRA">Frances (FRA)</div>
-					</div>
-				</div>
-			</div>
-			<div class="Logo">
-				<a href=".\index.html">
-					<img src="img/logo-boxit_Menu.png" alt="Boxit" title="Boxit">
-				</a>
-			</div>
-			<div class="Menu">
-				<ul>
-					<li>
-						<a href="#">SERVICIOS</a>
-						<div class="SubMenu">
-							<div class="SubMenuContainer">
-								<div class="Arrow">
-								<div></div>
-							</div>
-							<ul>
-								<li><a href="Nosotros.html">¿Qué es Boxit?</a></li>
-								<li><a href="Retiro.html">Retiro de paquete</a></li>
-								<li><a href="Devolucion.html">Devolución de compra</a></li>
-								<li><a href="Enviar.html">Enviar un paquete</a></li>
-								<li><a href="Pagoservicio.html">Paga tus servicios</a></li>
-							</ul>
-							</div>
-						</div>
-					</li>
-					<li>
-						<a href="Precios.html">PRECIOS</a>
-					</li>
-					<li>
-						<a href="FAQ.html">PREGUNTAS FRECUENTES</a>
-					</li>
-					<li>
-						<a href="BoxitStore.html">MY BOXIT STORE AMAZON</a>
-					</li>
-				</ul>
-			</div>
-			<div class="UserAccountOptions">
-				<a href="Iniciarsesion.html">
-					<div class="Button">INICIA SESIÓN</div>	
-				</a>
-				<a href="Registro.html">
-					<div class="Button WithBackground">REGÍSTRATE</div>
-				</a>
-			</div>
-		</header>
-		<div class="Mobile">
+        <header class="MaxWidth desktop">
+            <div class="Language">
+                <div class="SelectLanguage">
+                    <div class="Text">Español (ESP)</div>
+                    <div class="Arrow"></div>
+                    <div class="Languages">
+                        <div class="Language Selected" id="ESP" >Español (ESP)</div>
+                        <div class="Language" id="ING">Ingles (ING)</div>
+                        <div class="Language" id="FRA">Frances (FRA)</div>
+                    </div>
+                </div>
+            </div>
+            <div class="Logo">
+                <a href=".\index.html">
+                    <img src="img/logo-boxit_Menu.png" alt="Boxit" title="Boxit">
+                </a>
+            </div>
+            <div class="Menu">
+                <ul>
+                    <li>
+                        <a href="#">SERVICIOS</a>
+                        <div class="SubMenu">
+                            <div class="SubMenuContainer">
+                                <div class="Arrow">
+                                    <div></div>
+                                </div>
+                                <ul>
+                                    <li><a href="Nosotros.html">¿Qué es Boxit?</a></li>
+                                    <li><a href="Retiro.html">Retiro de paquete</a></li>
+                                    <li><a href="Devolucion.html">Devolución de compra</a></li>
+                                    <li><a href="Enviar.html">Enviar un paquete</a></li>
+                                    <li><a href="Pagoservicio.html">Paga tus servicios</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="Precios.html">PRECIOS</a>
+                    </li>
+                    <li>
+                        <a href="FAQ.html">PREGUNTAS FRECUENTES</a>
+                    </li>
+                    <!--                    <li>
+                                            <a href="BoxitStore.html">MY BOXIT STORE AMAZON</a>
+                                        </li>-->
+                </ul>
+            </div>
+            <div class="Logo logoBoxitStore">
+                <a href="BoxitStore.html">
+                    <img src="img/boxitAmazon.png" alt="Boxit" title="Boxit"/>
+                </a>
+            </div>
+
+            <div class="UserAccountOptions">
+                <a href="Iniciarsesion.html">
+                    <div class="Button">INICIA SESIÓN</div>	
+                </a>
+                <a href="Registro.html">
+                    <div class="Button WithBackground">REGÍSTRATE</div>
+                </a>
+            </div>
+        </header>
+        <div class="Mobile">
             <div class="Top">
                 <div class="Menu">
                     <img src="img/IconMenuBurger.svg" alt="Cart" title="Cart">
@@ -96,7 +102,7 @@
                 </div>
             </div>
         </div>
-		<div class="MobileMenu">
+        <div class="MobileMenu">
             <div class="Menu">
                 <div class="Header">
                     <div class="Close">X</div>
@@ -124,7 +130,7 @@
                             </div>
                         </div>
                     </div>
-                     <div class="Group">
+                    <div class="Group">
                         <div class="Header">
                             <a href="Precios.html">PRECIOS</a>
                         </div>
@@ -156,13 +162,13 @@
             </div>
             <div class="Overlay"></div>
         </div>
-<div ui-view></div>
-<footer class="Content">
-    <div class="ContentContainer MaxWidth">
-        <div class="Copyright">
-            © 2016 Boxit | Todos los derechos reservados
-        </div>
-    </div>
-</footer>
-</body>
+        <div ui-view></div>
+        <footer class="Content">
+            <div class="ContentContainer MaxWidth">
+                <div class="Copyright">
+                    © 2016 Boxit | Todos los derechos reservados
+                </div>
+            </div>
+        </footer>
+    </body>
 </html>

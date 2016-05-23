@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="css/Style.css">
         <link rel="stylesheet" href="css/responsive.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link href="css/userStyle.css" rel="stylesheet" type="text/css"/>
         <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
         <script src="js/Rotators.js"></script>
         <script src="js/js.js"></script>
@@ -69,10 +70,17 @@
                     <li>
                         <a href="FAQ.html">PREGUNTAS FRECUENTES</a>
                     </li>
-                    <li>
-                        <a href="BoxitStore.html">MY BOXIT STORE AMAZON</a>
-                    </li>
+                    <!--                    <li>
+                                            <div style ="width: 20%;   white-space: nowrap;" >
+                                            <a href="BoxitStore.html"><img  class="logoBoxitStore" src="img/boxitAmazon.png" alt="Boxit" title="Boxit"/></a>
+                                            </div>
+                                         </li>-->
                 </ul>
+            </div>
+            <div class="Logo logoBoxitStore">
+                <a href="BoxitStore.html">
+                    <img src="img/boxitAmazon.png" alt="Boxit" title="Boxit"/>
+                </a>
             </div>
             <div class="UserAccountOptions">
                 <a href="Iniciarsesion.html">
@@ -192,7 +200,7 @@
             </div>
         </div>-->
     <div  class="row boxitBar">
-       
+
         <div class="col-md-2 carAvatar noppading">
             <br>
             <div class="Avatar"></div>
@@ -225,7 +233,7 @@
                 <span id="cartNumber">{{carNumber}}</span>Cart
             </a>
         </div>
-        
+
     </div>
 
     <div class="BoxitStoreContainer" ng-init="firstSearch()">
