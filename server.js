@@ -6,7 +6,7 @@ var express = require('express'),
 var soap = require('soap');
 var bodyParser = require('body-parser');
 var url = 'http://200.62.34.16/SF.GrupoAuraIntegracionPrueba/?wsdl';
-var port = process.env.PORT || 8080;
+var port =  process.env.PORT || 8080;
 var CustomerUser = "SGroup";
 var CustomerPassword = "S1stem@#B0x1t";
 app.use(bodyParser.urlencoded({extended: true}));
@@ -766,5 +766,5 @@ amazonRouter.route('/amazongetkeywordsrandom').post(function (req, res) {
 
 app.use('/users', usersRouter);
 app.use('/amazon', amazonRouter);
-app.listen(port);
+app.listen(80);
 console.log('Magic happens on port ' + port);
