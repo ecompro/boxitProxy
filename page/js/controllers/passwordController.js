@@ -47,7 +47,7 @@ angular
                         args["UserPasswordNew"] = $scope.password;
                         $http({
                             method: "POST",
-                            url: "/users/updateforgetpassword",
+                            url: userData.getHost() + "/users/updateforgetpassword",
                             data: args,
                             headers: {
                                 'Content-Type': 'application/json'

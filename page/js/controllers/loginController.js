@@ -64,7 +64,7 @@ angular
 
                     $http({
                         method: "POST",
-                        url: "/users/loginuserboxit",
+                        url: userData.getHost() + "/users/loginuserboxit",
                         data: {
                             "UserEmail": $scope.username,
                             "UserPassword": $scope.password

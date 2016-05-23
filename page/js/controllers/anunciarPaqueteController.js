@@ -14,7 +14,7 @@ angular.module('boxit')
                     var user = userData.getData();
                     $http({
                         method: "POST",
-                        url: "/users/insertclientalert",
+                        url: userData.getHost() + "/users/insertclientalert",
                         data: {
                             "IdCliente": user.IdCliente,
                             "TrackingNumber": $scope.TrackingNumber,

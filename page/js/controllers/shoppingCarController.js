@@ -121,7 +121,7 @@ angular
                 var promise = defered.promise;
                 $http({
                     method: "POST",
-                    url: "/amazon/amazongetkeywords",
+                    url: userData.getHost() + "/amazon/amazongetkeywords",
                     data: params,
                     headers: {
                         'Content-Type': 'application/json'
@@ -257,7 +257,7 @@ angular
 
                 $http({
                     method: "POST",
-                    url: "/users/insertpurchaseorder",
+                    url: userData.getHost() + "/users/insertpurchaseorder",
                     data: params,
                     headers: {
                         'Content-Type': 'application/json'
@@ -279,7 +279,7 @@ angular
                 params["IdCliente"] = IdCliente;
                 $http({
                     method: "POST",
-                    url: "/amazon/amazonclearcart",
+                    url: userData.getHost() + "/amazon/amazonclearcart",
                     data: params,
                     headers: {
                         'Content-Type': 'application/json'
@@ -366,7 +366,7 @@ angular
                 }
                 $http({
                     method: "POST",
-                    url: "/amazon/amazonmodifycart",
+                    url: userData.getHost() + "/amazon/amazonmodifycart",
                     data: args,
                     headers: {
                         'Content-Type': 'application/json'

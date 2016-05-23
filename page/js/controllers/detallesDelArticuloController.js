@@ -21,7 +21,7 @@ angular
                 args["Quantity"] = $scope.cantidad;
                 $http({
                     method: "POST",
-                    url: "/amazon/amazonmodifycart",
+                    url: userData.getHost() + "/amazon/amazonmodifycart",
                     data: args,
                     headers: {
                         'Content-Type': 'application/json'

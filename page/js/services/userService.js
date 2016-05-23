@@ -24,9 +24,10 @@ var user = {
         tel: ""
     }
 };
+var host = "http://localhost:8080";
+//var host = "http://192.169.168.40:8080";
 angular.module('boxit')
         .factory('userData', function ($http, $q, $localStorage) {
-
             var factory = {};
             factory.logoff = function () {
                 delete $localStorage.userBoxIt;
@@ -36,7 +37,7 @@ angular.module('boxit')
                 var promise = defered.promise;
                 $http({
                     method: "POST",
-                    url: "/users/getaddressmiamiuser",
+                    url: host + "/users/getaddressmiamiuser",
                     data: {
                         "IdCliente": id
 
@@ -89,7 +90,7 @@ angular.module('boxit')
                 var promise = defered.promise;
                 $http({
                     method: "POST",
-                    url: "/users/getinfouserboxit",
+                    url: host + "/users/getinfouserboxit",
                     data: {
                         "IdCliente": id
 
@@ -134,7 +135,7 @@ angular.module('boxit')
                 console.log(JSON.stringify(newUser));
                 $http({
                     method: "POST",
-                    url: "/users/updateinfouserboxIt",
+                    url: host + "/users/updateinfouserboxIt",
                     data: newUser,
                     headers: {
                         'Content-Type': 'application/json'
@@ -192,7 +193,7 @@ angular.module('boxit')
                 args["IdCliente"] = id;
                 $http({
                     method: "POST",
-                    url: "/users/activeuserboxit",
+                    url: host + "/users/activeuserboxit",
                     data: args,
                     headers: {
                         'Content-Type': 'application/json'
@@ -207,7 +208,7 @@ angular.module('boxit')
             factory.setSearchIndex = function () {
                 $http({
                     method: "POST",
-                    url: "/amazon/amazongetsearchindex",
+                    url: host + "/amazon/amazongetsearchindex",
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -229,7 +230,7 @@ angular.module('boxit')
                 args["Email"] = email;
                 $http({
                     method: "POST",
-                    url: "/users/sendforgetpassword",
+                    url: host + "/users/sendforgetpassword",
                     data: args,
                     headers: {
                         'Content-Type': 'application/json'
@@ -250,7 +251,7 @@ angular.module('boxit')
                 var promise = defered.promise;
                 $http({
                     method: "POST",
-                    url: "/amazon/amazongetcart",
+                    url: host + "/amazon/amazongetcart",
                     data: {
                         "IdCliente": id
                     },
@@ -270,7 +271,7 @@ angular.module('boxit')
                 var itemObj = {"ItemId": id};
                 $http({
                     method: "POST",
-                    url: "/amazon/amazongetitemid",
+                    url: host + "/amazon/amazongetitemid",
                     data: itemObj,
                     headers: {
                         'Content-Type': 'application/json'
@@ -287,7 +288,7 @@ angular.module('boxit')
                 var promise = defered.promise;
                 $http({
                     method: "POST",
-                    url: "/amazon/amazonaddcart",
+                    url: host + "/amazon/amazonaddcart",
                     data: args,
                     headers: {
                         'Content-Type': 'application/json'
@@ -304,7 +305,7 @@ angular.module('boxit')
                 var promise = defered.promise;
                 $http({
                     method: "POST",
-                    url: "/amazon/amazongetkeywordsrandom",
+                    url: host + "/amazon/amazongetkeywordsrandom",
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -323,7 +324,7 @@ angular.module('boxit')
                 var promise = defered.promise;
                 $http({
                     method: "POST",
-                    url: "/amazon/amazongetkeywordsinit",
+                    url: host + "/amazon/amazongetkeywordsinit",
                     data: args,
                     headers: {
                         'Content-Type': 'application/json'
@@ -337,6 +338,9 @@ angular.module('boxit')
                 });
                 return promise;
 
+            };
+            factory.getHost = function () {
+                return host;
             };
             return factory;
         });

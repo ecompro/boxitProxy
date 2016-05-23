@@ -78,7 +78,7 @@ angular.module('boxit')
                     var trackings = [];
                     $http({
                         method: "POST",
-                        url: "/users/gettracking",
+                        url: userData.getHost() + "/users/gettracking",
                         data: {
                             "IdCliente": userData.getData().IdCliente
                         },

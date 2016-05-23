@@ -4,7 +4,7 @@ angular
         function ($scope, $http, userData) {
             $http({
                 method: "POST",
-                url: "/users/gettracking",
+                url: userData.getHost() + "/users/gettracking",
                 data: {
                     "IdCliente": userData.getData().IdCliente
                 },

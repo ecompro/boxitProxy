@@ -23,7 +23,7 @@ angular
                 $scope.plataformas = [];
                 $http({
                     method: "POST",
-                    url: "/users/getplataformas",
+                    url: userData.getHost() + "/users/getplataformas",
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -80,7 +80,7 @@ angular
                     var respuesta = "";
                     $http({
                         method: "POST",
-                        url: "/users/insertuserboxit",
+                        url: userData.getHost() + "/users/insertuserboxit",
                         data: args,
                         headers: {
                             'Content-Type': 'application/json'

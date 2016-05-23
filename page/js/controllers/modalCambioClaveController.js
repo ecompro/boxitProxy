@@ -15,7 +15,7 @@ angular
                 $scope.estilo = "text-danger";
                $scope.boton = "btn-danger";
             }
-            console.log()
+            console.log();
             $scope.ok = function () {
                 $uibModalInstance.close();
             };
