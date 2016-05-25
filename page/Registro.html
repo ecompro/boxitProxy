@@ -70,17 +70,18 @@
                 <li>
                     <a href="FAQ.html">PREGUNTAS FRECUENTES</a>
                 </li>
-<!--                <li>
-                    <a href="BoxitStore.html">MY BOXIT STORE AMAZON</a>
-                </li>-->
+                <!--                <li>
+                                    <a href="BoxitStore.html">MY BOXIT STORE AMAZON</a>
+                                </li>-->
             </ul>
         </div>
-        
-         <div class="Logo logoBoxitStore">
-                <a href="BoxitStore.html">
-                    <img src="img/boxitAmazon.png" alt="Boxit" title="Boxit"/>
-                </a>
-            </div>
+
+        <div class="Logo logoBoxitStore">
+            <!--                <a href="BoxitStore.html">-->
+            <a>
+                <img src="img/boxitAmazon.png" alt="Boxit" title="Boxit"/>
+            </a>
+        </div>
         <div class="UserAccountOptions">
             <a href="Iniciarsesion.html">
                 <div class="Button">INICIA SESIÓN</div>	
@@ -189,7 +190,7 @@
                             </td>
                             <td>
                                 <div class="FieldContent">
-                                    <input type="text" ng-model="username" placeholder="Pedro">
+                                    <input type="text" ng-model="username" placeholder="Introduzca nombre">
                                 </div>
                             </td>
                         </tr>
@@ -199,7 +200,7 @@
                             </td>
                             <td>
                                 <div class="FieldContent">
-                                    <input type="text" ng-model="lastname" placeholder="Perez">
+                                    <input type="text" ng-model="lastname" placeholder="Introduzca apellido">
                                 </div>
                             </td>
                         </tr>
@@ -305,7 +306,7 @@
                             </td>
                             <td>
                                 <div class="FieldContent">
-                                    <select ng-options="plataforma.attributes.Address +    ' - ' +    plataforma.attributes.DescPlataforma for plataforma in plataformas" ng-model = "descPlataforma">
+                                    <select ng-options="plataforma.attributes.Address +     ' - ' +     plataforma.attributes.DescPlataforma for plataforma in plataformas" ng-model = "descPlataforma">
                                         <option value="">Selecciona tu Boxit más cercano</option>
                                     </select>
                                 </div>
