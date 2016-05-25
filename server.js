@@ -18,7 +18,7 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
     next();
 });
-
+console.log(url);
 app.get('*', function (req, res) {
     res.sendFile(__dirname + '/page/index.html')
 });
