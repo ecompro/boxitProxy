@@ -1,0 +1,58 @@
+<div class="BarHeader Content">
+    <div class="BarHeaderContainer ContentContainer MaxWidth">
+        <div class="Text">
+            <span>Inicio de sesión.</span>
+            Coloca tu usuario y contraseña para ingresar
+        </div>
+        <img src="img/image_headerbar_1.png" alt="">
+    </div>
+</div>
+<div class="ContentContainer MaxWidthData">
+    <div class="Formulary" ng-show ="showLogin">
+        <div class="FieldContent">
+            <span>Usuario</span>
+        </div>
+        <input type="text" class="form-control" ng-model="username">
+
+        <div class="FieldContent">
+            <span>Contraseña</span>
+        </div>
+        <input type="password" class="form-control" ng-model="password">
+        <div class="FieldContent">
+            <input type="checkbox"><span>Recordarme</span>
+
+            <div class="Submit">
+                <button ng-click="Login()" class="Button WithBackground">Iniciar sesión</button>
+            </div>
+            <div class="Links">
+                <div class="Link">
+                    <a href="#" ng-click="lostPassword()">
+                        ¿Olvidaste tu contraseña?
+                    </a>
+                </div>
+                <div class="Link">
+                    <a href="Registro.html">
+                        ¿No estas registrado?
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="Formulary" ng-show ="showRecuperar">
+        <div class="FieldContent">
+            <span>Correo Electronico</span>
+        </div>
+        <input type="text" class="form-control" ng-model="lostEmail">
+
+
+        <div class="FieldContent">
+
+            <div class="Submit">
+                <button ng-click="restorePassword()" class="Button WithBackground">Recuperar Contraseña</button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
