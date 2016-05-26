@@ -177,9 +177,10 @@ angular
                     animation: true,
                     templateUrl: 'views/modalShoppingCar.html',
                     size: 'lg',
-                    controller: 'shoppingCarController'
+                    controller: 'modalShoppingCarController'
                 });
                 $localStorage.modalIns = modalInstance;
+                //$window.location = "/index.html#/boxitStore/itemList";
             };
             $scope.goBack = function () {
                 history.back();
