@@ -1,7 +1,7 @@
 angular
     .module('boxit')
-    .controller('shoppingCarController', ['$scope', '$http', '$q', '$anchorScroll', 'userData', '$uibModal', '$localStorage', '$window', '$location', '$interval','$state',
-        function ($scope, $http, $q, $anchorScroll, userData, $uibModal, $localStorage, $window, $location, $interval,$state) {
+    .controller('shoppingCarController', ['$scope', '$http', '$q', '$anchorScroll', 'userData', '$uibModal', '$localStorage', '$window', '$location', '$interval', '$state',
+        function ($scope, $http, $q, $anchorScroll, userData, $uibModal, $localStorage, $window, $location, $interval, $state) {
             var products = [];
             var links = [];
             $scope.checkout = false;
@@ -173,16 +173,7 @@ angular
                 }
             };
             $scope.showShoppingCar = function () {
-                var modalInstance = $uibModal.open({
-                    animation: true,
-                    templateUrl: 'views/modalShoppingCar.html',
-                    size: 'lg',
-                    controller: 'modalShoppingCarController'
-                });
-                modalInstance.rendered.then(function () {
-                    $state.go('boxitStore.itemList');
-                });
-                $localStorage.modalIns = modalInstance;
+                $state.go('itemList');
             };
             $scope.goBack = function () {
                 history.back();
