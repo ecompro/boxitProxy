@@ -23,10 +23,25 @@
         <script src="js/dependencias/angular-md5.js" type="text/javascript"></script>
         <script src="js/app/app.js"></script>
         <script src="js/services/userService.js" type="text/javascript"></script>
-        <script src="js/controllers/passwordController.js" type="text/javascript"></script>
+        <script src="js/services/userService.js" type="text/javascript"></script>
         <script src="js/controllers/activarController.js" type="text/javascript"></script>
+        <script src="js/controllers/anunciarPaqueteController.js" type="text/javascript"></script>
+        <script src="js/controllers/cerrarSesionController.js" type="text/javascript"></script>
+        <script src="js/controllers/detallesDelArticuloController.js" type="text/javascript"></script>
+        <script src="js/controllers/editarPerfilController.js" type="text/javascript"></script>
+        <script src="js/controllers/indexController.js" type="text/javascript"></script>
+        <script src="js/controllers/inicioController.js" type="text/javascript"></script>
+        <script src="js/controllers/loginController.js" type="text/javascript"></script>
         <script src="js/controllers/modalCambioClaveController.js" type="text/javascript"></script>
-    </head>
+        <script src="js/controllers/modalDetallesArticuloController.js" type="text/javascript"></script>
+        <script src="js/controllers/modificarContrasenaController.js" type="text/javascript"></script>
+        <script src="js/controllers/passwordController.js" type="text/javascript"></script>
+        <script src="js/controllers/seleccionarBoxitController.js" type="text/javascript"></script>
+        <script src="js/controllers/shoppingCarController.js" type="text/javascript"></script>
+        <script src="js/controllers/siginController.js" type="text/javascript"></script>
+        <script src="js/controllers/trakingDePaquetesController.js" type="text/javascript"></script>
+        <script src="js/controllers/userMenuController.js" type="text/javascript"></script>
+        <script src="js/controllers/modalShoppingCarController.js" type="text/javascript"></script>    </head>
     <body>
         <header class="MaxWidth desktop">
             <div class="Language">
@@ -41,8 +56,8 @@
                 </div>
             </div>
             <div class="Logo">
-                <a href=".\index.html">
-                    <img src="img/logo-boxit_Menu.png" alt="Boxit" title="Boxit">
+                <a ui-sref="home">
+                    <img src="../img/logo-boxit_Menu.png" alt="Boxit" title="Boxit">
                 </a>
             </div>
             <div class="Menu">
@@ -55,38 +70,38 @@
                                     <div></div>
                                 </div>
                                 <ul>
-                                    <li><a href="Nosotros.html">¿Qué es Boxit?</a></li>
-                                    <li><a href="Retiro.html">Retiro de paquete</a></li>
-                                    <li><a href="Devolucion.html">Devolución de compra</a></li>
-                                    <li><a href="Enviar.html">Enviar un paquete</a></li>
-                                    <li><a href="Pagoservicio.html">Paga tus servicios</a></li>
+                                    <li><a ui-sref="nosotros">¿Qué es Boxit?</a></li>
+                                    <li><a ui-sref="retiro">Retiro de paquete</a></li>
+                                    <li><a ui-sref="devolucion">Devolución de compra</a></li>
+                                    <li><a ui-sref="enviar">Enviar un paquete</a></li>
+                                    <li><a ui-sref="pagoservicio">Paga tus servicios</a></li>
                                 </ul>
                             </div>
                         </div>
                     </li>
                     <li>
-                        <a href="Precios.html">PRECIOS</a>
+                        <a ui-sref="precios">PRECIOS</a>
                     </li>
                     <li>
-                        <a href="FAQ.html">PREGUNTAS FRECUENTES</a>
+                        <a ui-sref="FAQ">PREGUNTAS FRECUENTES</a>
                     </li>
-                    <!--                    <li>
-                                            <a href="BoxitStore.html">MY BOXIT STORE AMAZON</a>
-                                        </li>-->
+                    <!--            <li>
+                                    <a href="../BoxitStore.html">MY BOXIT STORE AMAZON</a>
+                                </li>-->
                 </ul>
             </div>
             <div class="Logo logoBoxitStore">
                 <!--                <a href="BoxitStore.html">-->
-                <a>
+                <a ui-sref="boxitStore">
                     <img src="img/boxitAmazon.png" alt="Boxit" title="Boxit"/>
                 </a>
             </div>
 
             <div class="UserAccountOptions">
-                <a href="Iniciarsesion.html">
-                    <div class="Button">INICIA SESIÓN</div>	
+                <a ui-sref="iniciarSesion"> 
+                    <div class="Button">INICIA SESIÓN</div>
                 </a>
-                <a href="Registro.html">
+                <a ui-sref="registro">
                     <div class="Button WithBackground">REGÍSTRATE</div>
                 </a>
             </div>
@@ -94,11 +109,11 @@
         <div class="Mobile">
             <div class="Top">
                 <div class="Menu">
-                    <img src="img/IconMenuBurger.svg" alt="Cart" title="Cart">
+                    <img src="../img/IconMenuBurger.svg" alt="Cart" title="Cart">
                 </div>
                 <div class="Organization">
-                    <a href=".\index.html">
-                        <img src="img/logo-boxit_XIT_blanco.png" alt="Boxit" title="Boxit">
+                    <a href="./">
+                        <img src="../img/logo-boxit_XIT_blanco.png" alt="Boxit" title="Boxit">
                     </a>
                 </div>
             </div>
@@ -115,35 +130,35 @@
                         </div>
                         <div class="Options">
                             <div class="Option">
-                                <a href="Nosotros.html">¿Qué es Boxit?</a>
+                                <a ui-sref="nosotros">¿Qué es Boxit?</a>
                             </div>
                             <div class="Option">
-                                <a href="Retiro.html">Retiro de paquete</a>
+                                <a ui-sref="retiro">Retiro de paquete</a>
                             </div>
                             <div class="Option">
-                                <a href="Devolucion.html">Devolución de compra</a>
+                                <a ui-sref="devolucion">Devolución de compra</a>
                             </div>
                             <div class="Option">
-                                <a href="Enviar.html">Enviar un paquete</a>
+                                <a ui-sref="enviar">Enviar un paquete</a>
                             </div>
                             <div class="Option">
-                                <a href="Pagoservicio.html">Paga tus servicios</a>
+                                <a ui-sref="pagoservicio">Paga tus servicios</a>
                             </div>
                         </div>
                     </div>
                     <div class="Group">
                         <div class="Header">
-                            <a href="Precios.html">PRECIOS</a>
+                            <a ui-sref="precio">PRECIOS</a>
                         </div>
                     </div>
                     <div class="Group">
                         <div class="Header">
-                            <a href="FAQ.html">PREGUNTAS FRECUENTES</a>
+                            <a ui-sref="FAQ">PREGUNTAS FRECUENTES</a>
                         </div>
                     </div>
                     <div class="Group">
                         <div class="Header">
-                            <a href="BoxitStore.html">MY BOXIT STORE AMAZON</a>
+                            <a href="#">MY BOXIT STORE AMAZON</a>
                         </div>
                     </div>
                     <div class="Group">
@@ -152,10 +167,10 @@
                         </div>
                         <div class="Options">
                             <div class="Option">
-                                <a href="Iniciarsesion.html">Iniciar sesión</a>
+                                <a ui-sref="iniciarSesion">Iniciar sesión</a>
                             </div>
                             <div class="Option">
-                                <a href="Registro.html">Registrarse</a>
+                                <a ui-sref="registro">Registrarse</a>
                             </div>
                         </div>
                     </div>
@@ -163,13 +178,52 @@
             </div>
             <div class="Overlay"></div>
         </div>
+
+
         <div ui-view></div>
-        <footer class="Content">
-            <div class="ContentContainer MaxWidth">
-                <div class="Copyright">
-                    © 2016 Boxit | Todos los derechos reservados
+       <div class="Socials Min Content">
+            <div class="SocialsContainer ContentContainer MaxWidth">
+                <div class="Title">
+                    <img src="img/logo-boxit_Menu.png" alt="">
+                </div>
+                <div class="SocialLinks">
+                    <ul>
+                        <li><a href="https://www.facebook.com/MyboxitOnline/" target="_blank"><img src="img/icono-facebook.png" alt=""></a></li>
+                        <li><a href="https://twitter.com/MyboxitOnline/" target="_blank"><img src="img/icono-twitter.png" alt=""></a></li>
+                        <li><a href="https://www.instagram.com/MyboxitOnline/" target="_blank"><img src="img/icono-instagram.png" alt=""></a></li>
+                    </ul>
                 </div>
             </div>
-        </footer>
+        </div>
+<div class="BottomMenu MaxWidth">
+    <div class="Menu">
+        <ul>
+            <li>
+                <div class="SubMenu">
+                    <div class="SubMenuContainer">
+                        <div class="Arrow">
+                            <div></div>
+                        </div>
+                        <ul>
+                            <li><a ui-sref="nosotros">¿Qué es Boxit?</a></li>
+                            <li><a ui-sref="retiro">Retiro de paquete</a></li>
+                            <li><a ui-sref="devolucion">Devolución de compra</a></li>
+                            <li><a ui-sref="enviar">Enviar un paquete</a></li>
+                            <li><a ui-sref="pagoservicio">Paga tus servicios</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="#">SERVICIOS</a>
+            </li>
+            <li><a ui-sref="precios">PRECIOS</a></li>
+            <li><a ui-sref="boxitStore">MY BOXIT STORE AMAZON</a></li>
+        </ul>
+    </div>
+    <div class="Logo">
+        <img src="img/logo-boxit_Menu.png" alt="">
+    </div>
+</div>
+        <footer class="content" ng-include="'views/footer.html'"></footer>
+
     </body>
 </html>
