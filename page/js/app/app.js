@@ -100,11 +100,10 @@ angular.module('boxit', ['ngToast', 'ui.bootstrap', 'ui.router', 'ngStorage', 'a
                 templateUrl: "views/BoxitStore.html",
                 controller: "shoppingCarController"
             }
-        );
-        $stateProvider.state('boxitStore.itemList', {
+        ).state('itemList', {
             url: '/itemList',
             templateUrl: 'views/itemList.html',
-            controller: 'modalShoppingCarController'
+            controller: 'shoppingCarController'
         }).state('itemDetails', {
             url: '/itemDetails',
             templateUrl: 'views/detallesDelArticulo.html',

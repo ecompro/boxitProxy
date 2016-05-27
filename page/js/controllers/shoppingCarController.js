@@ -1,7 +1,7 @@
 angular
     .module('boxit')
-    .controller('shoppingCarController', ['$scope', '$http', '$q', '$anchorScroll', 'userData', '$uibModal', '$localStorage', '$window', '$location', '$interval',
-        function ($scope, $http, $q, $anchorScroll, userData, $uibModal, $localStorage, $window, $location, $interval) {
+    .controller('shoppingCarController', ['$scope', '$http', '$q', '$anchorScroll', 'userData', '$uibModal', '$localStorage', '$window', '$location', '$interval','$state',
+        function ($scope, $http, $q, $anchorScroll, userData, $uibModal, $localStorage, $window, $location, $interval,$state) {
             var products = [];
             var links = [];
             $scope.checkout = false;
@@ -179,8 +179,10 @@ angular
                     size: 'lg',
                     controller: 'modalShoppingCarController'
                 });
+                modalInstance.rendered.then(function () {
+                    $state.go('boxitStore.itemList');
+                });
                 $localStorage.modalIns = modalInstance;
-                //$window.location = "/index.html#/boxitStore/itemList";
             };
             $scope.goBack = function () {
                 history.back();
@@ -293,8 +295,6 @@ angular
                 return promise;
 
             };
-
-
             $scope.openAmazon = function () {
                 if ($scope.amazonLink === "") {
                     return "";
