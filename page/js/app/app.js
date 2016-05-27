@@ -45,7 +45,7 @@ angular.module('boxit', ['ngToast', 'ui.bootstrap', 'ui.router', 'ngStorage', 'a
         }).state('home', {
                 url: "/home",
                 templateUrl: "views/home.html",
-                controller: "IndexController"
+                controller: ""
             }
         ).state('devolucion', {
                 url: "/devolucion",

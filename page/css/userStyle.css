@@ -9,11 +9,14 @@ and open the template in the editor.
 */
 
 
-body{
-    font-family: 'Open Sans', sans-serif;
+/*body{
+  //  font-family: 'Open Sans', sans-serif;
+}*/
+
+.Text{
+    font-size: 16px;
+
 }
-
-
 
 .customLabel{
     color: #A82773 !important;
@@ -39,7 +42,7 @@ body{
 
 }
 
-.logoBoxitStore {
-  
-    
+.cierreSesion {
+    margin-left: 50px;
+
 }

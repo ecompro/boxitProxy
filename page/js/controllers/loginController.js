@@ -1,7 +1,7 @@
 angular
         .module('boxit')
-        .controller('loginController', ['$scope', '$http', '$window', 'userData', '$interval', '$uibModal',
-            function ($scope, $http, $window, userData, $interval, $uibModal) {
+        .controller('loginController', ['$scope', '$state', '$http', '$window', 'userData', '$interval', '$uibModal',
+            function ($scope, $state, $http, $window, userData, $interval, $uibModal) {
                 $scope.showLogin = true;
                 $scope.showRecuperar = false;
 
@@ -58,7 +58,12 @@ angular
                 };
 
                 if (!(userData.getData() === undefined)) {
-                    $window.location = "/userInterface.html#/userInterface";
+//                    $window.location = "/userInterface.html#/userInterface";
+                    $state.go("userMenu");
+                    $scope.$emit('estadoSesion', {
+                        estado: true
+                    });
+
                 }
                 $scope.Login = function () {
 
@@ -111,22 +116,17 @@ angular
                                 }
 
                             });
-
-
-
-
-
-
-
-
                         } else {
                             //alert(JSON.stringify(result.data));
                             //var test = userData.getData();
                             var id = result.data.Rows.attributes.IdCliente;
                             userData.setData(id).then(function () {
                                 //ngToast.create(JSON.stringify(userData.getData()));
+                                $scope.$emit('estadoSesion', {
+                                    estado: true
+                                });
                                 $interval(function () {
-                                    $window.location = "/userInterface.html#/userInterface";
+                                    $state.go("userMenu"); //$window.location = "/userInterface.html#/userInterface";
                                 }, 3000);
                             });
                         }
