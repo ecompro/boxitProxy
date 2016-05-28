@@ -3,8 +3,8 @@
  */
 angular
     .module('boxit')
-    .controller('modalShoppingCarController', ['$scope', '$http', '$q', '$anchorScroll', 'userData', '$uibModal', '$localStorage', '$window', '$location', '$interval',
-        function ($scope, $http, $q, $anchorScroll, userData, $uibModal, $localStorage, $window, $location, $interval) {
+    .controller('modalShoppingCarController', ['$scope', '$http', '$q', '$anchorScroll', 'userData', '$uibModal', '$localStorage', '$window', '$location', '$interval','$state','$uibModalInstance',
+        function ($scope, $http, $q, $anchorScroll, userData, $uibModal, $localStorage, $window, $location, $interval,$state,$uibModalInstance) {
             var products = [];
             var links = [];
             $scope.checkout = false;
@@ -189,7 +189,10 @@ angular
                 history.back();
             };
             $scope.closeModal = function () {
-                $localStorage.modalIns.close();
+                $uibModalInstance.close();
+            };
+            $scope.changeModal = function () {
+                $state.go('itemList');
             };
             var getItemLink = function (id) {
                 var defered = $q.defer();

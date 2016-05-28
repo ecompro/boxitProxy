@@ -1,7 +1,7 @@
 angular
     .module('boxit')
-    .controller('shoppingCarController', ['$scope', '$http', '$q', '$anchorScroll', 'userData', '$uibModal', '$localStorage', '$window', '$location', '$interval','$state',
-        function ($scope, $http, $q, $anchorScroll, userData, $uibModal, $localStorage, $window, $location, $interval,$state) {
+    .controller('shoppingCarController', ['$scope', '$http', '$q', '$anchorScroll', 'userData', '$uibModal', '$localStorage', '$window', '$location', '$interval', '$state',
+        function ($scope, $http, $q, $anchorScroll, userData, $uibModal, $localStorage, $window, $location, $interval, $state) {
             var products = [];
             var links = [];
             $scope.checkout = false;
@@ -115,7 +115,6 @@ angular
                 return $q.all(promises);
 
             }
-
             function callPages(params) {
                 var defered = $q.defer();
                 var promise = defered.promise;
@@ -133,7 +132,6 @@ angular
                 });
                 return promise;
             }
-
             $scope.pageChanged = function () {
                 $scope.Items = products[$scope.currentPage - 1];
                 $location.hash('top');
@@ -173,16 +171,7 @@ angular
                 }
             };
             $scope.showShoppingCar = function () {
-                var modalInstance = $uibModal.open({
-                    animation: true,
-                    templateUrl: 'views/modalShoppingCar.html',
-                    size: 'lg',
-                    controller: 'modalShoppingCarController'
-                });
-                modalInstance.rendered.then(function () {
-                    $state.go('boxitStore.itemList');
-                });
-                $localStorage.modalIns = modalInstance;
+                $state.go('modal');
             };
             $scope.goBack = function () {
                 history.back();

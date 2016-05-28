@@ -100,19 +100,51 @@ angular.module('boxit', ['ngToast', 'ui.bootstrap', 'ui.router', 'ngStorage', 'a
                 templateUrl: "views/BoxitStore.html",
                 controller: "shoppingCarController"
             }
+        ).state('modal', {
+                parent: 'boxitStore',
+                url: '/modal',
+                onEnter: ['$uibModal', '$state', function ($uibModal, $state) {
+                    console.log('Open modal');
+                    $uibModal.open({
+                        templateUrl: 'views/modalShoppingCar.html',
+                        size: 'lg',
+                        controller: 'modalShoppingCarController'
+                    }).result.finally(function () {
+                        $state.go('boxitStore');
+                    });
+                }]
+            }
         ).state('itemList', {
-            url: '/itemList',
-            templateUrl: 'views/itemList.html',
-            controller: 'shoppingCarController'
-        }).state('itemDetails', {
-            url: '/itemDetails',
-            templateUrl: 'views/detallesDelArticulo.html',
-            params: {
-                itemId: ""
-            },
-            controller: 'detallesDelArticuloController'
-        }).state('checkoutmessage', {
-            url: '/checkoutmessage',
-            templateUrl: 'views/checkoutmessage.html'
-        });
+                url: '/itemList',
+                parent: 'modal',
+                views: {
+                    'modal@': {
+                        templateUrl: 'views/itemList.html'
+                    }
+                },
+                controller: 'shoppingCarController'
+            }
+        ).state('itemDetails', {
+                url: '/itemDetails?itemId',
+                parent: 'modal',
+                views: {
+                    'modal@': {
+                        templateUrl: 'views/detallesDelArticulo.html'
+                    }
+                },
+                params: {
+                    itemId: ""
+                },
+                controller: 'detallesDelArticuloController'
+            }
+        ).state('checkoutmessage', {
+                url: '/checkoutmessage',
+                parent: 'modal',
+                views: {
+                    'modal@': {
+                        templateUrl: 'views/checkoutmessage.html'
+                    }
+                }
+            }
+        );
     }]);
