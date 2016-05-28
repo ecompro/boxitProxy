@@ -2,7 +2,9 @@ angular
     .module('boxit')
     .controller('detallesDelArticuloController', ['$scope', '$stateParams', 'userData', '$window','$http',
         function ($scope, $stateParams, userData, $window,$http) {
+            console.log('hola');
             var item = $stateParams.itemId;
+            console.log(item);
             var amount;
             var carItemId;
             var getQuantity = function (carItems) {
@@ -58,7 +60,7 @@ angular
                 userData.getShoppingCar(userData.getData().IdCliente).then(function success(result) {
                     var carItems = result.data.Data.Cart.CartItems.CartItem;
                     $scope.cantidad = getQuantity(carItems);
-                    if (amount != undefined) {
+                    if (amount != undefined && $scope.cantidad != undefined) {
                         $scope.total = numeral((amount * $scope.cantidad) / 100).format('$0,0.00');
                     }
                 }, function error(result) {

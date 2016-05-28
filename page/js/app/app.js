@@ -106,7 +106,9 @@ angular.module('boxit', ['ngToast', 'ui.bootstrap', 'ui.router', 'ngStorage', 'a
                 onEnter: ['$uibModal', '$state', function ($uibModal, $state) {
                     console.log('Open modal');
                     $uibModal.open({
-                        template: 'views/modalShoppingCar.html'
+                        templateUrl: 'views/modalShoppingCar.html',
+                        size: 'lg',
+                        controller: 'modalShoppingCarController'
                     }).result.finally(function () {
                         $state.go('boxitStore');
                     });
@@ -114,12 +116,22 @@ angular.module('boxit', ['ngToast', 'ui.bootstrap', 'ui.router', 'ngStorage', 'a
             }
         ).state('itemList', {
                 url: '/itemList',
-                templateUrl: 'views/itemList.html',
+                parent: 'modal',
+                views: {
+                    'modal@': {
+                        templateUrl: 'views/itemList.html'
+                    }
+                },
                 controller: 'shoppingCarController'
             }
         ).state('itemDetails', {
-                url: '/itemDetails',
-                templateUrl: 'views/detallesDelArticulo.html',
+                url: '/itemDetails?itemId',
+                parent: 'modal',
+                views: {
+                    'modal@': {
+                        templateUrl: 'views/detallesDelArticulo.html'
+                    }
+                },
                 params: {
                     itemId: ""
                 },
@@ -127,7 +139,12 @@ angular.module('boxit', ['ngToast', 'ui.bootstrap', 'ui.router', 'ngStorage', 'a
             }
         ).state('checkoutmessage', {
                 url: '/checkoutmessage',
-                templateUrl: 'views/checkoutmessage.html'
+                parent: 'modal',
+                views: {
+                    'modal@': {
+                        templateUrl: 'views/checkoutmessage.html'
+                    }
+                }
             }
         );
     }]);
