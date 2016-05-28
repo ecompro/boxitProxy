@@ -102,7 +102,15 @@ angular.module('boxit', ['ngToast', 'ui.bootstrap', 'ui.router', 'ngStorage', 'a
             }
         ).state('modal', {
                 parent: 'boxitStore',
-                url: '/modal'
+                url: '/modal',
+                onEnter: ['$uibModal', '$state', function ($uibModal, $state) {
+                    console.log('Open modal');
+                    $uibModal.open({
+                        template: 'views/modalShoppingCar.html'
+                    }).result.finally(function () {
+                        $state.go('boxitStore');
+                    });
+                }]
             }
         ).state('itemList', {
                 url: '/itemList',

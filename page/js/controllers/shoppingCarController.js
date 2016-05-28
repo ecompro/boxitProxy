@@ -115,7 +115,6 @@ angular
                 return $q.all(promises);
 
             }
-
             function callPages(params) {
                 var defered = $q.defer();
                 var promise = defered.promise;
@@ -133,7 +132,6 @@ angular
                 });
                 return promise;
             }
-
             $scope.pageChanged = function () {
                 $scope.Items = products[$scope.currentPage - 1];
                 $location.hash('top');
@@ -173,7 +171,7 @@ angular
                 }
             };
             $scope.showShoppingCar = function () {
-                $state.go('itemList');
+                $state.go('modal');
             };
             $scope.goBack = function () {
                 history.back();
