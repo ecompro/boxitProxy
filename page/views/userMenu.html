@@ -13,7 +13,7 @@
     <h1 class="customLabel"> Bienvenido {{userName}} </h1>
     </div>
 </div>
-<div class="row">   
+<div class="row" style="margin-left: 5%;">   
     <div class="col-lg-2">
         <ul class="nav nav-pills nav-stacked">
             <li role="presentation" ng-class="{'active': menu1}" ng-click="active(1)"><a ui-sref="userMenu.inicio">Inicio</a></li>
@@ -26,6 +26,6 @@
         </ul>
     </div>
     <div class="col-lg-10">
-        <div ui-view></div>
+        <div  style="margin-bottom: 10%" ui-view></div>
     </div>
 </div>

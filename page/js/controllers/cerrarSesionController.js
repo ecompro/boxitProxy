@@ -6,14 +6,14 @@
 
 
 angular.module('boxit')
-        .controller('cerrarSesionController', ['$scope', '$http', '$window', 'userData', '$interval',
-            function ($scope, $http, $window, userData, $interval) {
+        .controller('cerrarSesionController', ['$scope','$state', '$http', '$window', 'userData', '$interval',
+            function ($scope,$state, $http, $window, userData, $interval) {
 
                 userData.logoff();
                 $scope.$emit('estadoSesion', {
-                    estado: true
+                    estado: false
                 });
-                $interval(function () {
-                    $window.location = "/Iniciarsesion.html";
-                }, 3000);
+               // $interval(function () {
+                    $state.go('home');  //$window.location = "/Iniciarsesion.html";
+              //  }, 3000);
             }]);
