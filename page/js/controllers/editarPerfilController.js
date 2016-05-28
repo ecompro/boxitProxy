@@ -17,7 +17,7 @@ angular.module('boxit')
                     $scope.UserGender = user.UserGender;
                     $scope.UserPhone = user.UserPhone;
                     $scope.UserEmail = user.UserEmail;
-                    
+
 
                 };
 
@@ -37,8 +37,9 @@ angular.module('boxit')
                     $scope.UserBirthdate = new Date
                     var oldUser = userData.getData();
                     var unformattedDate = moment(oldUser.UserBirthdate, "DD/MM/YY");
-                    // console.log( new Date());
-                    $scope.UserBirthdate = new Date(); //moment(unformattedDate).format('YYYY/MM/DD');
+                    console.log(unformattedDate);
+                    console.log(moment(unformattedDate).format('YYYY-MM-DD'));
+                    $scope.UserBirthdate = new Date(moment(unformattedDate).format('YYYY-MM-DD')); // moment(unformattedDate); //.format('YYYY-MM-DD'); //moment(unformattedDate).format('YYYY-MM-DD');
                     //console.log();
                     //$scope.UserBirthdate = moment(unformattedDate).format('yyyy-MM-dd');
                 };
@@ -95,11 +96,15 @@ angular.module('boxit')
                                     }
 
                                 });
+                                userData.setData(oldUser.IdCliente).then(function () {
+                                  
+                                  
+                                  
+                                  
+                                });
 
 
-
-
-                                console.log(data);
+                                // console.log(data);
                             }).catch(function (err) {
                         console.log(err);
                     });

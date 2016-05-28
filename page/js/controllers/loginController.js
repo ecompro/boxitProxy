@@ -59,7 +59,7 @@ angular
 
                 if (!(userData.getData() === undefined)) {
 //                    $window.location = "/userInterface.html#/userInterface";
-                    $state.go("userMenu");
+                    $state.go("userMenu.inicio");
                     $scope.$emit('estadoSesion', {
                         estado: true
                     });
@@ -125,9 +125,9 @@ angular
                                 $scope.$emit('estadoSesion', {
                                     estado: true
                                 });
-                                $interval(function () {
-                                    $state.go("userMenu"); //$window.location = "/userInterface.html#/userInterface";
-                                }, 3000);
+                               // $interval(function () {
+                                    $state.go("userMenu");  //$window.location = "/userInterface.html#/userInterface";
+                               // }, 3000);
                             });
                         }
 
