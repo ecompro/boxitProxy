@@ -12,12 +12,12 @@
         <div class="FieldContent">
             <span>Usuario</span>
         </div>
-        <input type="text" class="form-control" ng-model="username">
+        <input type="text" class="form-control" ng-model="username" ng-keypress="onKeyEnterPress($event)">
 
         <div class="FieldContent">
             <span>Contraseña</span>
         </div>
-        <input type="password" class="form-control" ng-model="password">
+        <input type="password" class="form-control" ng-model="password" ng-keypress="onKeyEnterPress($event)">
         <div class="FieldContent">
             <input type="checkbox"><span>Recordarme</span>
 

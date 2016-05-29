@@ -37,6 +37,7 @@ angular
                 });
             };
             $scope.doSearch = function () {
+                $scope.currentPage = 1;
                 products = [];
                 searchProducts().then(function success(result) {
                     $scope.showCarMessage = false;

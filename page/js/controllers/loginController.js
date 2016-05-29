@@ -135,4 +135,9 @@ angular
                         console.log(result.data);
                     });
                 };
+                $scope.onKeyEnterPress = function (event) {
+                    if (event.keyCode === 13) {
+                        $scope.Login();
+                    }
+                };
             }]);
