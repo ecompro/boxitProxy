@@ -24,8 +24,8 @@ var user = {
         tel: ""
     }
 };
-//var host = "http://localhost:8080";
-var host = "";
+var host = "http://myboxit.com:8080";
+//var host = "";
 angular.module('boxit')
         .factory('userData', function ($http, $q, $localStorage) {
             var factory = {};
