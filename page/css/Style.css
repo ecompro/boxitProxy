@@ -58,7 +58,7 @@ body > * {
     bottom: 10px;
     overflow: hidden;
     position: absolute;
-        margin-left: 45%;
+      
 }
 .BannerSelecters > .Banner{
     width: calc(11px - 2px);
