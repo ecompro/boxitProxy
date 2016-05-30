@@ -15,6 +15,19 @@ $(document).ready(function(){
 			$(this).css("left",Left+"px");
 		});
 	});
+        
+        function banner(){
+            alert("se llamo");
+            $(".BannerSelecters").each(function(index){
+			var WidthRotator = Number($(this).closest(".Rotator").width());
+			var WidthBannerSelecters = Number($(this).width());
+			var Left = (WidthRotator / 2) - (WidthBannerSelecters / 2);
+			$(this).css("left",Left+"px");
+		});
+            
+            
+        };
+       
 	$("body").on("click",".FAQS .FAQ .Title",function(){
 		$(".FAQS .FAQ").removeClass("Selected");
 		$(this).closest(".FAQ").addClass("Selected");

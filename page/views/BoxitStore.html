@@ -1,38 +1,41 @@
     <div  class="row boxitBar">
 
-        <div class="col-md-1 carAvatar noppading">
+        <div class="col-md-2 carAvatar">
             <br>
             <div class="Avatar"></div>
             <span class="Name">Hi, {{UserName}}</span>
+           
         </div>
 
-        <div class="form-group col-md-2 noppading">
+        <div class="form-group col-md-2">
             <br>
             <select class="form-control"  ng-init="initIndex()" ng-model="index"
                     ng-options="index.attributes.SearchIndex for index in indexs">
             </select>
         </div>    
-        <div class="form-group col-md-5 noppading">
+        <div class="form-group col-md-5">
             <br>
             <input class="form-control" type="text" name="find" ng-keypress="onKeyEnterPress($event)"
                    ng-model="keyword">
             <!--                <button   ng-click="doSearch()"></button>-->
 
         </div>
-        <div class="col-md-1 noppading">
+        <div class="col-md-1 ">
             <br>
             <button type="button" class="btn btn-info" ng-click="doSearch()">
                 <span class="glyphicon glyphicon-search"></span> Search
             </button>
         </div>
-        <div class=" col-md-1 noppading">
+        <div class=" col-md-1 ">
             <br>
             <a class="cart"
                ng-click="showShoppingCar()">
                 <span id="cartNumber">{{carNumber}}</span>Cart
             </a>
         </div>
-
+        <br>
+        <br>
+        <br>
     </div>
 
     <div  style ="margin-bottom: 10%;" class="BoxitStoreContainer " ng-init="firstSearch()">

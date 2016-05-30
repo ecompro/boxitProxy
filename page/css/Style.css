@@ -1,7 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);
 body{
-    font-family: 'Open Sans', sans-serif;
-    color: #a0a0a0;
+    font-family: 'Open Sans', sans-serif!important;
+    color: #a0a0a0!important;
     -webkit-transition: width 5s; /* Safari */
     transition: width 5s;
 }
@@ -58,7 +58,7 @@ body > * {
     bottom: 10px;
     overflow: hidden;
     position: absolute;
-      
+/*       margin-left: 45%;*/
 }
 .BannerSelecters > .Banner{
     width: calc(11px - 2px);
