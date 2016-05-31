@@ -17,7 +17,7 @@ $(document).ready(function(){
 	});
         
         function banner(){
-            alert("se llamo");
+           
             $(".BannerSelecters").each(function(index){
 			var WidthRotator = Number($(this).closest(".Rotator").width());
 			var WidthBannerSelecters = Number($(this).width());
@@ -40,6 +40,12 @@ $(document).ready(function(){
 		$(".MobileMenu").hide();
 		$("body").css("overflow","auto");
 	});
+        
+        $("body").on("click",".closeMmenu",function(){
+		$(".MobileMenu").hide();
+		$("body").css("overflow","auto");
+	});
+        
 	$("body").on("click", ".MobileMenu .Menu .Groups .Group .Header", function(){
 		$(this).closest(".Group").find(".Options").toggle();
 	});
