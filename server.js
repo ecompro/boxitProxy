@@ -764,6 +764,25 @@ amazonRouter.route('/amazongetkeywordsrandom').post(function (req, res) {
 
 //AmazonGetKeywordsRandom
 
+amazonRouter.route('/amazongetitemidvariations').post(function (req, res) {
+    var args = {};
+    args["CustomerUser"] = CustomerUser;
+    args["CustomerPassword"] = CustomerPassword;
+    args["ItemId"] = req.body.ItemId;
+    soap.createClient(url, function (err, client) {
+        if (client === undefined) {
+            res.json("Servidor no responde");
+            return;
+        }
+        client.AmazonGetItemIdVariations(args, function (err, result) {
+            if (result === undefined) {
+                res.json("Servidor no responde");
+                return;
+            }
+            res.json(result.AmazonGetItemIdVariationsResult.Data.Items);
+        });
+    });
+});
 app.use('/users', usersRouter);
 app.use('/amazon', amazonRouter);
 app.listen(port);

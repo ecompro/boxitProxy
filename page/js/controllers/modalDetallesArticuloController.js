@@ -5,6 +5,7 @@ angular
     .module('boxit')
     .controller('modalDetallesArticulosController', ['$scope', '$uibModalInstance', 'item', 'userData',
         function ($scope, $uibModalInstance, item, userData) {
+            console.log(item);
             var usrObj = userData.getData();
             $scope.userNotLogged = usrObj == undefined;
             $scope.titulo = item.Item.Attributes.Title;
@@ -15,14 +16,18 @@ angular
             $scope.total = numeral((item.Item.Offers.Offer.OfferListing.Price.Amount * $scope.cantidad) / 100).format('$0,0.00');
             function getDescription(item) {
                 var description = "";
-                if (item.Item.Attributes.Feature.length != null && typeof item.Item.Attributes.Feature === "string") {
-                    description = item.Item.Attributes.Feature;
-                } else {
-                    if (item.Item.Attributes.Feature.length != null) {
-                        for (var i = 0; i < item.Item.Attributes.Feature.length; i++) {
-                            description = description.concat(" ", item.Item.Attributes.Feature[i]);
+                if (item.Item.Attributes.Feature != undefined) {
+                    if (item.Item.Attributes.Feature.length != null && typeof item.Item.Attributes.Feature === "string") {
+                        description = item.Item.Attributes.Feature;
+                    } else {
+                        if (item.Item.Attributes.Feature.length != null) {
+                            for (var i = 0; i < item.Item.Attributes.Feature.length; i++) {
+                                description = description.concat(" ", item.Item.Attributes.Feature[i]);
+                            }
                         }
                     }
+                }else {
+                    description = "Descripcion no Disponible"
                 }
                 return description;
             }
