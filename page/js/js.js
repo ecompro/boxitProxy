@@ -43,6 +43,7 @@ $(document).ready(function(){
         
         $("body").on("click",".closeMmenu",function(){
 		$(".MobileMenu").hide();
+                $(this).closest(".Group").find(".Options").toggle();
 		$("body").css("overflow","auto");
 	});
         
