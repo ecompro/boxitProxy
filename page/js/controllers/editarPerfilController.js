@@ -36,10 +36,10 @@ angular.module('boxit')
                     };
                     $scope.UserBirthdate = new Date
                     var oldUser = userData.getData();
-                    var unformattedDate = moment(oldUser.UserBirthdate, "DD/MM/YY");
+                    var unformattedDate = oldUser.UserBirthdate=== "" ? new Date() : moment(oldUser.UserBirthdate, "DD/MM/YY"); // moment(oldUser.UserBirthdate, "DD/MM/YY");
                     console.log(unformattedDate);
                     console.log(moment(unformattedDate).format('YYYY-MM-DD'));
-                    $scope.UserBirthdate = new Date(moment(unformattedDate).format('YYYY-MM-DD')); // moment(unformattedDate); //.format('YYYY-MM-DD'); //moment(unformattedDate).format('YYYY-MM-DD');
+                    $scope.UserBirthdate = new Date(moment(unformattedDate).add(1,'d').format('YYYY-MM-DD')); // moment(unformattedDate); //.format('YYYY-MM-DD'); //moment(unformattedDate).format('YYYY-MM-DD');
                     //console.log();
                     //$scope.UserBirthdate = moment(unformattedDate).format('yyyy-MM-dd');
                 };
@@ -52,7 +52,7 @@ angular.module('boxit')
                     formatYear: 'yyyy',
                     maxDate: new Date(2020, 1, 1),
                     minDate: new Date(1915, 1, 1),
-                    startingDay: 1
+                    startingDay: 0
                 };
 
                 $scope.Update = function () {

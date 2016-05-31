@@ -12,7 +12,7 @@ angular
                 }
                
                 $scope.$on('estadoSesion', function (event, estado) {
-                   alert("evento");
+                 
                     $scope.loged = estado.estado;
                     // profileObj contains; name, country and email from emitted event
                 });

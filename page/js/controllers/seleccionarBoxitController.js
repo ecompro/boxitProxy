@@ -38,7 +38,7 @@ angular.module('boxit')
 
                     var unformattedDate =  oldUser.UserBirthdate==="" ? new Date() : moment(oldUser.UserBirthdate, "DD/MM/YY");  //moment(oldUser.UserBirthdate, "DD/MM/YY");
 
-                    user["UserBirthdate"] = moment(unformattedDate).format('YYYY/MM/DD');
+                    user["UserBirthdate"] = moment(unformattedDate).add(1,'d').format('YYYY/MM/DD');
                     user["IdPlataforma"] = $scope.descPlataforma.attributes.IdPlataforma;
                     user["UserEmail"] = oldUser.UserEmail;
                     user["UserPhone"] = oldUser.UserPhone;
