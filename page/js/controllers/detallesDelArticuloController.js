@@ -2,7 +2,6 @@ angular
     .module('boxit')
     .controller('detallesDelArticuloController', ['$scope', '$stateParams', 'userData', '$window','$http',
         function ($scope, $stateParams, userData, $window,$http) {
-            console.log('hola');
             var item = $stateParams.itemId;
             console.log(item);
             var amount;
