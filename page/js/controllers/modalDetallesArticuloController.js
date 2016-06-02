@@ -3,17 +3,78 @@
  */
 angular
     .module('boxit')
-    .controller('modalDetallesArticulosController', ['$scope', '$uibModalInstance', 'item', 'userData',
-        function ($scope, $uibModalInstance, item, userData) {
+    .controller('modalDetallesArticulosController', ['$scope', '$uibModalInstance', 'item', 'userData','$q','$http',
+        function ($scope, $uibModalInstance, item, userData,$q,$http) {
             console.log(item);
+            $scope.showZise = false;
+            $scope.ShowColor = false;
+            $scope.showCombination = false;
+            $scope.disabledAdd = false;
             var usrObj = userData.getData();
-            $scope.userNotLogged = usrObj == undefined;
-            $scope.titulo = item.Item.Attributes.Title;
-            $scope.texto = getDescription(item).trim();
-            $scope.imgUrl = item.Item.Image.ImageUrl;
-            $scope.itemPrice = item.Item.Offers.Offer.OfferListing.Price.FormattedPrice;
-            $scope.cantidad = 1;
-            $scope.total = numeral((item.Item.Offers.Offer.OfferListing.Price.Amount * $scope.cantidad) / 100).format('$0,0.00');
+            setItemData(item);
+            setItemVariation(item);
+            function setItemData(item) {
+                $scope.userLogged = !(usrObj == undefined);
+                $scope.titulo = item.Item.Attributes.Title;
+                $scope.texto = getDescription(item).trim();
+                $scope.imgUrl = item.Item.Image.ImageUrl;
+                $scope.itemPrice = item.Item.Offers.Offer == null ? 0 : item.Item.Offers.Offer.OfferListing.Price.FormattedPrice;
+                $scope.cantidad = 1;
+                var amount = item.Item.Offers.Offer == null ? 0 : item.Item.Offers.Offer.OfferListing.Price.Amount;
+                console.log($scope.itemPrice);
+                console.log(amount);
+                $scope.disabledAdd = $scope.itemPrice == 0 && amount == 0 ? true : false;
+                console.log($scope.disabledAdd);
+                console.log($scope.userLogged);
+                console.log($scope.userLogged && $scope.disabledAdd);
+                $scope.total = numeral(( amount * $scope.cantidad) / 100).format('$0,0.00');
+            }
+
+            function getItemVariation(item) {
+                var defered = $q.defer();
+                var promise = defered.promise;
+                $http({
+                    method: "POST",
+                    url: userData.getHost() + "/amazon/amazongetitemidvariations",
+                    data: {
+                        "ItemId": item.Item.ItemId
+                    },
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(function success(result) {
+                    defered.resolve(result.data.Item.Variations);
+                },function error(result) {
+                  defered.reject(result);
+                });
+                return promise;
+            }
+
+            function setItemVariation(item) {
+                getItemVariation(item).then(function success(result) {
+                    if (result == null) {
+                        var colorExist = false;
+                        var sizeExist = false;
+                        console.log(item);
+                        if (item.Item.Attributes.Size != null) {
+                            $scope.showZise = true;
+                            $scope.size = item.Item.Attributes.Size;
+                            sizeExist = true;
+                        }
+                        if (item.Item.Attributes.Color != null) {
+                            $scope.ShowColor = true;
+                            $scope.color = item.Item.Attributes.Color;
+                            colorExist = true;
+                        }
+                        if (sizeExist && colorExist) {
+                            $scope.showCombination = true;
+                        }
+                    }
+                },function error(result) {
+                    console.log(result);
+                });
+            }
+
             function getDescription(item) {
                 var description = "";
                 if (item.Item.Attributes.Feature != undefined) {
@@ -26,11 +87,12 @@ angular
                             }
                         }
                     }
-                }else {
+                } else {
                     description = "Descripcion no Disponible"
                 }
                 return description;
             }
+
             $scope.addToCar = function () {
                 var args = {};
                 args["IdCliente"] = userData.getData().IdCliente;

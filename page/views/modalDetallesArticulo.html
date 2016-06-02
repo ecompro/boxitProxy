@@ -23,7 +23,22 @@
             <span style="font-size: 20px"><b>Descripcion: </b></span>
             <br>
             <span class="text-justify" style="font-size: 15px">{{texto}}</span>
-            <br>            
+            <br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2 center-block" ng-show="ShowColor">
+            <span class="btn btn-lg btn-default">{{color}}</span>
+        </div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-4 center-block" ng-show="ShowColor">
+            <span class="btn btn-lg btn-default">{{size}}</span>
+        </div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-4 center-block" ng-show="showCombination">
+            <select class="form-control" style="height: 44px">
+                <option value="0">{{color}} - {{size}}</option>
+            </select>
         </div>
     </div>
 </div>
@@ -50,7 +65,9 @@
                 <span class="form-control"><b>{{total}}</b></span>
                 <span class="input-group-btn" uib-tooltip="See? Now click away..."
                       tooltip-trigger="click" tooltip-placement="top">
-        <button style="border-bottom-left-radius: 0;border-top-left-radius: 0" ng-click="addToCar()" class="btn btn-primary" type="button" ng-disabled="userNotLogged">Añadir</button>
+        <button style="border-bottom-left-radius: 0;border-top-left-radius: 0" ng-click="addToCar()"
+                class="btn btn-primary" type="button" ng-disabled="userLogged && disabledAdd">Añadir
+        </button>
       </span>
             </div>
         </div>
