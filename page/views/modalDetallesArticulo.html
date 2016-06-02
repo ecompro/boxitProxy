@@ -40,6 +40,10 @@
                 <option value="0">{{color}} - {{size}}</option>
             </select>
         </div>
+        <div class="col-lg-4 center-block" ng-show="showVariations">
+            <select class="form-control" style="height: 44px" ng-options="item.VariationAttributes.VariationAttribute[0].Value + ' - ' + item.VariationAttributes.VariationAttribute[1].Value for item in variations" ng-model="variation">
+            </select>
+        </div>
     </div>
 </div>
 <div class="modal-footer">

@@ -5,10 +5,10 @@ angular
     .module('boxit')
     .controller('modalDetallesArticulosController', ['$scope', '$uibModalInstance', 'item', 'userData','$q','$http',
         function ($scope, $uibModalInstance, item, userData,$q,$http) {
-            console.log(item);
             $scope.showZise = false;
             $scope.ShowColor = false;
             $scope.showCombination = false;
+            $scope.showVariations = false;
             $scope.disabledAdd = false;
             var usrObj = userData.getData();
             setItemData(item);
@@ -21,12 +21,7 @@ angular
                 $scope.itemPrice = item.Item.Offers.Offer == null ? 0 : item.Item.Offers.Offer.OfferListing.Price.FormattedPrice;
                 $scope.cantidad = 1;
                 var amount = item.Item.Offers.Offer == null ? 0 : item.Item.Offers.Offer.OfferListing.Price.Amount;
-                console.log($scope.itemPrice);
-                console.log(amount);
                 $scope.disabledAdd = $scope.itemPrice == 0 && amount == 0 ? true : false;
-                console.log($scope.disabledAdd);
-                console.log($scope.userLogged);
-                console.log($scope.userLogged && $scope.disabledAdd);
                 $scope.total = numeral(( amount * $scope.cantidad) / 100).format('$0,0.00');
             }
 
@@ -37,7 +32,7 @@ angular
                     method: "POST",
                     url: userData.getHost() + "/amazon/amazongetitemidvariations",
                     data: {
-                        "ItemId": item.Item.ItemId
+                        "ItemId": "B01017MCTI"
                     },
                     headers: {
                         'Content-Type': 'application/json'
@@ -51,10 +46,10 @@ angular
             }
 
             function setItemVariation(item) {
+                var colorExist = false;
+                var sizeExist = false;
                 getItemVariation(item).then(function success(result) {
                     if (result == null) {
-                        var colorExist = false;
-                        var sizeExist = false;
                         console.log(item);
                         if (item.Item.Attributes.Size != null) {
                             $scope.showZise = true;
@@ -69,6 +64,10 @@ angular
                         if (sizeExist && colorExist) {
                             $scope.showCombination = true;
                         }
+                    }else {
+                        $scope.showVariations = true;
+                        console.log(result.Item);
+                        $scope.variations = result.Item;
                     }
                 },function error(result) {
                     console.log(result);
