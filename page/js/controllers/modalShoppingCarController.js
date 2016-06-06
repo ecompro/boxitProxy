@@ -254,7 +254,8 @@ angular
                 clearCar(IdCliente);
                 $scope.checkout = true;
                 $scope.shopping = false;
-                $window.location = '/BoxitStore.html#/checkoutmessage';
+                //$window.location = '/BoxitStore.html#/checkoutmessage';
+                $state.go("checkoutmessage");
                 return $q.all(promises);
             };
             var itemCheckOut = function (params) {
@@ -411,5 +412,8 @@ angular
                 }
                 return totalAcumulado;
             }
+            
+      
+            
         }]);
 

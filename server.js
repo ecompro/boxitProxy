@@ -779,7 +779,7 @@ amazonRouter.route('/amazongetitemidvariations').post(function (req, res) {
                 res.json("Servidor no responde");
                 return;
             }
-            res.json(result.AmazonGetItemIdVariationsResult.Data.Items);
+            res.json(result.AmazonGetItemIdVariationsResult); //.Data.Items);
         });
     });
 });

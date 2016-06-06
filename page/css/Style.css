@@ -373,7 +373,7 @@ header .Logo a img{
 }
 .Menu ul li .SubMenu{
     width: 200px;
-    height: 300px;
+    height: 200px;
     background: white;
     position: absolute;
     display: none;
@@ -382,7 +382,7 @@ header .Logo a img{
 }
 .Menu ul li .SubMenu .SubMenuContainer{
     width: 200px;
-    height: 300px;
+    height: 200px;
     background: white;
     position: absolute;
     z-index: 999;
@@ -942,7 +942,7 @@ header .UserAccountOptions a:nth-child(2){
     margin: 0 5px;
 }
 .Socials .SocialsContainer .SocialLinks ul li a{
-
+    height: 200%;
 }
 .Socials.Min{
     height: 115px;

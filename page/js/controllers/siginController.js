@@ -12,7 +12,7 @@ angular
                     $scope.UserBirthdate = new Date();
                 };
                 $scope.today();
-                $scope.format = 'yyyy-MM-dd';
+                $scope.format = 'dd/MM/yyyy';
                 $scope.dateOptions = {
                     dateDisabled: disabled,
                     formatYear: 'yyyy',

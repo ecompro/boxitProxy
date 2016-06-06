@@ -38,15 +38,15 @@ angular.module('boxit')
                     var oldUser = userData.getData();
                     var unformattedDate = oldUser.UserBirthdate=== "" ? new Date() : moment(oldUser.UserBirthdate, "DD/MM/YY"); // moment(oldUser.UserBirthdate, "DD/MM/YY");
                     console.log(unformattedDate);
-                    console.log(moment(unformattedDate).format('YYYY-MM-DD'));
-                    $scope.UserBirthdate = new Date(moment(unformattedDate).add(1,'d').format('YYYY-MM-DD')); // moment(unformattedDate); //.format('YYYY-MM-DD'); //moment(unformattedDate).format('YYYY-MM-DD');
+                    console.log(moment(unformattedDate).format('DD/MM/YYYY'));
+                    $scope.UserBirthdate = new Date(moment(unformattedDate)); // moment(unformattedDate); //.format('YYYY-MM-DD'); //moment(unformattedDate).format('YYYY-MM-DD');
                     //console.log();
                     //$scope.UserBirthdate = moment(unformattedDate).format('yyyy-MM-dd');
                 };
                 $scope.init();
                 $scope.today();
 
-                $scope.format = 'yyyy-MM-dd';
+                $scope.format = 'dd/MM/yyyy';
                 $scope.dateOptions = {
                     dateDisabled: disabled,
                     formatYear: 'yyyy',
