@@ -27,21 +27,21 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-2 center-block" ng-show="ShowColor">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-2" ng-show="ShowColor">
             <span class="btn btn-lg btn-default">{{color}}</span>
         </div>
-        <div class="col-lg-1"></div>
-        <div class="col-lg-4 center-block" ng-show="ShowColor">
+        <div class="col-lg-3" ng-show="showZise">
             <span class="btn btn-lg btn-default">{{size}}</span>
         </div>
-        <div class="col-lg-1"></div>
-        <div class="col-lg-4 center-block" ng-show="showCombination">
+        <div class="col-lg-4" ng-show="showCombination">
             <select class="form-control" style="height: 44px">
                 <option value="0">{{color}} - {{size}}</option>
             </select>
         </div>
-        <div class="col-lg-4 center-block" ng-show="showVariations">
-            <select class="form-control" style="height: 44px" ng-options="item.VariationAttributes.VariationAttribute[0].Value + ' - ' + item.VariationAttributes.VariationAttribute[1].Value for item in variations" ng-model="variation">
+        <div class="col-lg-4 pull-right" ng-show="showVariations">
+            <select class="form-control" style="height: 44px" ng-options="item.VariationAttributes.VariationAttribute[0].Value + ' - ' + item.VariationAttributes.VariationAttribute[1].Value for item in variations" ng-model="variation" ng-change="refreshItem()">
+                <option value="">Selecciona Talla/Color</option>
             </select>
         </div>
     </div>

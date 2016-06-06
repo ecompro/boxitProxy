@@ -21,7 +21,7 @@ angular
                 $scope.itemPrice = item.Item.Offers.Offer == null ? 0 : item.Item.Offers.Offer.OfferListing.Price.FormattedPrice;
                 $scope.cantidad = 1;
                 var amount = item.Item.Offers.Offer == null ? 0 : item.Item.Offers.Offer.OfferListing.Price.Amount;
-                $scope.disabledAdd = $scope.itemPrice == 0 && amount == 0 ? true : false;
+                $scope.disabledAdd = !!($scope.itemPrice == 0 && amount == 0);
                 $scope.total = numeral(( amount * $scope.cantidad) / 100).format('$0,0.00');
             }
 
@@ -32,7 +32,7 @@ angular
                     method: "POST",
                     url: userData.getHost() + "/amazon/amazongetitemidvariations",
                     data: {
-                        "ItemId": "B01017MCTI"
+                        "ItemId": item.Item.ItemId
                     },
                     headers: {
                         'Content-Type': 'application/json'
@@ -65,15 +65,24 @@ angular
                             $scope.showCombination = true;
                         }
                     }else {
-                        $scope.showVariations = true;
-                        console.log(result.Item);
-                        $scope.variations = result.Item;
+                        variationExist(result);
                     }
                 },function error(result) {
                     console.log(result);
                 });
             }
-
+            function variationExist(result) {
+                $scope.showVariations = true;
+                $scope.variations = result.Item;
+            }
+            $scope.refreshItem = function () {
+                userData.getItemDetails($scope.variation.ItemId).then(function success(result) {
+                    setItemData(result);
+                    setItemVariation(result);
+                },function error(result) {
+                    console.log(result);
+                });
+            };
             function getDescription(item) {
                 var description = "";
                 if (item.Item.Attributes.Feature != undefined) {
