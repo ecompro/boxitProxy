@@ -38,6 +38,7 @@ angular
                         'Content-Type': 'application/json'
                     }
                 }).then(function success(result) {
+                    console.log(result);
                     defered.resolve(result.data.Item.Variations);
                 },function error(result) {
                   defered.reject(result);
@@ -49,6 +50,7 @@ angular
                 var colorExist = false;
                 var sizeExist = false;
                 getItemVariation(item).then(function success(result) {
+                    console.log(result);
                     if (result == null) {
                         console.log(item);
                         if (item.Item.Attributes.Size != null) {
