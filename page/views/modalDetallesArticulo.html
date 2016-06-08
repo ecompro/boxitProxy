@@ -26,14 +26,8 @@
             <br>
         </div>
     </div>
-    <div class="row">
+    <div class="row" style="margin-bottom: 1%">
         <div class="col-lg-3"></div>
-        <div class="col-lg-2" ng-show="ShowColor">
-            <span class="btn btn-sm btn-info disabled">{{color}}</span>
-        </div>
-        <div class="col-lg-3" ng-show="showZise">
-            <span class="btn btn-sm btn-info disabled">{{size}}</span>
-        </div>
         <div class="col-lg-4" ng-show="showCombination">
             <select class="form-control" style="height: 44px">
                 <option value="0">{{color}} - {{size}}</option>
@@ -43,6 +37,21 @@
             <select class="form-control" style="height: 44px" ng-options="item.VariationAttributes.VariationAttribute[0].Value + ' - ' + item.VariationAttributes.VariationAttribute[1].Value for item in variations" ng-model="variation" ng-change="refreshItem()">
                 <option value="">Selecciona Talla/Color</option>
             </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-4" ng-show="ShowColor">
+            <div class="input-group">
+                <span class="input-group-addon">Color</span>
+                <span class="btn btn-info disabled form-control">{{color}}</span>
+            </div>
+        </div>
+        <div class="col-lg-5" ng-show="showZise">
+            <div class="input-group">
+                <span class="input-group-addon">Talla</span>
+                <span class="btn btn-info disabled form-control">{{size}}</span>
+            </div>
         </div>
     </div>
 </div>
@@ -67,10 +76,10 @@
             <div class="input-group input-group-lg">
                 <span class="input-group-addon">Total</span>
                 <span class="form-control"><b>{{total}}</b></span>
-                <span class="input-group-btn" uib-tooltip="See? Now click away..."
+                <span class="input-group-btn" uib-tooltip="Por favor iniciar sesion para añadir articulos"
                       tooltip-trigger="click" tooltip-placement="top">
         <button style="border-bottom-left-radius: 0;border-top-left-radius: 0" ng-click="addToCar()"
-                class="btn btn-primary" type="button" ng-disabled="userLogged && disabledAdd">Añadir
+                class="btn btn-primary" type="button" ng-disabled="disabledAdd">Añadir
         </button>
       </span>
             </div>

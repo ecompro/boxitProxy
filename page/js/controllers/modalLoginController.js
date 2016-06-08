@@ -6,8 +6,8 @@
 
 
 angular.module('boxit')
-        .controller('modalLoginController', ['$scope', '$http', 'userData', '$uibModal',
-            function ($scope, $http,  userData, $uibModal) {
+        .controller('modalLoginController', ['$scope', '$http', 'userData', '$uibModal','$state',
+            function ($scope, $http,  userData, $uibModal,$state) {
                 $scope.showLogin = true;
                 $scope.showRecuperar = false;
                
@@ -124,9 +124,8 @@ angular.module('boxit')
                                 $scope.$emit('estadoSesion', {
                                     estado: true
                                 });
-                                 history.back();
                                 // $interval(function () {
-                              //  $state.go("userMenu");  //$window.location = "/userInterface.html#/userInterface";
+                                $state.go("itemList",{},{reload:true});  //$window.location = "/userInterface.html#/userInterface";
                                 // }, 3000);
                             });
                         }

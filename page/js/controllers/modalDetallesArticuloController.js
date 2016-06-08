@@ -14,14 +14,18 @@ angular
             setItemData(item);
             setItemVariation(item);
             function setItemData(item) {
-                $scope.userLogged = !(usrObj == undefined);
+                $scope.userNotLogged = usrObj == undefined;
                 $scope.titulo = item.Item.Attributes.Title;
                 $scope.texto = getDescription(item).trim();
                 $scope.imgUrl = item.Item.Image.ImageUrl;
                 $scope.itemPrice = item.Item.Offers.Offer == null ? 0 : item.Item.Offers.Offer.OfferListing.Price.FormattedPrice;
                 $scope.cantidad = 1;
                 var amount = item.Item.Offers.Offer == null ? 0 : item.Item.Offers.Offer.OfferListing.Price.Amount;
-                $scope.disabledAdd = !!($scope.itemPrice == 0 && amount == 0);
+                console.log($scope.userNotLogged);
+                console.log(amount == 0);
+                console.log($scope.itemPrice == 0);
+                console.log(!($scope.itemPrice == 0 && amount == 0 && $scope.userNotLogged));
+                $scope.disabledAdd = !($scope.itemPrice == 0 && amount == 0 && $scope.userNotLogged);
                 $scope.total = numeral(( amount * $scope.cantidad) / 100).format('$0,0.00');
             }
 
