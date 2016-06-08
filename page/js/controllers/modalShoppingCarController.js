@@ -15,6 +15,7 @@ angular
             $scope.showCarMessage = false;
             $scope.showCarItems = true;
             $scope.showLoginMessage = false;
+             $scope.loading = true;
             $scope.totalItems = 50;
             $scope.currentPage = 1;
             $scope.amazonLink = "";
@@ -154,6 +155,7 @@ angular
                 }
             };
             $scope.viewItem = function (item) {
+               
                 userData.getItemDetails(item.ItemId).then(function success(result) {
                     $uibModal.open({
                         animation: true,
@@ -192,6 +194,7 @@ angular
                 $uibModalInstance.close();
             };
             $scope.changeModal = function () {
+               
                 $state.go('itemList');
             };
             var getItemLink = function (id) {
@@ -225,6 +228,9 @@ angular
                 return $q.all(promises);
             };
             $scope.purchase = function () {
+                $scope.showCarItems = false;
+                $scope.showLoginMessage = false;
+                $scope.loading = true;
                 var promises = [];
                 links = [];
                 var IdCliente = userData.getData().IdCliente;
@@ -328,8 +334,9 @@ angular
                 }
             };
             var refreshCar = function (result) {
-                $scope.showCarItems = true;
+                $scope.showCarItems = false;
                 $scope.showLoginMessage = false;
+                $scope.loading = true;
                 //   console.log(result.data.Data.Cart);
                 if (result.data.Data.Cart != undefined) {
                     if (result.data.Data.Cart.CartItems != undefined || result.data.Data.Cart.CartItems != null) {
@@ -344,6 +351,8 @@ angular
                             $scope.subTotal = result.data.Data.Cart.CartItems.SubTotal.FormattedPrice;
                             $scope.amazonLink = result.data.Data.Cart.PurchaseURL;
                             $scope.carNumber = calcularTotal($scope.carItems);
+                             $scope.loading = false;
+                             $scope.showCarItems = true;
                             angular.element(document.getElementById('cartNumber')).scope().carNumber = $scope.carNumber;
                         } else {
                             getCar();
@@ -352,6 +361,8 @@ angular
                         $scope.carNumber = 0;
                         angular.element(document.getElementById('cartNumber')).scope().carNumber = $scope.carNumber;
                         $scope.subTotal = 0;
+                        $scope.showEmptyMessage = true;
+                          $scope.loading = false;
                     }
                 } else {
                     $scope.subTotal = 0;
@@ -359,7 +370,10 @@ angular
                     angular.element(document.getElementById('cartNumber')).scope().carNumber = $scope.carNumber;
                     $scope.showCarItems = false;
                     if (userObj == undefined) {
-                        $scope.showLoginMessage = true;
+                         // $scope.showLoginMessage = true;
+                          $scope.loading = false;
+                          $state.go("modalLogin");
+                          
                     }
                 }
             };

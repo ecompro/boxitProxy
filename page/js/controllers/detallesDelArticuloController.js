@@ -7,6 +7,12 @@ angular
             var amount;
             var carItemId;
             var getQuantity = function (carItems) {
+              
+               
+                if ( carItems.length === undefined) {                    
+                     console.log(carItems);
+                     return carItems.Quantity;                    
+                }
                 for (var i = 0; i < carItems.length; i++) {
                     var item = carItems[i];
                     if (item.ItemId == $stateParams.itemId) {
@@ -35,6 +41,8 @@ angular
                 });
             };
             userData.getItemDetails($stateParams.itemId).then(function success(item) {
+                
+                 console.log();
                 if (item != undefined) {
                     $scope.titulo = item.Item.Attributes.Title;
                     $scope.texto = getDescription(item).trim();

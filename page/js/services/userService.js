@@ -214,6 +214,7 @@ angular.module('boxit')
                     }
                 }).then(function success(result) {
                     console.log(result.data);
+                    
                     $localStorage.searchIndex = result.data;
                 }, function error(result) {
                     console.log(result.data);

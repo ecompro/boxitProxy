@@ -1,3 +1,15 @@
+
+<div style="margin-bottom: 20%" id="cssload-pgloading" ng-show="loading">
+	<div class="cssload-loadingwrap">
+		<ul class="cssload-bokeh">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+</div>
+
 <div class="row" ng-repeat="item in carItems" ng-show="showCarItems">
     <hr>
     <div class="col-lg-8">
@@ -22,4 +34,6 @@
     <h3><a ng-click="iniciarSesion()">PARA COMPRAR PRIMERO DEBE
             INICIAR SESION O REGISTRARSE.</a></h3>
 </div>
-
+<div class="center-block" ng-show="showEmptyMessage">
+    <h3>No Tiene elementos en su carro de compra.</h3>
+</div>

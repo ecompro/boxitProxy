@@ -146,5 +146,15 @@ angular.module('boxit', ['ngToast', 'ui.bootstrap', 'ui.router', 'ngStorage', 'a
                     }
                 }
             }
+        ).state('modalLogin', {
+                url: '/modalLogin',
+                parent: 'modal',
+                views: {
+                    'modal@': {
+                        templateUrl: 'views/modalLogin.html'
+                    }
+                },
+                controller:'modalLoginController'
+            }
         );
     }]);

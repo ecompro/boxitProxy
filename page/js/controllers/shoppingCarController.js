@@ -10,8 +10,10 @@ angular
                 $scope.showImage = true;
                 $scope.showCar = false;
                 $scope.showCarMessage = false;
-                $scope.showCarItems = true;
+                $scope.showCarItems = false;
                 $scope.showLoginMessage = false;
+                $scope.loading = true;
+                $scope.loadMain = true;
                 $scope.totalItems = 50;
                 $scope.currentPage = 1;
                 $scope.amazonLink = "";
@@ -37,6 +39,8 @@ angular
                     });
                 };
                 $scope.doSearch = function () {
+                    $scope.loadMain = true;
+                    $scope.showCar = false;
                     $scope.currentPage = 1;
                     products = [];
                     searchProducts().then(function success(result) {
@@ -45,9 +49,11 @@ angular
                         $scope.Items = products[0];
                         products.reverse();
                         if (products[0] == undefined) {
+                            $scope.loadMain = false;
                             $scope.showCar = false;
                             $scope.showCarMessage = true;
                         } else {
+                            $scope.loadMain = false;
                             $scope.showCar = true;
                             $scope.showPagination = true;
                         }
@@ -335,8 +341,9 @@ angular
                     }
                 };
                 var refreshCar = function (result) {
-                    $scope.showCarItems = true;
+                    $scope.showCarItems = false;
                     $scope.showLoginMessage = false;
+                    $scope.loading = true;
                     //   console.log(result.data.Data.Cart);
                     if (result.data.Data.Cart != undefined) {
                         if (result.data.Data.Cart.CartItems != undefined || result.data.Data.Cart.CartItems != null) {
@@ -359,6 +366,7 @@ angular
                             $scope.carNumber = 0;
                             angular.element(document.getElementById('cartNumber')).scope().carNumber = $scope.carNumber;
                             $scope.subTotal = 0;
+                             $scope.showEmptyMessage
                         }
                     } else {
                         $scope.subTotal = 0;
@@ -395,6 +403,7 @@ angular
                 };
                 $scope.firstSearch = function () {
                     userData.getFirstSearch().then(function success(result) {
+                         $scope.loadMain = false;
                         $scope.Items = result;
                         $scope.showCar = true;
                         $scope.showImage = false;
