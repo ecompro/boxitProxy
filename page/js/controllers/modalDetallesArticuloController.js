@@ -32,17 +32,18 @@ angular
             function getItemVariation(item) {
                 var defered = $q.defer();
                 var promise = defered.promise;
+                var id = item.Item.ItemIdParent != null && item.Item.ItemIdParent != undefined ? item.Item.ItemIdParent : item.Item.ItemId;
+                console.log(id);
                 $http({
                     method: "POST",
                     url: userData.getHost() + "/amazon/amazongetitemidvariations",
                     data: {
-                        "ItemId": item.Item.ItemId
+                        "ItemId": id
                     },
                     headers: {
                         'Content-Type': 'application/json'
                     }
                 }).then(function success(result) {
-                    console.log(result);
                     defered.resolve(result.data.Item.Variations);
                 },function error(result) {
                   defered.reject(result);
@@ -79,15 +80,30 @@ angular
             }
             function variationExist(result) {
                 $scope.showVariations = true;
-                $scope.variations = result.Item;
+                if ($scope.variations == null || $scope.variations == undefined) {
+                    $scope.variations = result.Item;
+                }
+                if ($scope.variation != null && $scope.variation != undefined) {
+                    if ($scope.variation.VariationAttributes.VariationAttribute[0].Value != null) {
+                        $scope.showZise = true;
+                        $scope.size = $scope.variation.VariationAttributes.VariationAttribute[0].Value;
+
+                    }
+                    if ($scope.variation.VariationAttributes.VariationAttribute[1].Value != null) {
+                        $scope.ShowColor = true;
+                        $scope.color = $scope.variation.VariationAttributes.VariationAttribute[1].Value;
+                    }
+                }
             }
             $scope.refreshItem = function () {
-                userData.getItemDetails($scope.variation.ItemId).then(function success(result) {
-                    setItemData(result);
-                    setItemVariation(result);
-                },function error(result) {
-                    console.log(result);
-                });
+                if ($scope.variation != null && $scope.variation != undefined) {
+                    userData.getItemDetails($scope.variation.ItemId).then(function success(result) {
+                        setItemData(result);
+                        setItemVariation(result);
+                    }, function error(result) {
+                        console.log(result);
+                    });
+                }
             };
             function getDescription(item) {
                 var description = "";
