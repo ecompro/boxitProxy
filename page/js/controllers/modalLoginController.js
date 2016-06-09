@@ -97,8 +97,6 @@ angular.module('boxit')
                             } else if ("UserPassword length is invalid") {
                                 respuesta = "Longitud del password invalida";
                             }
-
-
                             $uibModal.open({
                                 animation: true,
                                 templateUrl: 'views/modalCambioClave.html',
@@ -121,7 +119,7 @@ angular.module('boxit')
                             var id = result.data.Rows.attributes.IdCliente;
                             userData.setData(id).then(function () {
                                 //ngToast.create(JSON.stringify(userData.getData()));
-                                $scope.$emit('estadoSesion', {
+                                $scope.$parent.$emit('estadoSesion', {
                                     estado: true
                                 });
                                 // $interval(function () {
