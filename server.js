@@ -783,6 +783,26 @@ amazonRouter.route('/amazongetitemidvariations').post(function (req, res) {
         });
     });
 });
+
+amazonRouter.route('/amazongetcategories').post(function (req, res) {
+    var args = {};
+    args["CustomerUser"] = CustomerUser;
+    args["CustomerPassword"] = CustomerPassword;
+    args["SearchIndex"] = req.body.SearchIndex;
+    soap.createClient(url, function (err, client) {
+        if (client === undefined) {
+            res.json("Servidor no responde");
+            return;
+        }
+        client.AmazonGetCategories(args, function (err, result) {
+            if (result === undefined) {
+                res.json("Servidor no responde");
+                return;
+            }
+            res.json(result.AmazonGetCategoriesResult.Data.Nodes.Categories.SubCategories.SubCategory); //.Data.Items);
+        });
+    });
+});
 app.use('/users', usersRouter);
 app.use('/amazon', amazonRouter);
 app.listen(port);

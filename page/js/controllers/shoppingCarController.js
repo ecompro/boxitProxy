@@ -2,9 +2,9 @@ angular
     .module('boxit')
     .controller('shoppingCarController', ['$scope', '$http', '$q', '$anchorScroll', 'userData', '$uibModal', '$localStorage', '$window', '$location', '$interval', '$state',
         function ($scope, $http, $q, $anchorScroll, userData, $uibModal, $localStorage, $window, $location, $interval, $state) {
-            console.log('entro al SC');
             var products = [];
             var links = [];
+            $scope.subCategories = [];
             $scope.checkout = false;
             $scope.shopping = true;
             $scope.showPagination = false;
@@ -18,6 +18,7 @@ angular
             $scope.totalItems = 50;
             $scope.currentPage = 1;
             $scope.amazonLink = "";
+            $scope.showSubCategories = false;
             var userObj = userData.getData();
             var id;
             $scope.indexs = userData.getSearchIndex();
@@ -45,6 +46,7 @@ angular
                 $scope.currentPage = 1;
                 products = [];
                 if ($scope.index != null || $scope.index != undefined) {
+                    console.log($scope.index);
                     searchProducts().then(function success(result) {
                         $scope.showCarMessage = false;
                         $scope.showImage = false;
@@ -53,14 +55,33 @@ angular
                         if (products[0] == undefined) {
                             $scope.loadMain = false;
                             $scope.showCar = false;
-                            $scope.showCarMessage = true;
+                            var modalInstance = $uibModal.open({
+                                animation: true,
+                                templateUrl: 'views/modalCambioClave.html',
+                                controller: 'modalCambioClaveController',
+                                size: 'sm',
+                                resolve: {
+                                    mensaje: function () {
+                                        var mensaje = {};
+                                        mensaje.titulo = "Error en la Busqueda";
+                                        mensaje.texto = "La busquedano arrojo resultados";
+                                        mensaje.estilo = "alerta";
+                                        return mensaje;
+                                    }
+                                }
+
+                            });
+                            modalInstance.closed.then(function (someData) {
+                                $scope.loadMain = true;
+                                $scope.firstSearch();
+                            });
                         } else {
                             $scope.loadMain = false;
                             $scope.showCar = true;
                             $scope.showPagination = true;
                         }
                     });
-                }else {
+                } else {
                     $scope.loadMain = false;
                     var modalInstance = $uibModal.open({
                         animation: true,
@@ -85,6 +106,7 @@ angular
                 }
             };
             function searchProducts() {
+                //console.log($scope.subCategory.SubCategoryName);
 //                    var defered = $q.defer();
 //                    var promise = defered.promise;
 //                    var i = 1;
@@ -112,7 +134,7 @@ angular
                         searchParams["ItemPage"] = i;
                         defered.resolve(callPages(searchParams).then(function success(result) {
 
-                            if (result !== undefined) {
+                            if (result !== undefined && result !== null) {
                                 products.push(result);
                                 //var test = [];
                                 result;
@@ -189,17 +211,14 @@ angular
                 $location.hash('top');
                 $anchorScroll();
             };
-            //$scope.initIndex = function () {
-            //    if ($scope.indexs != undefined) {
-            //        $scope.index = $scope.indexs[0];
-            //    } else {
-            //        userData.setSearchIndex();
-            //        $interval(function () {
-            //            $scope.indexs = userData.getSearchIndex();
-            //            $scope.index = $scope.indexs[0];
-            //        }, 1500);
-            //    }
-            //};
+            $scope.initIndex = function () {
+                if ($scope.indexs == undefined) {
+                    userData.setSearchIndex();
+                    $interval(function () {
+                        $scope.indexs = userData.getSearchIndex();
+                    }, 1500);
+                }
+            };
             $scope.viewItem = function (item) {
                 userData.getItemDetails(item.ItemId).then(function success(result) {
                     $uibModal.open({
@@ -450,4 +469,33 @@ angular
                 }
                 return totalAcumulado;
             }
+
+            function getSubCategories(category) {
+                var defered = $q.defer();
+                var promise = defered.promise;
+                $http({
+                    method: "POST",
+                    url: userData.getHost() + "/amazon/amazongetcategories",
+                    data: {
+                        "SearchIndex": category
+                    },
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(function success(result) {
+                    defered.resolve(result);
+                }, function error(result) {
+                    defered.reject(result);
+                });
+                return promise;
+            }
+
+            $scope.setSubCategories = function () {
+                getSubCategories($scope.index.attributes.SearchIndex).then(function success(result) {
+                    $scope.showSubCategories = true;
+                    $scope.subCategories = result.data;
+                }, function error(result) {
+                    console.log(result);
+                });
+            };
         }]);
