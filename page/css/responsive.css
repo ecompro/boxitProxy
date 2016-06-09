@@ -44,7 +44,7 @@
         }
         
 }
-@media screen and (min-width: 240px) and (max-width: 767px) {
+@media screen and (min-width: 240px) and (max-width: 768px) {
         
     
             .desktop{
@@ -138,13 +138,13 @@
 		padding: 10px 10px;
 	}
 	header{
-		display: none;
+		display: true;
 	}
 	.MobileMenu{
 		display: none;
 	}
 	.Mobile{
-		display: block;
+		display: none;
 	}
 	.MainBanner .MainBannerContainer .Features .Feature .Description{
 		font-size: 14px;

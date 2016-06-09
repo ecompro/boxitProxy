@@ -7,8 +7,8 @@
 
 angular
         .module('boxit')
-        .controller('passwordController', ['$scope', '$http', '$stateParams', 'md5', 'userData', '$uibModal',
-            function ($scope, $http, $stateParams, md5, userData, $uibModal) {
+        .controller('passwordController', ['$scope','$state' ,'$http', '$stateParams', 'md5', 'userData', '$uibModal',
+            function ($scope,$state, $http, $stateParams, md5, userData, $uibModal) {
                 $scope.exitoso = true;
 
                 $scope.reset = function () {
@@ -90,7 +90,8 @@ angular
                                 }
 
                             });
-
+                            if(estilo ==="exito")
+                                $state.go("iniciarSesion");
 
 
                         }, function error(result) {

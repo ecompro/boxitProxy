@@ -428,7 +428,7 @@ header .Logo a img{
 }
 header .UserAccountOptions{
     float: left;
-    width: 30%;
+/*    width: 25%;*/
 }
 header .UserAccountOptions a{
     display: inline-block;
