@@ -33,6 +33,8 @@ $(document).ready(function(){
 		$(this).closest(".FAQ").addClass("Selected");
 	});
 	$("body").on("click",".Mobile .Top .Menu",function(){
+            
+            
 		$(".MobileMenu").show();
 		$("body").css("overflow","hidden");
 	});
@@ -47,7 +49,7 @@ $(document).ready(function(){
 		$("body").css("overflow","auto");
 	});
         
-	$("body").on("click", ".MobileMenu .Menu .Groups .Group .Header", function(){
+	$("body").on("click", ".MobileMenu .Menu .Groups .Group ", function(){
 		$(this).closest(".Group").find(".Options").toggle();
 	});
 	$("body").on("click",".BoxitStoreContainer .ShoppingTrends .Arrow",function(){
