@@ -49,9 +49,15 @@ $(document).ready(function(){
 		$("body").css("overflow","auto");
 	});
         
-	$("body").on("click", ".MobileMenu .Menu .Groups .Group ", function(){
-		$(this).closest(".Group").find(".Options").toggle();
-	});
+//	$("body").on("click", ".desplegable", function(){
+//          
+//		$(this).closest(".Group").find(".Options").toggle();
+//	});
+//        
+//        $("body").on("click", ".desplegableUsu", function(){
+//          
+//		$(this).closest(".Group").find(".Options").toggle();
+//	});
 	$("body").on("click",".BoxitStoreContainer .ShoppingTrends .Arrow",function(){
 		var NextBack = "";
 		if($(this).hasClass("Next")){

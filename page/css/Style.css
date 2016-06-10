@@ -534,7 +534,7 @@ header .UserAccountOptions a:nth-child(2){
 }
 .Mobile .Top .Menu img{
     width: 30px;
-    height: 30px;
+/*    height: 30px;*/
     padding: 10px 0;
 }
 .Mobile .Top .Organization{

@@ -64,5 +64,19 @@ and open the template in the editor.
 }
 
 .ContenedorBoxitStore a img{
-        width: 70%;
-    }
+    width: 70%;
+}
+
+.sesionButton{
+    color: #a82773;
+    font-size: 12px;
+    font-weight: bold;
+
+} 
+
+.userAreaButton{
+    color: #FFFFFF;
+    background-color: #a82773;
+    font-size: 12px;
+    font-weight: bold;
+}

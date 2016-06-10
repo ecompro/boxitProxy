@@ -11,6 +11,19 @@ angular
                     $scope.loged = true;
                 }
                
+               $scope.desplegarUsu = function(){
+                 
+                   $(".desplegableUsu").toggle();
+                   
+               };
+               
+                  $scope.desplegarMenu = function(){
+                   
+                   $(".desplegable").toggle();
+                   
+               };
+               
+               
                 $scope.$on('estadoSesion', function (event, estado) {
                  
                     $scope.loged = estado.estado;
