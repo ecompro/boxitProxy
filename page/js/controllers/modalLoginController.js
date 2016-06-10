@@ -119,7 +119,7 @@ angular.module('boxit')
                             var id = result.data.Rows.attributes.IdCliente;
                             userData.setData(id).then(function () {
                                 //ngToast.create(JSON.stringify(userData.getData()));
-                                $scope.$parent.$emit('estadoSesion', {
+                                angular.element(document.getElementById('cartNumber')).scope().$emit('estadoSesion', {
                                     estado: true
                                 });
                                 // $interval(function () {
