@@ -17,7 +17,10 @@
     </div>
 </div>
 <div class="modal-body">
-    <div ui-view="modal"></div>
+    <div ui-view="modal" ng-show="!showTerms"></div>
+    <div class="container" ng-show="showTerms" ng-include="'views/terms.html'">
+     
+    </div>
 </div>
 <div class="modal-footer">
     <div class="col-lg-3">
@@ -34,9 +37,9 @@
         <div class="input-group input-group-lg">
             <span class="input-group-addon">Total</span>
             <span id="total" class="form-control" ng-bind="subTotal"></span>
-                <span class="input-group-btn">
-        <button class="btn btn-success" type="button" ng-click="purchase()">Pagar en efectivo</button>
-      </span>
+            <span class="input-group-btn">
+                <button class="btn btn-success" type="button" ng-click="purchase()">Pagar en efectivo</button>
+            </span>
         </div>
     </div>
     <div class="col-lg-5" ng-show="checkout">

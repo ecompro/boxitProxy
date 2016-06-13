@@ -19,6 +19,8 @@ angular
             $scope.totalItems = 50;
             $scope.currentPage = 1;
             $scope.amazonLink = "";
+            $scope.showTerms = false;
+            $scope.acceptTerms = false;
             var userObj = userData.getData();
             var id;
             $scope.indexs = userData.getSearchIndex();
@@ -227,7 +229,26 @@ angular
                 }
                 return $q.all(promises);
             };
+            
+            $scope.accept = function () {
+              
+                $scope.showTerms = false;
+            };
+            
+            $scope.checkboxChange = function () {
+                 
+                 $scope.acceptTerms = !$scope.acceptTerms;
+                console.log($scope.acceptTerms);
+            };
+            
             $scope.purchase = function () {
+              
+               if($scope.acceptTerms===false) 
+               {
+                   $scope.showTerms = true;
+                   return "";
+                }
+            
                 $scope.showCarItems = false;
                 $scope.showLoginMessage = false;
                 $scope.loading = true;
