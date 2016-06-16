@@ -19,21 +19,21 @@
 <div class="modal-body">
     <div ui-view="modal" ng-show="!showTerms"></div>
     <div class="container" ng-show="showTerms" ng-include="'views/terms.html'">
-     
+
     </div>
 </div>
 <div class="modal-footer">
-    <div class="col-lg-3">
+    <div class="col-lg-3" ng-show="shopping && !showTerms">
         <button ng-click="openAmazon()"  class="btn btn-lg btn-warning" type="button" ng-disabled="userNotLogged">Pagar con tarjeta de crédito</button>
     </div>
     <div class="col-lg-1">
 
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-3 " ng-show="shopping && !showTerms">
         <button class="btn btn-lg btn-danger" ng-click="clearShoppingCar()">Limpiar carrito</button>
     </div>
     <div class="col-lg-1"></div>
-    <div class="col-lg-5" ng-show="shopping">
+    <div class="col-lg-5" ng-show="shopping && !showTerms">
         <div class="input-group input-group-lg">
             <span class="input-group-addon">Total</span>
             <span id="total" class="form-control" ng-bind="subTotal"></span>
@@ -42,7 +42,14 @@
             </span>
         </div>
     </div>
-    <div class="col-lg-5" ng-show="checkout">
-        <button class="btn btn-lg btn-success" ng-click="closeModal()">Close</button>
+    <div class="col-lg-3" ng-show="showTerms">
+        <button class="btn btn-lg btn-danger" ng-click="goBack()">Cancelar</button>
+    </div>
+    <div class="col-lg-6" ng-show="showTerms"></div>
+    <div class="col-lg-3" ng-show="showTerms">
+        <button class="btn btn-lg btn-success" ng-click="purchase()">Aceptar</button>
+    </div>
+    <div class="col-lg-offset-6 col-lg-5" ng-show="checkout">
+        <button class="btn btn-lg btn-success" ng-click="closeModal()">Cerrar</button>
     </div>
 </div>
