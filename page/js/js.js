@@ -38,11 +38,11 @@ $(document).ready(function(){
 		$(".MobileMenu").show();
 		$("body").css("overflow","hidden");
 	});
-	$("body").on("click",".MobileMenu .Menu .Header .Close",function(){
-		$(".MobileMenu").hide();
-		$("body").css("overflow","auto");
-	});
-        
+//	$("body").on("click",".MobileMenu .Menu .Header .Close",function(){
+//		$(".MobileMenu").hide();
+//		$("body").css("overflow","auto");
+//	});
+//        
         $("body").on("click",".closeMmenu",function(){
 		$(".MobileMenu").hide();
                 $(this).closest(".Group").find(".Options").toggle();

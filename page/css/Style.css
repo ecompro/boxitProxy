@@ -268,85 +268,7 @@ header .Logo a img{
     width: 100px;
     
 }
-/*header .Menu{
-        float: left;
-        width: 60%;
-        text-align: center;
-}
-        header .Menu ul{
-                list-style: none;
-                padding: 0;
-        }
-                header .Menu ul li{
-                        display: inline-block;
-                        margin: 0 5px;
-                        position: relative;
-                }
-                        header .Menu ul li:hover a, header .Menu ul li:hover .SubMenu{
-                                display: block;
-                                color: #a82773;
-                        }
-                        header .Menu ul li a{
-                                text-decoration: none;
-                                color: #333333;
-                                font-size: 12px;
-                                font-weight: bolder;
-                        }
-                        header .Menu ul li .SubMenu{
-                                width: 200px;
-                                height: 300px;
-                                background: white;
-                                position: absolute;
-                                display: none;
-                                z-index: 100;
-                                left: -60px;
-                        }
-                                header .Menu ul li .SubMenu .SubMenuContainer{
-                                        width: 200px;
-                                        height: 300px;
-                                        background: white;
-                                        position: absolute;
-                                        z-index: 999;
-                                        border: 2px solid #a0a0a0;
-                                        top: 20px;
-                                        left: 0px;
-                                        display: block;
-                                }
-                                        header .Menu ul li .SubMenu .SubMenuContainer .Arrow{
-                                                width: 40px;
-                                                height: 40px;
-                                                position: absolute;
-                                                left: 75px;
-                                                top: -9px;
-                                                transform: rotate(45deg);
-                                                border: 2px solid #a0a0a0;
-                                                background-color: #FFFFFF;
-                                                z-index: 1000;
-                                                display: block;
-                                        }
-                                                header .Menu ul li .SubMenu .SubMenuContainer .Arrow div{
-                                                        width: 100px;
-                                                        height: 100px;
-                                                        position: absolute;
-                                                        top: -7.6px;
-                                                        left: 0;
-                                                        background-color: #FFF;
-                                                        transform: rotate(-45deg);
-                                                }
-                                        header .Menu ul li .SubMenu .SubMenuContainer ul{
-                                                text-align: left;
-                                                position: absolute;
-                                                z-index: 2000;
-                                        }
-                                                header .Menu ul li .SubMenu .SubMenuContainer ul li{
-                                                        margin: 10px 10px;
-                                                }
-                                                        header .Menu ul li .SubMenu .SubMenuContainer ul li:hover a{
-                                                                color: #A82773;
-                                                        }
-                                                        header .Menu ul li .SubMenu .SubMenuContainer ul li a{
-                                                                color: #333333;
-                                                        }*/
+
 .Menu{
     float: left;
     width: 40%;
@@ -374,7 +296,7 @@ header .Logo a img{
 .Menu ul li .SubMenu{
     width: 200px;
     height: 200px;
-    background: white;
+/*    background: white;*/
     position: absolute;
     display: none;
     z-index: 100;
@@ -459,7 +381,7 @@ header .UserAccountOptions a:nth-child(2){
 }
 .MobileMenu .Menu{
     width: 70vw;
-    height: 100vh;
+    height: 120vh;
     background-color: #00b4cb;
 }
 .MobileMenu .Menu > .Header{
@@ -483,7 +405,7 @@ header .UserAccountOptions a:nth-child(2){
 }
 .MobileMenu .Menu .Groups .Group .Header{
     width: 100%;
-    height: 30px;
+    height: 50px;
     background-color: #a82773;
     line-height: 30px;
     color: #FFFFFF;
@@ -957,7 +879,7 @@ header .UserAccountOptions a:nth-child(2){
 }
 .BottomMenu{
     width: 100%;
-    height: 110px;
+    height: 80px;
 }
 .BottomMenu .Menu{
     width: 70%;
@@ -968,8 +890,13 @@ header .UserAccountOptions a:nth-child(2){
     padding: 0;
     margin: 0;
     list-style: none;
-    margin-top: 50px;
+    margin-top: 20px;
 }
+
+.newBottom{
+        top: -220px !important;
+}
+
 .BottomMenu .Menu ul li{
     display: inline-block;
     margin: 0 5px;
@@ -992,7 +919,7 @@ header .UserAccountOptions a:nth-child(2){
 }
 .BottomMenu .Logo{
     width: 30%;
-    height: 100%;
+    height: 70%;
     float: left;
 }
 .BottomMenu .Logo img{
@@ -1573,7 +1500,7 @@ header .UserAccountOptions a:nth-child(2){
 }
 footer{
     width: 100%;
-    height: 50px;
+    height: 20px;
     background-color: #A82773;
 }
 footer .ContentContainer{
@@ -1581,7 +1508,7 @@ footer .ContentContainer{
 }
 footer .ContentContainer .Copyright{
     color: #FFFFFF;
-    padding-top: 15px;
+/*    padding-top: 5px;*/
 }
 
 .ItemCar {

@@ -51,8 +51,6 @@
         display: none;
     }
 
-
-
     header{
         display: none;
     }
@@ -177,4 +175,7 @@
     .HeaderBoxitStore .Welcome .Name{
         font-size: 0;
     }
+    
+    
+    
 }

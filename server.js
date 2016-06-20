@@ -256,6 +256,40 @@ usersRouter.route('/getcategorias')
             });
         });
 
+
+usersRouter.route('/gettarifas')
+        .post(function (req, res) {
+            var args = {};
+            args["CustomerUser"] = CustomerUser;
+            args["CustomerPassword"] = CustomerPassword;
+
+            soap.createClient(url, function (err, client) {
+                if (client === undefined) {
+                    res.json("Servidor no responde");
+                    return;
+                }
+
+
+                client.GetTarifas(args, function (err, result) {
+                       if(result === undefined){
+                    res.json("Servidor no responde");
+                    return ;
+                }
+                    
+                   
+                    if (result.GetTarifasResult.Data.Rows.length === undefined) {
+                        res.json(result.GetTarifasResult.Data.Rows.attributes.Message);
+                    } else {
+                        res.json(result.GetTarifasResult.Data.Rows);
+                    }
+                       // res.json(result);
+
+                });
+            });
+        });
+
+
+
 usersRouter.route('/gettracking').post(
         function (req, res) {
             var args = {};

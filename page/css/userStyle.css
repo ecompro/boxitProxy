@@ -80,3 +80,20 @@ and open the template in the editor.
     font-size: 12px;
     font-weight: bold;
 }
+
+.headerPrecio{
+        background-color: #A82773;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+
+.rowPrecio{
+        height: 35px;
+    background-color: #eeeeee;
+    color: #A82773;
+    font-weight: bold;
+    font-size: 14px;
+    
+}

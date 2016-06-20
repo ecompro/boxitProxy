@@ -299,7 +299,7 @@ angular
 
                 $scope.purchase = function () {
 
-
+                 console.log($scope.carItems);
                     if (!validate()) {
 
                         return "";
@@ -319,7 +319,7 @@ angular
 
                         for (var i = 0; i < $scope.carItems.length; i++) {
 
-
+                           
                             var item = $scope.carItems[i];
                             var args = {};
                             args["IdCliente"] = IdCliente;
@@ -330,7 +330,7 @@ angular
                             //cantidad de unidades
                             args["Quantity"] = item.Quantity;
                             //precio de la unidad
-                            args["Amount"] = item.Price.Amount;
+                            args["Amount"] = item.Price.FormattedPrice;
                             // console.log(args);
 
 

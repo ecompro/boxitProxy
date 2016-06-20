@@ -83,7 +83,7 @@ angular.module('boxit', ['ngToast', 'ui.bootstrap', 'ui.router', 'ngStorage', 'a
         ).state('precios', {
                 url: "/precios",
                 templateUrl: "views/Precios.html",
-                controller: ""
+                controller: "precioController"
             }
         ).state('registro', {
                 url: "/registro",

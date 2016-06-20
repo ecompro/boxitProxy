@@ -24,6 +24,12 @@ angular
                };
                
                
+               $scope.hideMain = function () {
+                   
+                   $(".MobileMenu").hide();
+               }
+               
+               
                 $scope.$on('estadoSesion', function (event, estado) {
                  
                     $scope.loged = estado.estado;

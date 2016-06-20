@@ -51,7 +51,7 @@ angular
                         $scope.showCarMessage = false;
                         $scope.showImage = false;
                         $scope.Items = products[0];
-                        products.reverse();
+                       // products.reverse();
                         if (products[0] == undefined) {
                             $scope.loadMain = false;
                             $scope.showCar = false;
@@ -132,24 +132,27 @@ angular
                         searchParams["Keywords"] = $scope.keyword;
                         searchParams["SearchIndex"] = $scope.index.attributes.SearchIndex;
                         searchParams["ItemPage"] = i;
+                        var curIndex = i;
+                        //console.log(curIndex);
                         defered.resolve(callPages(searchParams).then(function success(result) {
 
                             if (result !== undefined && result !== null) {
-                                products.push(result);
+                               // console.log(curIndex);
+                               // products.push(result);
                                 //var test = [];
-                                result;
+                               // result;
 
-                                result.forEach(
-                                    function (item) {
-
-                                        console.log(item.ItemId);
-
-
-                                    }
-                                );
+//                                result.forEach(
+//                                    function (item) {
+//
+//                                        console.log(item.ItemId);
+//
+//
+//                                    }
+//                                );
 
                             }
-
+                        //    console.log(products);
 
                             //defered.resolve('success');
 
@@ -198,7 +201,11 @@ angular
                     }
                 }).then(function success(result) {
 
-
+                      if (result !== undefined && result !== null){
+                          console.log(params["ItemPage"]);
+                          console.log(result.data.Item);
+                         products[params["ItemPage"] - 1] =  result.data.Item;
+                      }
                     defered.resolve(result.data.Item);
                 }, function error(result) {
                     defered.reject(result.data);

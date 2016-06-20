@@ -235,7 +235,7 @@ and open the template in the editor.
         <img src="img/foto-Banner_1.png" style="width: auto">
     </div>
 </div>
-<div class="AlwaysClose Content">
+<!--<div class="AlwaysClose Content">
     <div class="MainTitle">
         Siempre cerca
     </div>
@@ -247,7 +247,10 @@ and open the template in the editor.
             <div class="Button WithBackground">CONSIGUE EL BOXIT MÁS CERCANO</div>
         </a>
     </div>
-</div>
+</div>-->
+
+<div ng-controller="shoppingCarController" ng-include="'views/BoxitStore.html'"></div>
+
 <div class="BestStores MaxWidth">
     <div class="MainTitle">
         Comprar online nunca había sido tan fácil
@@ -335,14 +338,14 @@ and open the template in the editor.
         </div>
     </div>
 </div>
-<div class="BannerSobresaliente Content" style="height: 111px;background-color: #A82773;">
+<!--<div class="BannerSobresaliente Content" style="height: 111px;background-color: #A82773;">
     <div class="BannerSobresalienteContainer ContentContainer MaxWidth">
         <div class="Title">
          
         </div>
         <img src="img/foto-Banner_2.png" style="width: auto">
     </div>
-</div>
+</div>-->
 <script src="../js/js.js" type="text/javascript">
     
     banner();
