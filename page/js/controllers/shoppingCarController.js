@@ -498,7 +498,7 @@ angular
             }
 
             $scope.setSubCategories = function () {
-                getSubCategories($scope.index.attributes.SearchIndex).then(function success(result) {
+                getSubCategories(this.index.attributes.SearchIndex).then(function success(result) {
                     $scope.showSubCategories = true;
                     $scope.subCategories = result.data;
                 }, function error(result) {
