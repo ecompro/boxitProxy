@@ -45,9 +45,10 @@ angular
                 $scope.showCar = false;
                 $scope.currentPage = 1;
                 products = [];
-                if ($scope.index != null || $scope.index != undefined) {
-                    console.log($scope.index);
-                    searchProducts().then(function success(result) {
+                console.log(this);
+                if (this.index != null || this.index != undefined) {
+
+                    searchProducts(this).then(function success(result) {
                         $scope.showCarMessage = false;
                         $scope.showImage = false;
                         $scope.Items = products[0];
@@ -105,7 +106,7 @@ angular
                     });
                 }
             };
-            function searchProducts() {
+            function searchProducts(self) {
                 //console.log($scope.subCategory.SubCategoryName);
 //                    var defered = $q.defer();
 //                    var promise = defered.promise;
@@ -127,10 +128,11 @@ angular
                 var i;
                 for (i = 1; i < 6; i++) {
                     var defered = $q.defer();
-                    if ($scope.keyword != undefined) {
+                    if (self.keyword != undefined) {
                         var searchParams = {};
-                        searchParams["Keywords"] = $scope.keyword;
-                        searchParams["SearchIndex"] = $scope.index.attributes.SearchIndex;
+                        console.log(self);
+                        searchParams["Keywords"] = self.keyword;
+                        searchParams["SearchIndex"] = self.index.attributes.SearchIndex;
                         searchParams["ItemPage"] = i;
                         var curIndex = i;
                         //console.log(curIndex);
@@ -166,7 +168,7 @@ angular
                     } else {
 
                         var searchParams = {};
-                        searchParams["SearchIndex"] = $scope.index.attributes.SearchIndex;
+                        searchParams["SearchIndex"] = self.index.attributes.SearchIndex;
                         searchParams["ItemPage"] = i;
                         var IdCliente = 1;
 
@@ -243,7 +245,9 @@ angular
                     console.log(result);
                 });
             };
-            $scope.onKeyEnterPress = function (event) {
+            $scope.onKeyEnterPress = function () {
+                console.log(this);
+                console.log($event);
                 if (event.keyCode === 13) {
                     $scope.doSearch();
                 }

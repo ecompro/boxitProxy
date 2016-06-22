@@ -5,15 +5,19 @@ angular
     .module('boxit')
     .controller('modalDetallesArticulosController', ['$scope', '$uibModalInstance', 'item', 'userData','$q','$http',
         function ($scope, $uibModalInstance, item, userData,$q,$http) {
+            var currentIdItem = item.Item.ItemId;
             $scope.showZise = false;
             $scope.ShowColor = false;
             $scope.showCombination = false;
-            $scope.showVariations = false;
+            $scope.showVariationsArray = false;
+            $scope.showVariationsObject = false;
+            $scope.showFeature = false;
             $scope.disabledAdd = false;
             var usrObj = userData.getData();
             setItemData(item);
             setItemVariation(item);
             function setItemData(item) {
+                currentIdItem = item.Item.ItemId;
                 $scope.userNotLogged = usrObj === undefined;
                 $scope.titulo = item.Item.Attributes.Title;
                 $scope.texto = getDescription(item).trim();
@@ -33,7 +37,6 @@ angular
                 var defered = $q.defer();
                 var promise = defered.promise;
                 var id = item.Item.ItemIdParent != null && item.Item.ItemIdParent != undefined ? item.Item.ItemIdParent : item.Item.ItemId;
-                console.log(id);
                 $http({
                     method: "POST",
                     url: userData.getHost() + "/amazon/amazongetitemidvariations",
@@ -55,9 +58,7 @@ angular
                 var colorExist = false;
                 var sizeExist = false;
                 getItemVariation(item).then(function success(result) {
-                    console.log(result);
                     if (result == null) {
-                        console.log(item);
                         if (item.Item.Attributes.Size != null) {
                             $scope.showZise = true;
                             $scope.size = item.Item.Attributes.Size;
@@ -79,19 +80,32 @@ angular
                 });
             }
             function variationExist(result) {
-                $scope.showVariations = true;
                 if ($scope.variations == null || $scope.variations == undefined) {
                     $scope.variations = result.Item;
                 }
+                console.log($scope.variations);
+                if ($scope.variations[0].VariationAttributes.VariationAttribute instanceof Array) {
+                    $scope.showVariationsArray = true;
+                }else{
+                    $scope.showVariationsObject = true;
+                    console.log($scope.variations);
+                }
                 if ($scope.variation != null && $scope.variation != undefined) {
-                    if ($scope.variation.VariationAttributes.VariationAttribute[0].Value != null) {
-                        $scope.showZise = true;
-                        $scope.size = $scope.variation.VariationAttributes.VariationAttribute[0].Value;
+                    if ($scope.variation.VariationAttributes.VariationAttribute instanceof Array) {
+                        if ($scope.variation.VariationAttributes.VariationAttribute[0].Value != null) {
+                            $scope.showZise = true;
+                            $scope.size = $scope.variation.VariationAttributes.VariationAttribute[0].Value;
 
-                    }
-                    if ($scope.variation.VariationAttributes.VariationAttribute[1].Value != null) {
-                        $scope.ShowColor = true;
-                        $scope.color = $scope.variation.VariationAttributes.VariationAttribute[1].Value;
+                        }
+                        if ($scope.variation.VariationAttributes.VariationAttribute[1].Value != null) {
+                            $scope.ShowColor = true;
+                            $scope.color = $scope.variation.VariationAttributes.VariationAttribute[1].Value;
+                        }
+                    } else {
+                        $scope.showFeature = true;
+                        console.log($scope.variation.VariationAttributes.VariationAttribute);
+                        $scope.featureName = $scope.variation.VariationAttributes.VariationAttribute.Name;
+                        $scope.featureValue = $scope.variation.VariationAttributes.VariationAttribute.Value;
                     }
                 }
             }
@@ -126,13 +140,12 @@ angular
             $scope.addToCar = function () {
                 var args = {};
                 args["IdCliente"] = userData.getData().IdCliente;
-                args["ItemId"] = item.Item.ItemId;
+                args["ItemId"] = currentIdItem;
                 if ($scope.cantidad == 0 || $scope.cantidad === undefined) {
                     args["Quantity"] = "0";
                 } else {
                     args["Quantity"] = $scope.cantidad;
                 }
-                console.log(args);
                 userData.addItemToCar(args).then(function success(result) {
                     $uibModalInstance.close();
                 }, function error(result) {

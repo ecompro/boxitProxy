@@ -22,7 +22,7 @@
     </div>
     <div class="form-group" ng-class="{'col-md-3':showSubCategories , 'col-md-5':!showSubCategories}">
         <br>
-        <input class="form-control" type="text" name="find" ng-keypress="onKeyEnterPress($event)"
+        <input class="form-control" type="text" name="find" ng-keypress="$event.keyCode == 13 ? doSearch() : ' '"
                ng-model="keyword">
         <!--                <button   ng-click="doSearch()"></button>-->
 

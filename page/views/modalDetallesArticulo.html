@@ -33,8 +33,13 @@
                 <option value="0">{{color}} - {{size}}</option>
             </select>
         </div>
-        <div class="col-lg-4" ng-show="showVariations">
+        <div class="col-lg-4" ng-show="showVariationsArray">
             <select class="form-control" style="height: 44px" ng-options="item.VariationAttributes.VariationAttribute[0].Value + ' - ' + item.VariationAttributes.VariationAttribute[1].Value for item in variations" ng-model="variation" ng-change="refreshItem()">
+                <option value="">Selecciona Talla/Color</option>
+            </select>
+        </div>
+        <div class="col-lg-4" ng-show="showVariationsObject">
+            <select class="form-control" style="height: 44px" ng-options="item.VariationAttributes.VariationAttribute.Value for item in variations" ng-model="variation" ng-change="refreshItem()">
                 <option value="">Selecciona Talla/Color</option>
             </select>
         </div>
@@ -51,6 +56,12 @@
             <div class="input-group">
                 <span class="input-group-addon">Talla</span>
                 <span class="btn btn-info disabled form-control">{{size}}</span>
+            </div>
+        </div>
+        <div class="col-lg-5" ng-show="showFeature">
+            <div class="input-group">
+                <span class="input-group-addon">{{featureName}}</span>
+                <span class="btn btn-info disabled form-control">{{featureValue}}</span>
             </div>
         </div>
     </div>
