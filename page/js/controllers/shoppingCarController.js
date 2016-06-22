@@ -293,7 +293,7 @@ angular
                 var IdCliente = userData.getData().IdCliente;
                 itemLinks().then(function success(result) {
 
-
+                   console.log($scope.carItems);
                     for (var i = 0; i < $scope.carItems.length; i++) {
 
 
@@ -310,7 +310,7 @@ angular
                         args["Amount"] = item.Price.Amount;
                         // console.log(args);
 
-
+                        console.log(i);
                         promises.push(itemCheckOut(args));
                     }
                 });
