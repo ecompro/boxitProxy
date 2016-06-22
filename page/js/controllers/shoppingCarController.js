@@ -64,7 +64,7 @@ angular
                                     mensaje: function () {
                                         var mensaje = {};
                                         mensaje.titulo = "Error en la Busqueda";
-                                        mensaje.texto = "La busquedano arrojo resultados";
+                                        mensaje.texto = "La busqueda no arrojo resultados";
                                         mensaje.estilo = "alerta";
                                         return mensaje;
                                     }
