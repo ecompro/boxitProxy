@@ -216,9 +216,9 @@ angular
             }
 
             $scope.pageChanged = function () {
-                $scope.Items = products[$scope.currentPage - 1];
-                $location.hash('top');
-                $anchorScroll();
+                this.Items = products[this.currentPage - 1];
+               // $location.hash('top');
+               // $anchorScroll();
             };
             $scope.initIndex = function () {
                 if ($scope.indexs == undefined) {
