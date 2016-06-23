@@ -7,6 +7,9 @@
         <div class="col-lg-8 col-lg-offset-1" ng-show="shopping">
             <h2 class="text-center modal-title">Shopping Cart</h2>
         </div>
+        <div class="col-lg-8 col-lg-offset-1" ng-show="loggin">
+            <h2 class="text-center modal-title">Shopping Cart</h2>
+        </div>
         <div class="col-lg-9" ng-show="checkout">
             <h2 class="text-center modal-title">CheckOut</h2>
         </div>
@@ -42,11 +45,11 @@
             </span>
         </div>
     </div>
-    
+
     <div class="col-lg-2 col-lg-offset-3" ng-show="showTerms">
         <button class="btn btn-lg btn-danger" ng-click="goBack()">Cancelar</button>
     </div>
-<!--    <div class="col-lg-6" ng-show="showTerms"></div>-->
+    <!--    <div class="col-lg-6" ng-show="showTerms"></div>-->
     <div class="col-lg-3 col-lg-offset-1" ng-show="showTerms">
         <button class="btn btn-lg btn-success" ng-click="purchase()">Aceptar</button>
     </div>

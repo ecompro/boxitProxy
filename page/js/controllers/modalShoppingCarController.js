@@ -8,6 +8,7 @@ angular
                 var products = [];
                 var links = [];
                 $scope.checkout = false;
+                $scope.loggin = false;
                 $scope.shopping = true;
                 $scope.showPagination = false;
                 $scope.showImage = true;
@@ -452,6 +453,8 @@ angular
                         if (userObj == undefined) {
                             // $scope.showLoginMessage = true;
                             $scope.loading = false;
+                            $scope.loggin = true;
+                            $scope.shopping = false;
                             $state.go("modalLogin");
 
                         }
