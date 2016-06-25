@@ -35,6 +35,10 @@ angular
                 } else {
                     id = 0;
                 }
+             
+
+                
+                
                 var getCar = function () {
                     userData.getShoppingCar(id).then(function success(result) {
                         refreshCar(result);
@@ -43,6 +47,8 @@ angular
                         console.log(result);
                     });
                 };
+                
+                   setInterval(getCar, 5000);
                 $scope.doSearch = function () {
                     products = [];
                     searchProducts().then(function success(result) {

@@ -82,18 +82,39 @@ and open the template in the editor.
 }
 
 .headerPrecio{
-        background-color: #A82773;
+    background-color: #A82773;
     color: #FFFFFF;
-    font-weight: bold;
-    font-size: 16px;
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+    padding-top: 11px;
+    padding-bottom: 11px;
+
 }
 
 
 .rowPrecio{
-        height: 35px;
+    height: 35px;
     background-color: #eeeeee;
     color: #A82773;
     font-weight: bold;
     font-size: 14px;
-    
+
+}
+
+
+.rowInfo{
+
+    height: 35px;
+    background-color: #eeeeee;
+    /*    color: #A82773;*/
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.preciosTable{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+
 }

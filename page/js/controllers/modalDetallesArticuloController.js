@@ -28,8 +28,14 @@ angular
                 console.log($scope.userNotLogged);
                 console.log(amount == 0);
                 console.log($scope.itemPrice == 0);
-                console.log(($scope.itemPrice == 0 && amount == 0 && $scope.userNotLogged));
-                $scope.disabledAdd = ($scope.itemPrice == 0 && amount == 0 && $scope.userNotLogged);
+                console.log(($scope.itemPrice == 0 || amount == 0 || $scope.userNotLogged));
+                $scope.disabledAdd = ($scope.itemPrice == 0 || amount == 0 || $scope.userNotLogged);
+                if($scope.disabledAdd){
+                 $scope.tooltip = "Por favor iniciar sesion para añadir articulos"
+                }else{
+                    $scope.tooltip="";
+                }
+                
                 $scope.total = numeral(( amount * $scope.cantidad) / 100).format('$0,0.00');
             }
 
@@ -147,10 +153,12 @@ angular
                     args["Quantity"] = $scope.cantidad;
                 }
                 userData.addItemToCar(args).then(function success(result) {
+                    
                     $uibModalInstance.close();
                 }, function error(result) {
                     console.log(result);
                 });
+                
             };
             $scope.refreshTotal = function () {
                 $scope.total = numeral((item.Item.Offers.Offer.OfferListing.Price.Amount * $scope.cantidad) / 100).format('$0,0.00');
