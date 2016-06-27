@@ -48,7 +48,7 @@ angular
                     });
                 };
                 
-                   setInterval(getCar, 5000);
+                  
                 $scope.doSearch = function () {
                     products = [];
                     searchProducts().then(function success(result) {
@@ -152,17 +152,17 @@ angular
                     $location.hash('top');
                     $anchorScroll();
                 };
-                $scope.initIndex = function () {
-                    if ($scope.indexs != undefined) {
-                        $scope.index = $scope.indexs[0];
-                    } else {
-                        userData.setSearchIndex();
-                        $interval(function () {
-                            $scope.indexs = userData.getSearchIndex();
-                            $scope.index = $scope.indexs[0];
-                        }, 1500);
-                    }
-                };
+//                $scope.initIndex = function () {
+//                    if ($scope.indexs != undefined) {
+//                        $scope.index = $scope.indexs[0];
+//                    } else {
+//                        userData.setSearchIndex();
+//                        $interval(function () {
+//                            $scope.indexs = userData.getSearchIndex();
+//                            $scope.index = $scope.indexs[0];
+//                        }, 1500);
+//                    }
+//                };
                 $scope.viewItem = function (item) {
 
                     userData.getItemDetails(item.ItemId).then(function success(result) {

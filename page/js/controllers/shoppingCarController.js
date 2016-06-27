@@ -32,8 +32,12 @@ angular
             } else {
                 id = 0;
             }
+            
+             //setInterval(getCar, 10000);
             var getCar = function () {
+                console.log("carga data");
                 userData.getShoppingCar(id).then(function success(result) {
+                    console.log(result);
                     refreshCar(result);
                     return result;
                 }, function error(result) {
@@ -45,7 +49,7 @@ angular
                 $scope.showCar = false;
                 $scope.currentPage = 1;
                 products = [];
-                console.log(this);
+               // console.log(this);
                 if (this.index != null || this.index != undefined) {
 
                     searchProducts(this).then(function success(result) {
@@ -130,7 +134,7 @@ angular
                     var defered = $q.defer();
                     if (self.keyword != undefined) {
                         var searchParams = {};
-                        console.log(self);
+                      //  console.log(self);
                         searchParams["Keywords"] = self.keyword;
                         searchParams["SearchIndex"] = self.index.attributes.SearchIndex;
                         searchParams["ItemPage"] = i;
@@ -204,8 +208,8 @@ angular
                 }).then(function success(result) {
 
                       if (result !== undefined && result !== null){
-                          console.log(params["ItemPage"]);
-                          console.log(result.data.Item);
+                       //   console.log(params["ItemPage"]);
+                       //   console.log(result.data.Item);
                          products[params["ItemPage"] - 1] =  result.data.Item;
                       }
                     defered.resolve(result.data.Item);
@@ -246,8 +250,8 @@ angular
                 });
             };
             $scope.onKeyEnterPress = function () {
-                console.log(this);
-                console.log($event);
+              //  console.log(this);
+              //  console.log($event);
                 if (event.keyCode === 13) {
                     $scope.doSearch();
                 }
@@ -297,7 +301,7 @@ angular
                 var IdCliente = userData.getData().IdCliente;
                 itemLinks().then(function success(result) {
 
-                   console.log($scope.carItems);
+                //   console.log($scope.carItems);
                     for (var i = 0; i < $scope.carItems.length; i++) {
 
 
@@ -314,7 +318,7 @@ angular
                         args["Amount"] = item.Price.Amount;
                         // console.log(args);
 
-                        console.log(i);
+                     //   console.log(i);
                         promises.push(itemCheckOut(args));
                     }
                 });
@@ -396,7 +400,7 @@ angular
                 $scope.showCarItems = false;
                 $scope.showLoginMessage = false;
                 $scope.loading = true;
-                //   console.log(result.data.Data.Cart);
+                 
                 if (result.data.Data.Cart != undefined) {
                     if (result.data.Data.Cart.CartItems != undefined || result.data.Data.Cart.CartItems != null) {
                         if (null !== result.data.Data.Cart.CartItems) {
@@ -471,7 +475,7 @@ angular
                     $scope.closeModal();
                 });
             };
-            getCar();
+           
             function calcularTotal(carItems) {
                 var totalAcumulado = 0;
                 for (var i = 0; i < carItems.length; i++) {
@@ -509,4 +513,6 @@ angular
                     console.log(result);
                 });
             };
+            
+             getCar();
         }]);
