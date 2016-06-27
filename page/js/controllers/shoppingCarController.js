@@ -35,7 +35,7 @@ angular
             
              //setInterval(getCar, 10000);
             var getCar = function () {
-                console.log("carga data");
+               
                 userData.getShoppingCar(id).then(function success(result) {
                     console.log(result);
                     refreshCar(result);
@@ -79,11 +79,13 @@ angular
                             modalInstance.closed.then(function (someData) {
                                 $scope.loadMain = true;
                                 $scope.firstSearch();
+                                getCar();
                             });
                         } else {
                             $scope.loadMain = false;
                             $scope.showCar = true;
-                            $scope.showPagination = true;
+                            $scope.showPagination = true
+                            
                         }
                     });
                 } else {
@@ -105,8 +107,10 @@ angular
 
                     });
                     modalInstance.closed.then(function (someData) {
+                        
                         $scope.loadMain = true;
                         $scope.firstSearch();
+                         getCar();
                     });
                 }
             };
