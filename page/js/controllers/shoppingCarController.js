@@ -76,6 +76,8 @@ angular
                                 }
 
                             });
+                            
+                        
                             modalInstance.closed.then(function (someData) {
                                 $scope.loadMain = true;
                                 $scope.firstSearch();
@@ -238,7 +240,7 @@ angular
             };
             $scope.viewItem = function (item) {
                 userData.getItemDetails(item.ItemId).then(function success(result) {
-                    $uibModal.open({
+                var modalInstance =   $uibModal.open({
                         animation: true,
                         templateUrl: 'views/modalDetallesArticulo.html',
                         controller: 'modalDetallesArticulosController',
@@ -249,6 +251,13 @@ angular
                             }
                         }
                     });
+                    
+                   modalInstance.closed.then(function (someData) {
+                        //$scope.loadMain = true;
+                       // $scope.firstSearch();
+                        getCar();
+                    });
+                
                 }, function error(result) {
                     console.log(result);
                 });
