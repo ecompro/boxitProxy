@@ -42,10 +42,14 @@ angular.module('boxit', ['ngToast', 'ui.bootstrap', 'ui.router', 'ngStorage', 'a
             url: '/activar/:hash',
             templateUrl: "views/activar.html",
             controller: 'activarController'
+        }).state('anular',{
+           url:'/anularOrden/:orden',
+           templateUrl: "views/anularOrden.html",
+           controller: 'anularController' 
         }).state('home', {
                 url: "/home",
                 templateUrl: "views/home.html",
-                controller: ""
+                controller: "homeController"
             }
         ).state('devolucion', {
                 url: "/devolucion",

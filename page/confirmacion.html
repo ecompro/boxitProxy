@@ -42,9 +42,12 @@
         <script src="js/controllers/trakingDePaquetesController.js" type="text/javascript"></script>
         <script src="js/controllers/userMenuController.js" type="text/javascript"></script>
         <script src="js/controllers/modalShoppingCarController.js" type="text/javascript"></script>
+        <script src="js/controllers/modalPopUpController.js" type="text/javascript"></script>
+        <script src="js/controllers/anularController.js" type="text/javascript"></script>
+        <script src="js/controllers/homeController.js" type="text/javascript"></script>
     </head>
     <body ng-controller="indexController">
-    <header class="desktop">
+        <header class="desktop">
             <div class="Language">
                 <!--                        <div class="SelectLanguage">
                                             <div class="Text">Español (ESP)</div>
@@ -96,9 +99,12 @@
                     </ul>
                 </div>
                 <div class="col-md-1"> 
-                    <div class="Logo">
+                    <div class="">
                         <a ui-sref="boxitStore">
-                            <img  src="img/boxitAmazon.png" alt="Boxit" title="Boxit"/>
+                            <img class="img-responsive img-rounded center-block"
+                                 style="
+                                 object-fit: contain;"
+                                 src="img/BoxitStore-2.png" alt="Boxit" title="Boxit"/>
                         </a>
                     </div>
                 </div>
@@ -217,8 +223,8 @@
             <div class="Overlay"></div>
         </div>
         <div class="desktop">
-        <br/>
-        <br/>
+            <br/>
+            <br/>
         </div>
         <!--AQUI ES DONDE COMIENZA EL BODY-->
         <div ui-view></div>

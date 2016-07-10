@@ -56,5 +56,5 @@ angular
                                 );
                     
                 };
-                $scope.init();
+               // $scope.init();
             }]);

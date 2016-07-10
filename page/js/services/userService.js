@@ -186,6 +186,28 @@ angular.module('boxit')
                 });
                 return promise;
             };
+            
+            factory.anular = function(orden){
+              var defered = $q.defer();
+                var promise = defered.promise;
+                var args = {};
+                args["IdCompraCliente"] = orden;
+                $http({
+                    method: "POST",
+                    url: host + "/amazon/amazonannulpurchaseorder",
+                    data: args,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(function success(result) {
+                    defered.resolve(result.data.Data.Rows.attributes.Message);
+                }, function error(result) {
+                    defered.reject(result.Data);
+                });
+                return promise;  
+                
+            };
+            
             factory.activateUser = function (id) {
                 var defered = $q.defer();
                 var promise = defered.promise;
