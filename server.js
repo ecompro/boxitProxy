@@ -837,6 +837,30 @@ amazonRouter.route('/amazongetcategories').post(function (req, res) {
         });
     });
 });
+
+amazonRouter.route('/amazonannulpurchaseorder').post(function (req, res){
+     var args = {};
+    args["CustomerUser"] = CustomerUser;
+    args["CustomerPassword"] = CustomerPassword;
+    args["IdCompraCliente"] = req.body.IdCompraCliente;
+    soap.createClient(url, function (err, client) {
+        if (client === undefined) {
+            res.json("Servidor no responde");
+            return;
+        }
+        client.AnnulPurchaseOrder(args, function (err, result) {
+            if (result === undefined) {
+                res.json("Servidor no responde");
+                return;
+            }
+            console.log(result)
+            res.json(result.AnnulPurchaseOrderResult); //.Data.Items);
+        });
+    });
+    
+    
+    
+});
 app.use('/users', usersRouter);
 app.use('/amazon', amazonRouter);
 app.listen(port);

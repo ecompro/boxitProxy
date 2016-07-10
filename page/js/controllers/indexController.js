@@ -3,8 +3,8 @@
  */
 angular
         .module('boxit')
-        .controller('indexController', ['$scope', 'userData',
-            function ($scope, userData) {
+        .controller('indexController', ['$scope', 'userData','$uibModal',
+            function ($scope, userData,$uibModal) {
                
                 $scope.loged = false;
                 if (!(userData.getData() === undefined)) {
@@ -43,7 +43,18 @@ angular
 
                 };
                  $scope.init = function () {
-                    userData.setSearchIndex();
-                };
+                  //  userData.setSearchIndex();
+                    
+                       $uibModal.open({
+                                    animation: true,
+                                    templateUrl: 'views/modalPopUp.html',
+                                    controller: 'modalPopUpController',
+                                    size: 'lg',
+                                  
+                                    }
 
+                                );
+                    
+                };
+                $scope.init();
             }]);
