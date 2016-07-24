@@ -853,7 +853,7 @@ amazonRouter.route('/amazonannulpurchaseorder').post(function (req, res){
                 res.json("Servidor no responde");
                 return;
             }
-            console.log(result)
+            console.log(result);
             res.json(result.AnnulPurchaseOrderResult); //.Data.Items);
         });
     });
@@ -861,6 +861,58 @@ amazonRouter.route('/amazonannulpurchaseorder').post(function (req, res){
     
     
 });
+
+amazonRouter.route('/insertpurchaseorderenc').post(function (req, res){
+    var args = {};
+    args["CustomerUser"] = CustomerUser;
+    args["CustomerPassword"] = CustomerPassword;
+   
+    soap.createClient(url, function (err, client) {
+        if (client === undefined) {
+            res.json("Servidor no responde");
+            return;
+        }
+        client.InsertPurchaseOrderEnc(args, function (err, result) {
+            if (result === undefined) {
+                res.json("Servidor no responde");
+                return;
+            }
+            //console.log(result);
+            res.json(result.InsertPurchaseOrderEncResult); //.Data.Items);
+        });
+    });
+    
+    
+    
+});
+
+amazonRouter.route('/insertpurchaseorderdetail').post(function (req, res){
+    var args = {};
+    args["CustomerUser"] = CustomerUser;
+    args["CustomerPassword"] = CustomerPassword;
+    args["IdOrdenCompra"] = req.body.IdOrdenCompra;
+    args["ListPurchaseOrderDetail"] = req.body.ListPurchaseOrderDetail;
+    soap.createClient(url, function (err, client) {
+        if (client === undefined) {
+            res.json("Servidor no responde");
+            return;
+        }
+        client.InsertPurchaseOrderDetail(args, function (err, result) {
+            if (result === undefined) {
+                res.json("Servidor no responde");
+                return;
+            }
+            console.log(result);
+            res.json(result.InsertPurchaseOrderDetailResult); //.Data.Items);
+        });
+    });
+    
+    
+    
+});
+
+
+
 app.use('/users', usersRouter);
 app.use('/amazon', amazonRouter);
 app.listen(port);

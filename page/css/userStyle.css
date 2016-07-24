@@ -118,3 +118,9 @@ and open the template in the editor.
     width: 100%;
 
 }
+
+.imageFit {
+    object-fit: contain;
+    font-family: 'object-fit: contain;'
+}
+

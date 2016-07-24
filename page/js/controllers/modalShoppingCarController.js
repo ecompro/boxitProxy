@@ -35,10 +35,10 @@ angular
                 } else {
                     id = 0;
                 }
-             
 
-                
-                
+
+
+
                 var getCar = function () {
                     userData.getShoppingCar(id).then(function success(result) {
                         refreshCar(result);
@@ -47,8 +47,8 @@ angular
                         console.log(result);
                     });
                 };
-                
-                  
+
+
                 $scope.doSearch = function () {
                     products = [];
                     searchProducts().then(function success(result) {
@@ -290,7 +290,7 @@ angular
                             }
 
                         });
-                        
+
                     }
 
                     if (!$scope.showTerms && valid) {
@@ -306,7 +306,7 @@ angular
 
                 $scope.purchase = function () {
 
-                 console.log($scope.carItems);
+                    console.log($scope.carItems);
                     if (!validate()) {
 
                         return "";
@@ -318,7 +318,7 @@ angular
                     $scope.showCarItems = false;
                     $scope.showLoginMessage = false;
                     $scope.loading = true;
-                    var promises = [];
+                    var details = [];
                     links = [];
                     var IdCliente = userData.getData().IdCliente;
                     itemLinks().then(function success(result) {
@@ -326,9 +326,11 @@ angular
 
                         for (var i = 0; i < $scope.carItems.length; i++) {
 
-                           
+
                             var item = $scope.carItems[i];
                             var args = {};
+                            var detail = {};
+
                             args["IdCliente"] = IdCliente;
                             //descripcion del producto
                             args["Package"] = item.Title;
@@ -340,17 +342,110 @@ angular
                             args["Amount"] = item.Price.FormattedPrice;
                             // console.log(args);
 
-
-                            promises.push(itemCheckOut(args));
+                            detail["PurchaseOrderDetail"] = args;
+                            details.push(detail);
                         }
+
+
+                        // console.log(details);
+                        getIdCompra().then(function success(result) {
+                            var args = {};
+
+
+                            //console.log("metodos nuevos");
+                            args["IdOrdenCompra"] = result;
+                            args["ListPurchaseOrderDetail"] = details;
+                            //  console.log(args["ListPurchaseOrderDetail"]);
+                            newCheckout(args).then(function success(result) {
+                                var answer = result;
+
+                                if (answer === "The Purchase Order Detail Has Been Created") {
+                                    clearCar(IdCliente);
+                                    $scope.checkout = true;
+                                    $scope.shopping = false;
+                                    $state.go("checkoutmessage");
+                                } else {
+
+                                    $uibModal.open({
+                                        animation: true,
+                                        templateUrl: 'views/modalCambioClave.html',
+                                        controller: 'modalCambioClaveController',
+                                        size: 'sm',
+                                        resolve: {
+                                            mensaje: function () {
+                                                var mensaje = {};
+                                                mensaje.titulo = "Shopping Car";
+                                                mensaje.texto = answer;
+                                                mensaje.estilo = "alerta";
+                                                return mensaje;
+                                            }
+                                        }
+
+                                    });
+                                }
+
+                            });
+                        });
+
+
                     });
-                    clearCar(IdCliente);
-                    $scope.checkout = true;
-                    $scope.shopping = false;
+
+
+                    //clearCar(IdCliente);
+                    // $scope.checkout = true;
+                    // $scope.shopping = false;
                     //$window.location = '/BoxitStore.html#/checkoutmessage';
-                    $state.go("checkoutmessage");
-                    return $q.all(promises);
+                    // $state.go("checkoutmessage");
+                    // return $q.all(promises);
                 };
+
+                var newCheckout = function (params) {
+                    var defered = $q.defer();
+                    var promise = defered.promise;
+                    console.log(params);
+                    $http({
+                        method: "POST",
+                        url: userData.getHost() + "/amazon/insertpurchaseorderdetail",
+                        data: params,
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(function success(result) {
+                        //console.log(result);
+                        defered.resolve(result.data.Data.Rows.attributes.Message);
+                    }, function error(result) {
+                        console.log(result);
+                        defered.reject(result.data.Rows.attributes.Message);
+                    });
+
+                    return promise;
+
+                };
+
+                var getIdCompra = function () {
+                    var defered = $q.defer();
+                    var promise = defered.promise;
+
+                    $http({
+                        method: "POST",
+                        url: userData.getHost() + "/amazon/insertpurchaseorderenc",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(function success(result) {
+                        console.log(result);
+                        defered.resolve(result.data.Data.Rows.attributes.IdOrdenCompra);
+                    }, function error(result) {
+                        console.log(result.data.Rows.attributes.Message);
+                        defered.reject(result.data.Rows.attributes.Message);
+                    });
+
+                    return promise;
+
+                };
+
+
+
                 var itemCheckOut = function (params) {
 
                     var defered = $q.defer();
