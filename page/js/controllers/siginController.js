@@ -77,6 +77,7 @@ angular
                     args["UserBirthdate"] = moment($scope.UserBirthdate).format('YYYY/MM/DD');
                     args["IdPlataforma"] = $scope.descPlataforma != null ?
                             $scope.descPlataforma.attributes.IdPlataforma : null;
+                    args["Phone"] = $scope.Phone        
                     var respuesta = "";
                     $http({
                         method: "POST",
@@ -113,6 +114,8 @@ angular
                                 respuesta = "El formato del correo es invalido";
                             } else if (respuesta === "IdPlataforma is required") {
                                 respuesta = "Debe seleccionar plataforma";
+                            } else if (respuesta === "Phone is required"){
+                                respuesta = "El numero de telefono es requerido";
                             }
 
 

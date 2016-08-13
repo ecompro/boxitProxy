@@ -228,6 +228,7 @@ angular.module('boxit')
                 return promise;
             };
             factory.setSearchIndex = function () {
+               // $localStorage.searchIndex = null
                 $http({
                     method: "POST",
                     url: host + "/amazon/amazongetsearchindex",
@@ -243,7 +244,7 @@ angular.module('boxit')
                 });
             };
             factory.getSearchIndex = function () {
-                return $localStorage.searchIndex;
+                return $localStorage.searchIndex;     
             };
             factory.resetPassword = function (email) {
 

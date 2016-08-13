@@ -19,9 +19,9 @@ angular
             $scope.currentPage = 1;
             $scope.amazonLink = "";
             $scope.showSubCategories = false;
-            var userObj = userData.getData();
+            var userObj =  userData.getData();
             var id;
-            $scope.indexs = userData.getSearchIndex();
+            $scope.indexs = undefined;  //userData.getSearchIndex();
             if (userObj != undefined) {
                 $scope.UserName = userObj.UserName;
             } else {
@@ -188,6 +188,7 @@ angular
                         searchParams["IdCliente"] = IdCliente;
                         defered.resolve(userData.getDefaultSearch(searchParams).then(function success(result) {
                             if (result !== undefined) {
+                                
                                 products.push(result);
                             }
                         }, function error(result) {
@@ -231,12 +232,14 @@ angular
                // $anchorScroll();
             };
             $scope.initIndex = function () {
-                if ($scope.indexs == undefined) {
+                
+               // if ($scope.indexs == undefined) {
+                    console.log("realizando busqueda");
                     userData.setSearchIndex();
                     $interval(function () {
                         $scope.indexs = userData.getSearchIndex();
                     }, 1500);
-                }
+                //}
             };
             $scope.viewItem = function (item) {
                 userData.getItemDetails(item.ItemId).then(function success(result) {
@@ -520,10 +523,12 @@ angular
 
             $scope.setSubCategories = function () {
                 getSubCategories(this.index.attributes.SearchIndex).then(function success(result) {
-                    $scope.showSubCategories = true;
+                   
                     $scope.subCategories = result.data;
+                    $scope.showSubCategories = true;
                 }, function error(result) {
                     console.log(result);
+                    $scope.showSubCategories = false;
                 });
             };
             
