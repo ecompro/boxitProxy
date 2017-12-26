@@ -9,6 +9,7 @@ var url = 'http://200.62.34.16/SF.GrupoAuraIntegracion/?wsdl';
 var port =  process.env.PORT || 8080;
 var CustomerUser = "SGroup";
 var CustomerPassword = "S1stem@#B0x1t";
+var https = require('https');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/page'));
@@ -19,9 +20,21 @@ app.use(function (req, res, next) {
     next();
 });
 console.log(url);
-app.get('*', function (req, res) {
+app.get('/', function (req, res) {
     res.sendFile(__dirname + '/page/index.html')
 });
+
+app.get('/health-check', function (req, res) {
+    res.sendStatus(200)
+});
+
+app.use(express.static('static'));
+
+const options = {
+    cert: fs.readFileSync('sslcert/fullchain.pem'),
+    key: fs.readFileSync('sslcert/privkey.pem')
+};
+
 var usersRouter = express.Router();
 
 usersRouter.route('/getplataformas')
@@ -917,4 +930,5 @@ amazonRouter.route('/insertpurchaseorderdetail').post(function (req, res){
 app.use('/users', usersRouter);
 app.use('/amazon', amazonRouter);
 app.listen(port);
+https.createServer(options, app).listen(8443);
 console.log('Magic happens on port ' + port);
