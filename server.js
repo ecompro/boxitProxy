@@ -7,6 +7,8 @@ var soap = require('soap');
 var bodyParser = require('body-parser');
 var url = 'http://200.62.34.16/SF.GrupoAuraIntegracion/?wsdl';
 var port =  process.env.PORT || 8080;
+var http = require('http');
+var https = require('https');
 var CustomerUser = "SGroup";
 var CustomerPassword = "S1stem@#B0x1t";
 app.use(bodyParser.urlencoded({extended: true}));
@@ -18,6 +20,31 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
     next();
 });
+function approveDomains(opts, certs, cb) {
+    // This is where you check your database and associated
+    // email addresses with domains and agreements and such
+    // The domains being approved for the first time are listed in opts.domains
+    // Certs being renewed are listed in certs.altnames
+    if (certs) {
+        opts.domains = certs.altnames;
+    }
+    else {
+        opts.domains = ['www.myboxit.com', 'myboxit.com'];
+        opts.agreeTos = true;
+    }
+
+    cb(null, { options: opts, certs: certs });
+}
+
+
+var lex = require('greenlock-express').create({
+    // set to https://acme-v01.api.letsencrypt.org/directory in production
+    server: 'staging'
+    , challenges: { 'http-01': require('le-challenge-fs').create({ webrootPath: '/tmp/acme-challenges' }) }
+    , store: require('le-store-certbot').create({ webrootPath: '/tmp/acme-challenges' })
+    , approveDomains: approveDomains
+});
+
 console.log(url);
 app.get('*', function (req, res) {
     res.sendFile(__dirname + '/page/index.html')
@@ -916,5 +943,13 @@ amazonRouter.route('/insertpurchaseorderdetail').post(function (req, res){
 
 app.use('/users', usersRouter);
 app.use('/amazon', amazonRouter);
-app.listen(port);
+
+http.createServer(lex.middleware(require('redirect-https')())).listen(80, function () {
+    console.log("Listening for ACME http-01 challenges on", this.address());
+});
+
+https.createServer(lex.httpsOptions, lex.middleware(app)).listen(443, function () {
+    console.log("Listening for ACME tls-sni-01 challenges and serve app on", this.address());
+});
+
 console.log('Magic happens on port ' + port);
