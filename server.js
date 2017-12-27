@@ -29,7 +29,7 @@ app.get('/health-check', function (req, res) {
     res.sendStatus(200)
 });
 
-app.use(express.static('static'));
+app.use(express.static(__dirname + '/static'));
 
 //var options = {
 //    cert: fs.readFileSync('sslcert/fullchain.pem'),
