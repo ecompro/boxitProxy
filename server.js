@@ -31,10 +31,10 @@ app.get('/health-check', function (req, res) {
 
 app.use(express.static('static'));
 
-const options = {
-    cert: fs.readFileSync('sslcert/fullchain.pem'),
-    key: fs.readFileSync('sslcert/privkey.pem')
-};
+//var options = {
+//    cert: fs.readFileSync('sslcert/fullchain.pem'),
+//    key: fs.readFileSync('sslcert/privkey.pem')
+//};
 
 var usersRouter = express.Router();
 
@@ -926,10 +926,8 @@ amazonRouter.route('/insertpurchaseorderdetail').post(function (req, res){
     
 });
 
-
-
 app.use('/users', usersRouter);
 app.use('/amazon', amazonRouter);
 app.listen(port);
-https.createServer(options, app).listen(8443);
+//https.createServer(options, app).listen(8443);
 console.log('Magic happens on port ' + port);
