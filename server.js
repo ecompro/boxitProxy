@@ -10,6 +10,7 @@ var port =  process.env.PORT || 8080;
 var CustomerUser = "SGroup";
 var CustomerPassword = "S1stem@#B0x1t";
 var https = require('https');
+var fs = require('fs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/page'));
