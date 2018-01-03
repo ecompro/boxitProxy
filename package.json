@@ -1,17 +1,17 @@
 {
-    "name": "boxitProxy",
-     "version": "1.0.0",
+  "name": "boxitProxy",
+  "version": "1.0.0",
   "main": "server.js",
   "author": "Leonardo Fuenmayor & Luis Barrios",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
-    "soap": "^0.14.0" },
-    "fitie": "^1.0.0",
-    "scripts": {
-        "start": "node server.js"
-    }
-
-
+    "https": "^1.0.0",
+    "soap": "^0.14.0"
+  },
+  "fitie": "^1.0.0",
+  "scripts": {
+    "start": "node server.js"
+  }
 }
