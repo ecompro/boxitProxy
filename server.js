@@ -75,6 +75,10 @@ usersRouter.route('/insertuserboxit')
             args["UserGender"] = req.body.UserGender;
             args["UserBirthdate"] = req.body.UserBirthdate;
             args["Phone"] = req.body.Phone
+			args["CEnteraste"]=req.body.CEnteraste;
+            args["Otro_CEnteraste"]=req.body.Otro_CEnteraste;
+            args["Categorias"]=req.body.Categorias;
+            args["Otra_Categoria"]=req.body.Otra_Categoria;
            
             soap.createClient(url, function (err, client) {
                 if (client === undefined) {
